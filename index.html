@@ -614,6 +614,20 @@ body {
   font-weight: 400;
   color: var(--amber);
 }
+/* input type=time con el mismo estilo */
+input.time-val {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  -webkit-appearance: none;
+  color-scheme: dark;
+}
+input.time-val::-webkit-calendar-picker-indicator {
+  display: none;
+}
 
 .quality-stars {
   display: flex;
@@ -1344,18 +1358,22 @@ body {
       <div class="diary-card">
         <h3>Horarios</h3>
         <div class="time-inputs">
-          <div class="time-input-wrap">
-            <label>Me acosté</label>
-            <div class="time-val">23:30</div>
+          <div class="time-input-wrap" onclick="this.querySelector('input').showPicker && this.querySelector('input').showPicker()">
+            <label for="timeAcostarse">Me acosté</label>
+            <input type="time" id="timeAcostarse" class="time-val" value="23:30" onchange="calcularEficiencia()">
           </div>
-          <div class="time-input-wrap">
-            <label>Me dormí</label>
-            <div class="time-val">00:45</div>
+          <div class="time-input-wrap" onclick="this.querySelector('input').showPicker && this.querySelector('input').showPicker()">
+            <label for="timeDormi">Me dormí</label>
+            <input type="time" id="timeDormi" class="time-val" value="00:45" onchange="calcularEficiencia()">
           </div>
-          <div class="time-input-wrap">
-            <label>Me levanté</label>
-            <div class="time-val">07:00</div>
+          <div class="time-input-wrap" onclick="this.querySelector('input').showPicker && this.querySelector('input').showPicker()">
+            <label for="timeLevante">Me levanté</label>
+            <input type="time" id="timeLevante" class="time-val" value="07:00" onchange="calcularEficiencia()">
           </div>
+        </div>
+        <div id="eficienciaResult" style="margin-top:14px;text-align:center;font-size:13px;color:var(--muted);display:none;">
+          Eficiencia: <strong id="eficienciaVal" style="color:var(--amber);font-size:16px;"></strong>
+          <span id="eficienciaLabel" style="margin-left:6px;"></span>
         </div>
       </div>
 
@@ -1460,41 +1478,88 @@ body {
         </div>
       </div>
 
-      <div class="week-card week-active">
-        <div class="week-header" onclick="toggleWeek(this)">
+      <div class="week-card" id="week-card-2">
+        <div class="week-header" id="week-header-2">
           <div class="week-num">2</div>
           <div class="week-info"><h3>Control de estímulos</h3><p>Reconectar cama con sueño</p></div>
-          <span class="week-status">›</span>
+          <span class="week-status" id="week-status-2">🔒</span>
         </div>
-        <div class="week-content"></div>
+        <div class="week-content" id="week-content-2">
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 8 — La regla de los 20 minutos</h4><p>Qué hacer si no te duermes</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 9 — La cama solo para dormir</h4><p>Eliminar la asociación cama-vigilia</p></div><span class="day-mins">8 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 10 — Rutina de desconexión</h4><p>Diseña tu ritual de 30 minutos</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 11 — Horario fijo de levantarse</h4><p>La ancla del ritmo circadiano</p></div><span class="day-mins">8 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 12 — Gestionar los despertares</h4><p>Qué hacer a las 3 de la mañana</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 13 — Tu ambiente de sueño</h4><p>Temperatura, luz y ruido</p></div><span class="day-mins">8 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 14 — Revisión semana 2</h4><p>Midiendo tu progreso real</p></div><span class="day-mins">12 min</span></div>
+        </div>
       </div>
 
-      <div class="week-card week-locked">
-        <div class="week-header">
+      <div class="week-card" id="week-card-3">
+        <div class="week-header" id="week-header-3">
           <div class="week-num">3</div>
           <div class="week-info"><h3>Restricción del sueño</h3><p>La técnica más potente de TCC-I</p></div>
-          <span class="week-status">🔒</span>
+          <span class="week-status" id="week-status-3">🔒</span>
+        </div>
+        <div class="week-content" id="week-content-3">
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 15 — Qué es la restricción del sueño</h4><p>Por qué funciona y cómo hacerlo</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 16 — Calculando tu ventana de sueño</h4><p>Usando tu diario para definir el horario</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 17 — Primera semana de restricción</h4><p>Qué esperar y cómo aguantar</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 18 — Ajustar la ventana</h4><p>Cuando ampliar o reducir el tiempo</p></div><span class="day-mins">8 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 19 — Somnolencia diurna</h4><p>Cómo manejarla sin arruinar el proceso</p></div><span class="day-mins">8 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 20 — La presión de sueño</h4><p>Entender la adenosina y el sueño profundo</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 21 — Revisión semana 3</h4><p>¿Está mejorando tu eficiencia?</p></div><span class="day-mins">15 min</span></div>
         </div>
       </div>
-      <div class="week-card week-locked">
-        <div class="week-header">
+
+      <div class="week-card" id="week-card-4">
+        <div class="week-header" id="week-header-4">
           <div class="week-num">4</div>
           <div class="week-info"><h3>Reestructuración cognitiva</h3><p>Cambiar pensamientos sobre el sueño</p></div>
-          <span class="week-status">🔒</span>
+          <span class="week-status" id="week-status-4">🔒</span>
+        </div>
+        <div class="week-content" id="week-content-4">
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 22 — Pensamientos que roban el sueño</h4><p>Identificar la rumiación nocturna</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 23 — Creencias erróneas sobre el sueño</h4><p>Los mitos que empeoran el insomnio</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 24 — La técnica de la silla</h4><p>Aparcar las preocupaciones antes de dormir</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 25 — Reencuadrar el insomnio</h4><p>Cambiar la relación con el no dormir</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 26 — Mindfulness para el sueño</h4><p>Estar presente sin luchar contra el insomnio</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 27 — Reducir la ansiedad anticipatoria</h4><p>El círculo vicioso del miedo a no dormir</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 28 — Revisión semana 4</h4><p>Tu mente y el sueño: nueva relación</p></div><span class="day-mins">15 min</span></div>
         </div>
       </div>
-      <div class="week-card week-locked">
-        <div class="week-header">
+
+      <div class="week-card" id="week-card-5">
+        <div class="week-header" id="week-header-5">
           <div class="week-num">5</div>
           <div class="week-info"><h3>Relajación y mindfulness</h3><p>Técnicas basadas en evidencia</p></div>
-          <span class="week-status">🔒</span>
+          <span class="week-status" id="week-status-5">🔒</span>
+        </div>
+        <div class="week-content" id="week-content-5">
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 29 — Relajación muscular progresiva</h4><p>El método Jacobson explicado paso a paso</p></div><span class="day-mins">15 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 30 — Respiración diafragmática</h4><p>Activar el nervio vago para calmar el sistema</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 31 — Imágenes mentales guiadas</h4><p>Crear un lugar seguro mental para dormir</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 32 — Body scan nocturno</h4><p>Escaneo corporal para soltar la tensión</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 33 — Tu ritual de 20 minutos</h4><p>Combinar técnicas para tu rutina personal</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 34 — Gestión del estrés diurno</h4><p>Lo que ocurre de día afecta la noche</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 35 — Revisión semana 5</h4><p>Qué técnicas te funcionan mejor</p></div><span class="day-mins">12 min</span></div>
         </div>
       </div>
-      <div class="week-card week-locked">
-        <div class="week-header">
+
+      <div class="week-card" id="week-card-6">
+        <div class="week-header" id="week-header-6">
           <div class="week-num">6</div>
           <div class="week-info"><h3>Prevención de recaídas</h3><p>Tu plan para el futuro</p></div>
-          <span class="week-status">🔒</span>
+          <span class="week-status" id="week-status-6">🔒</span>
+        </div>
+        <div class="week-content" id="week-content-6">
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 36 — Señales de alerta temprana</h4><p>Reconocer el insomnio antes de que vuelva</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 37 — Plan de acción ante recaídas</h4><p>Qué hacer si las noches malas vuelven</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 38 — Mantenimiento a largo plazo</h4><p>Hábitos para conservar lo ganado</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 39 — El sueño en momentos difíciles</h4><p>Estrés, viajes, cambios de rutina</p></div><span class="day-mins">10 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 40 — Tu perfil de sueño definitivo</h4><p>Lo que sabes ahora que no sabías antes</p></div><span class="day-mins">12 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 41 — Cuándo volver al programa</h4><p>El programa como recurso permanente</p></div><span class="day-mins">8 min</span></div>
+          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 42 — Cierre del programa</h4><p>Celebra lo que has conseguido</p></div><span class="day-mins">15 min</span></div>
         </div>
       </div>
     </div>
@@ -1713,7 +1778,7 @@ body {
         <p>
           <strong style="color:var(--cream)">Ayudante Anónimo</strong><br>
           Persona física · España<br>
-          Contacto: <a href="mailto:ayudante.anonimo.apps@gmail.com">ayudante.anonimo.apps@gmail.com</a><br>
+          Contacto: <a href="/cdn-cgi/l/email-protection#7011090514111e04155e111e1f1e191d1f5e1100000330171d11191c5e131f1d"><span class="__cf_email__" data-cfemail="ea8b939f8e8b849e8fc48b848584838785c48b9a9a99aa8d878b8386c4898587">[email&#160;protected]</span></a><br>
           Publicado bajo el alias Ayudante Anónimo (X: @AyudanteAnonim0)
         </p>
       </div>
@@ -1769,7 +1834,7 @@ body {
 
 </div><!-- #app -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ─── ESTRELLAS ───
 const starsEl = document.getElementById('starsEl');
 for (let i = 0; i < 50; i++) {
@@ -1853,6 +1918,111 @@ function setStar(n) {
   document.querySelectorAll('.star-btn').forEach((btn, i) => {
     btn.classList.toggle('active', i < n);
   });
+}
+
+// ─── DESBLOQUEO SEMANAS POR DÍAS ───
+// Guardamos la fecha de inicio en localStorage
+// Semana 1: siempre desbloqueada
+// Semana N: se desbloquea a los (N-1)*7 días del inicio
+function iniciarPrograma() {
+  if (!localStorage.getItem('db_inicio')) {
+    localStorage.setItem('db_inicio', Date.now());
+  }
+}
+iniciarPrograma();
+
+function desbloquearSemanas() {
+  const inicio = parseInt(localStorage.getItem('db_inicio') || Date.now());
+  const diasTranscurridos = Math.floor((Date.now() - inicio) / (1000 * 60 * 60 * 24));
+
+  for (let semana = 2; semana <= 6; semana++) {
+    const diasNecesarios = (semana - 1) * 7;
+    const card    = document.getElementById('week-card-' + semana);
+    const header  = document.getElementById('week-header-' + semana);
+    const status  = document.getElementById('week-status-' + semana);
+    const content = document.getElementById('week-content-' + semana);
+
+    if (!card) continue;
+
+    if (diasTranscurridos >= diasNecesarios) {
+      // DESBLOQUEADA
+      card.classList.add('week-active');
+      card.classList.remove('week-locked');
+      status.textContent = '›';
+      header.onclick = function() { toggleWeek(this); };
+    } else {
+      // BLOQUEADA — mostrar cuántos días faltan
+      card.classList.add('week-locked');
+      card.classList.remove('week-active');
+      const diasFaltan = diasNecesarios - diasTranscurridos;
+      status.textContent = '🔒';
+      header.onclick = function() {
+        // pequeño mensaje
+        const p = card.querySelector('.week-info p');
+        p.textContent = `Se desbloquea en ${diasFaltan} día${diasFaltan > 1 ? 's' : ''}`;
+        setTimeout(() => {
+          p.textContent = card.dataset.subtitle;
+        }, 2500);
+      };
+      // Guardar subtítulo original
+      if (!card.dataset.subtitle) {
+        card.dataset.subtitle = card.querySelector('.week-info p').textContent;
+      }
+    }
+  }
+}
+desbloquearSemanas();
+
+// ─── CÁLCULO EFICIENCIA DEL SUEÑO ───
+function calcularEficiencia() {
+  const acostarse = document.getElementById('timeAcostarse').value;
+  const dormi     = document.getElementById('timeDormi').value;
+  const levante   = document.getElementById('timeLevante').value;
+
+  if (!acostarse || !dormi || !levante) return;
+
+  function toMinutos(t) {
+    const [h, m] = t.split(':').map(Number);
+    return h * 60 + m;
+  }
+
+  let minAcostarse = toMinutos(acostarse);
+  let minDormi     = toMinutos(dormi);
+  let minLevante   = toMinutos(levante);
+
+  // Ajustar cruce de medianoche
+  if (minDormi < minAcostarse) minDormi += 1440;   // se durmió al día siguiente
+  if (minLevante <= minDormi)  minLevante += 1440;  // se levantó al día siguiente
+
+  const tiempoEnCama  = minLevante - minAcostarse;
+  const tiempoDormido = minLevante - minDormi;
+
+  if (tiempoEnCama <= 0 || tiempoDormido <= 0) return;
+
+  const eficiencia = Math.round((tiempoDormido / tiempoEnCama) * 100);
+
+  let label = '';
+  let color = 'var(--amber)';
+  if (eficiencia >= 85) {
+    label = '✓ Buena';
+    color = 'var(--green-soft)';
+  } else if (eficiencia >= 70) {
+    label = '~ Mejorable';
+    color = 'var(--amber)';
+  } else {
+    label = '↓ Baja';
+    color = 'var(--red-soft)';
+  }
+
+  const resultDiv = document.getElementById('eficienciaResult');
+  const valEl     = document.getElementById('eficienciaVal');
+  const labelEl   = document.getElementById('eficienciaLabel');
+
+  valEl.textContent   = eficiencia + '%';
+  valEl.style.color   = color;
+  labelEl.textContent = label;
+  labelEl.style.color = color;
+  resultDiv.style.display = 'block';
 }
 
 // ─── TEMARIO COMPLETO DEL ASISTENTE ───
