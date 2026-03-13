@@ -41,6 +41,7 @@ body{min-height:100dvh;background:var(--bg);color:var(--cream);font-family:'DM S
 .nav-item.active .nav-label{color:var(--amber)}
 .nav-dot{width:4px;height:4px;border-radius:50%;background:var(--amber);opacity:0;transition:opacity .2s;margin-top:-4px}
 .nav-item.active .nav-dot{opacity:1}
+
 /* ONBOARDING */
 #screen-onboarding{position:relative;overflow:hidden;min-height:100dvh}
 .onb-slides{display:flex;width:300%;min-height:100dvh;transition:transform .45s cubic-bezier(.4,0,.2,1)}
@@ -63,6 +64,7 @@ body{min-height:100dvh;background:var(--bg);color:var(--cream);font-family:'DM S
 .onb-dots{display:flex;gap:6px;justify-content:center;margin-bottom:20px}
 .onb-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);transition:background .3s,width .3s}
 .onb-dot.active{background:var(--amber);width:18px;border-radius:3px}
+
 /* SHARED */
 .back-btn{background:none;border:none;color:var(--amber);font-family:'DM Sans',sans-serif;font-size:15px;cursor:pointer;padding:0 0 10px;-webkit-tap-highlight-color:transparent;display:block}
 .aviso-legal{background:var(--amber-dim);border:1px solid rgba(232,160,88,.2);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
@@ -71,6 +73,7 @@ body{min-height:100dvh;background:var(--bg);color:var(--cream);font-family:'DM S
 .aviso-legal strong{color:var(--cream)}
 .btn-main{display:block;width:100%;padding:16px;background:var(--amber);color:#0d0d14;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;border:none;border-radius:var(--radius);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:opacity .15s,transform .1s}
 .btn-main:active{opacity:.85;transform:scale(.99)}
+
 /* HOME */
 .home-wrap{padding:24px 20px calc(100px + var(--safe-bottom))}
 .home-header{margin-bottom:24px}
@@ -98,6 +101,7 @@ body{min-height:100dvh;background:var(--bg);color:var(--cream);font-family:'DM S
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 10px;text-align:center}
 .stat-num{font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--amber)}
 .stat-label{font-size:10px;color:var(--muted);margin-top:3px}
+
 /* CRISIS */
 .crisis-wrap{padding:24px 20px calc(40px + var(--safe-bottom))}
 .crisis-header{margin-bottom:20px}
@@ -119,6 +123,7 @@ body{min-height:100dvh;background:var(--bg);color:var(--cream);font-family:'DM S
 .badge-fast{background:rgba(90,138,106,.15);color:#7ab890}
 .badge-mid{background:rgba(232,160,88,.15);color:var(--amber)}
 .badge-deep{background:rgba(196,106,74,.15);color:#d4845a}
+
 /* DIARY */
 .diary-wrap{padding:20px 20px calc(100px + var(--safe-bottom))}
 .diary-header{margin-bottom:18px}
@@ -153,27 +158,27 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
 .chart-day-label{flex:1;text-align:center;font-size:9px;color:var(--muted);text-transform:uppercase}
 .save-feedback{display:none;align-items:center;justify-content:center;gap:8px;padding:12px;background:rgba(90,138,106,.15);border:1px solid rgba(90,138,106,.3);border-radius:var(--radius-sm);margin-top:10px;font-size:14px;color:#7ab890}
 .save-feedback.visible{display:flex}
+
 /* PROGRAMA */
 .program-wrap{padding:20px 20px calc(100px + var(--safe-bottom))}
 .program-header{margin-bottom:18px}
 .program-header h2{font-family:'Fraunces',serif;font-size:26px;font-weight:400;margin-bottom:4px}
 .program-header p{font-size:13px;color:var(--muted)}
 .week-card{border-radius:var(--radius);margin-bottom:8px;overflow:hidden;border:1px solid var(--border)}
-.week-header{padding:14px 16px;display:flex;align-items:center;gap:12px;background:var(--surface);-webkit-tap-highlight-color:transparent;transition:background .2s;user-select:none}
-.week-header.clickable{cursor:pointer}
-.week-header.clickable:active{background:var(--surface2)}
+.week-header{padding:14px 16px;display:flex;align-items:center;gap:12px;background:var(--surface);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s;user-select:none}
+.week-header:active{background:var(--surface2)}
 .week-num{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:16px;font-weight:600;flex-shrink:0}
 .week-active .week-num{background:var(--amber);color:#0d0d14}
-.week-done   .week-num{background:rgba(90,138,106,.2);color:#7ab890}
-.week-locked .week-num{background:var(--bg3);color:var(--muted)}
+.week-done .week-num{background:rgba(90,138,106,.2);color:#7ab890}
 .week-info{flex:1;min-width:0}
 .week-info h3{font-size:14px;font-weight:500;margin-bottom:2px}
 .week-info p{font-size:12px;color:var(--muted)}
 .week-status{font-size:16px;color:var(--muted);flex-shrink:0;transition:transform .25s}
 .week-content{display:none;background:var(--bg2)}
 .week-content.open{display:block}
-.day-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);-webkit-tap-highlight-color:transparent;transition:background .15s}
+.day-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);-webkit-tap-highlight-color:transparent;transition:background .15s;cursor:pointer}
 .day-item:last-child{border-bottom:none}
+.day-item:active{background:var(--surface)}
 .day-check{width:26px;height:26px;border-radius:8px;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;transition:background .2s,border-color .2s}
 .day-check.done{background:rgba(90,138,106,.2);border-color:rgba(90,138,106,.4);color:#7ab890}
 .day-check.today{border-color:var(--amber);background:var(--amber-dim)}
@@ -181,6 +186,30 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
 .day-text h4{font-size:13px;font-weight:500;margin-bottom:2px}
 .day-text p{font-size:11px;color:var(--muted)}
 .day-mins{font-size:11px;color:var(--muted);flex-shrink:0}
+
+/* SESIÓN DE DÍA */
+#screen-sesion{background:var(--bg)}
+.sesion-wrap{padding:20px 20px calc(100px + var(--safe-bottom))}
+.sesion-header{margin-bottom:20px}
+.sesion-week-tag{font-size:11px;font-weight:500;color:var(--amber);background:var(--amber-dim);padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:10px;letter-spacing:.04em}
+.sesion-title{font-family:'Fraunces',serif;font-size:clamp(22px,6vw,28px);font-weight:400;line-height:1.2;margin-bottom:6px}
+.sesion-meta{font-size:12px;color:var(--muted);display:flex;gap:12px}
+.sesion-body{font-size:15px;color:var(--cream-dim);line-height:1.8;margin-bottom:20px}
+.sesion-body p{margin-bottom:14px}
+.sesion-body strong{color:var(--cream);font-weight:500}
+.sesion-body em{color:var(--amber);font-style:normal}
+.sesion-highlight{background:var(--surface);border-left:3px solid var(--amber);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:14px 16px;margin-bottom:20px}
+.sesion-highlight h4{font-size:12px;font-weight:500;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.sesion-highlight p{font-size:14px;color:var(--cream-dim);line-height:1.7}
+.sesion-tarea{background:linear-gradient(135deg,rgba(232,160,88,.12),rgba(232,160,88,.06));border:1px solid rgba(232,160,88,.25);border-radius:var(--radius);padding:18px;margin-bottom:20px}
+.sesion-tarea h4{font-size:13px;font-weight:500;color:var(--amber);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sesion-tarea ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.sesion-tarea li{font-size:14px;color:var(--cream-dim);line-height:1.6;padding-left:18px;position:relative}
+.sesion-tarea li::before{content:'→';position:absolute;left:0;color:var(--amber);font-size:12px}
+.sesion-fuente{font-size:11px;color:var(--muted);text-align:center;margin-top:8px;padding-top:16px;border-top:1px solid var(--border)}
+.btn-completar{display:block;width:100%;padding:16px;background:var(--amber);color:#0d0d14;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;border:none;border-radius:var(--radius);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:opacity .15s;margin-bottom:8px}
+.btn-completar.done{background:rgba(90,138,106,.2);color:#7ab890;border:1px solid rgba(90,138,106,.3)}
+
 /* INFO */
 .info-wrap{padding:20px 20px calc(100px + var(--safe-bottom))}
 .info-header{margin-bottom:16px}
@@ -197,6 +226,7 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
 .mito-false{font-size:10px;color:var(--red-soft);font-weight:500;margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em}
 .mito-title{font-size:13px;font-weight:500;margin-bottom:6px}
 .mito-real{font-size:12px;color:var(--cream-dim);line-height:1.6}
+
 /* ASISTENTE */
 .asistente-wrap{padding:20px 20px calc(100px + var(--safe-bottom))}
 .asistente-header{margin-bottom:16px}
@@ -229,10 +259,12 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
 .categoria-icon{font-size:22px;margin-bottom:8px;display:block}
 .categoria-card h4{font-size:12px;font-weight:500;color:var(--cream);margin-bottom:2px}
 .categoria-card p{font-size:10px;color:var(--muted)}
+
 /* FOOTER */
 .app-footer{text-align:center;padding:20px 0 10px;font-size:12px;color:var(--muted);line-height:1.8}
 .app-footer a{color:var(--amber);text-decoration:none}
 .aviso-legal-btn{background:none;border:none;color:var(--amber);font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;padding:4px 0;text-decoration:underline;-webkit-tap-highlight-color:transparent;display:block;margin:8px auto 0}
+
 /* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .modal-overlay.open{display:flex;animation:fadeUp .25s ease forwards}
@@ -293,7 +325,7 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
 <div class="screen" id="screen-home">
   <div class="home-wrap">
     <div class="home-header">
-      <h2 class="home-greeting">Buenas noches, <em>¿cómo estás?</em></h2>
+      <h2 class="home-greeting" id="homeGreeting">Buenas noches, <em>¿cómo estás?</em></h2>
       <p class="home-sub" id="homeDate">Cargando...</p>
     </div>
     <button class="crisis-btn" onclick="goTo('crisis')">
@@ -308,13 +340,13 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
       <div class="quick-card" onclick="goTo('info')"><span class="quick-card-icon">🧠</span><h3>Aprende</h3><p>Ciencia del sueño</p></div>
     </div>
     <p class="section-title">Tu progreso</p>
-    <div class="progress-card">
+    <div class="progress-card" id="homeProgressCard">
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:14px;font-weight:500">Semana 1 — Psicoeducación</span>
-        <span style="font-size:12px;color:var(--amber)">3/7 días</span>
+        <span style="font-size:14px;font-weight:500" id="homeWeekTitle">Semana 1 — Psicoeducación</span>
+        <span style="font-size:12px;color:var(--amber)" id="homeWeekDays">0/7 días</span>
       </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:43%"></div></div>
-      <p class="progress-label">Día actual: <strong>Día 3 — Tu diario de sueño</strong></p>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="homeProgressBar" style="width:0%"></div></div>
+      <p class="progress-label">Día actual: <strong id="homeCurrentDay">—</strong></p>
     </div>
     <p class="section-title" style="margin-top:16px">Esta semana</p>
     <div class="stats-row">
@@ -362,7 +394,6 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
 <div class="screen" id="screen-diary">
   <div class="diary-wrap">
     <div class="diary-header"><h2>Diario de sueño</h2><p id="diaryDate">Cargando...</p></div>
-
     <div class="diary-card">
       <h3>Horarios de anoche</h3>
       <div class="time-inputs">
@@ -384,7 +415,6 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
         <span id="eficienciaLabel" style="margin-left:6px"></span>
       </div>
     </div>
-
     <div class="diary-card">
       <h3>Calidad de la noche</h3>
       <div class="quality-stars" id="diaryStars">
@@ -395,7 +425,6 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
         <button class="star-btn"        onclick="setDiaryStar(5)">⭐</button>
       </div>
     </div>
-
     <div class="diary-card">
       <h3>¿Qué ocurrió esta noche?</h3>
       <div class="toggle-row"><span class="toggle-label">😬 Tensión mandibular / bruxismo</span><button class="toggle" id="tog-bruxismo"      onclick="this.classList.toggle('on')"></button></div>
@@ -405,7 +434,6 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
       <div class="toggle-row"><span class="toggle-label">☕ Cafeína después de las 14h</span>    <button class="toggle" id="tog-cafeina"      onclick="this.classList.toggle('on')"></button></div>
       <div class="toggle-row"><span class="toggle-label">🏃 Hice ejercicio hoy</span>             <button class="toggle" id="tog-ejercicio"   onclick="this.classList.toggle('on')"></button></div>
     </div>
-
     <div class="diary-card">
       <h3>Tu semana — eficiencia del sueño</h3>
       <div class="chart-wrap" id="weekChart"></div>
@@ -416,7 +444,6 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
         <span class="chart-day-label">D</span>
       </div>
     </div>
-
     <button class="btn-main" onclick="guardarRegistro()">Guardar registro ✓</button>
     <div class="save-feedback" id="saveFeedback">✓ Registro guardado correctamente</div>
   </div>
@@ -427,33 +454,30 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
   <div class="program-wrap">
     <div class="program-header"><h2>Programa TCC-I</h2><p>6 semanas · Basado en evidencia científica</p></div>
     <div class="aviso-legal"><span class="aviso-legal-icon">📚</span><p>Basado en la <strong>TCC-I</strong>, tratamiento de primera línea según la Sociedad Española del Sueño. Fuente: ses.org.es</p></div>
+    <div id="programWeeks"></div>
+  </div>
+</div>
 
-    <div class="week-card week-active" id="week-card-1">
-      <div class="week-header clickable" id="week-header-1" onclick="toggleWeek(1)">
-        <div class="week-num">1</div>
-        <div class="week-info"><h3>Psicoeducación del sueño</h3><p>Entender cómo funciona tu sueño</p></div>
-        <span class="week-status" id="week-status-1">▾</span>
-      </div>
-      <div class="week-content open" id="week-content-1">
-        <div class="day-item"><div class="day-check done">✓</div><div class="day-text"><h4>Día 1 — ¿Cómo funciona el sueño?</h4><p>Ciclos, fases y ritmo circadiano</p></div><span class="day-mins">8 min</span></div>
-        <div class="day-item"><div class="day-check done">✓</div><div class="day-text"><h4>Día 2 — Tu tipo de insomnio</h4><p>Conciliación, mantenimiento o mixto</p></div><span class="day-mins">10 min</span></div>
-        <div class="day-item"><div class="day-check today"></div><div class="day-text"><h4>Día 3 — Tu diario de sueño</h4><p>Cómo medir tu eficiencia del sueño</p></div><span class="day-mins">12 min</span></div>
-        <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 4 — Higiene del sueño personalizada</h4><p>Qué cambia y qué no vale para ti</p></div><span class="day-mins">10 min</span></div>
-        <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 5 — El papel de la luz y el móvil</h4><p>Melatonina y luz azul: la ciencia real</p></div><span class="day-mins">8 min</span></div>
-        <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 6 — Alimentación y ejercicio</h4><p>Qué dice la evidencia</p></div><span class="day-mins">8 min</span></div>
-        <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 7 — Resumen y tu plan personal</h4><p>Tus primeras reglas del sueño</p></div><span class="day-mins">15 min</span></div>
-      </div>
+<!-- SESIÓN DÍA -->
+<div class="screen" id="screen-sesion">
+  <div class="sesion-wrap">
+    <button class="back-btn" id="sesionBackBtn" onclick="goTo('program')">‹ Programa</button>
+    <div class="sesion-header">
+      <span class="sesion-week-tag" id="sesionWeekTag"></span>
+      <h2 class="sesion-title" id="sesionTitle"></h2>
+      <div class="sesion-meta" id="sesionMeta"></div>
     </div>
-
-    <div class="week-card week-locked" id="week-card-2"><div class="week-header" id="week-header-2"><div class="week-num">2</div><div class="week-info"><h3>Control de estímulos</h3><p data-original="Reconectar cama con sueño">Reconectar cama con sueño</p></div><span class="week-status" id="week-status-2">🔒</span></div><div class="week-content" id="week-content-2"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 8 — La regla de los 20 minutos</h4><p>Qué hacer si no te duermes</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 9 — La cama solo para dormir</h4><p>Eliminar la asociación cama-vigilia</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 10 — Rutina de desconexión</h4><p>Diseña tu ritual de 30 minutos</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 11 — Horario fijo de levantarse</h4><p>La ancla del ritmo circadiano</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 12 — Gestionar los despertares</h4><p>Qué hacer a las 3 de la mañana</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 13 — Tu ambiente de sueño</h4><p>Temperatura, luz y ruido</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 14 — Revisión semana 2</h4><p>Midiendo tu progreso real</p></div><span class="day-mins">12 min</span></div></div></div>
-
-    <div class="week-card week-locked" id="week-card-3"><div class="week-header" id="week-header-3"><div class="week-num">3</div><div class="week-info"><h3>Restricción del sueño</h3><p data-original="La técnica más potente de TCC-I">La técnica más potente de TCC-I</p></div><span class="week-status" id="week-status-3">🔒</span></div><div class="week-content" id="week-content-3"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 15 — Qué es la restricción del sueño</h4><p>Por qué funciona y cómo hacerlo</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 16 — Calculando tu ventana de sueño</h4><p>Usando tu diario para definir el horario</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 17 — Primera semana de restricción</h4><p>Qué esperar y cómo aguantar</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 18 — Ajustar la ventana</h4><p>Cuándo ampliar o reducir el tiempo</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 19 — Somnolencia diurna</h4><p>Cómo manejarla sin arruinar el proceso</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 20 — La presión de sueño</h4><p>Entender la adenosina y el sueño profundo</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 21 — Revisión semana 3</h4><p>¿Está mejorando tu eficiencia?</p></div><span class="day-mins">15 min</span></div></div></div>
-
-    <div class="week-card week-locked" id="week-card-4"><div class="week-header" id="week-header-4"><div class="week-num">4</div><div class="week-info"><h3>Reestructuración cognitiva</h3><p data-original="Cambiar pensamientos sobre el sueño">Cambiar pensamientos sobre el sueño</p></div><span class="week-status" id="week-status-4">🔒</span></div><div class="week-content" id="week-content-4"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 22 — Pensamientos que roban el sueño</h4><p>Identificar la rumiación nocturna</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 23 — Creencias erróneas sobre el sueño</h4><p>Los mitos que empeoran el insomnio</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 24 — La técnica de la silla</h4><p>Aparcar las preocupaciones antes de dormir</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 25 — Reencuadrar el insomnio</h4><p>Cambiar la relación con el no dormir</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 26 — Mindfulness para el sueño</h4><p>Estar presente sin luchar contra el insomnio</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 27 — Reducir la ansiedad anticipatoria</h4><p>El círculo vicioso del miedo a no dormir</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 28 — Revisión semana 4</h4><p>Tu mente y el sueño: nueva relación</p></div><span class="day-mins">15 min</span></div></div></div>
-
-    <div class="week-card week-locked" id="week-card-5"><div class="week-header" id="week-header-5"><div class="week-num">5</div><div class="week-info"><h3>Relajación y mindfulness</h3><p data-original="Técnicas basadas en evidencia">Técnicas basadas en evidencia</p></div><span class="week-status" id="week-status-5">🔒</span></div><div class="week-content" id="week-content-5"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 29 — Relajación muscular progresiva</h4><p>El método Jacobson paso a paso</p></div><span class="day-mins">15 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 30 — Respiración diafragmática</h4><p>Activar el nervio vago para calmar el sistema</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 31 — Imágenes mentales guiadas</h4><p>Crear un lugar seguro mental para dormir</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 32 — Body scan nocturno</h4><p>Escaneo corporal para soltar la tensión</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 33 — Tu ritual de 20 minutos</h4><p>Combinar técnicas para tu rutina personal</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 34 — Gestión del estrés diurno</h4><p>Lo que ocurre de día afecta la noche</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 35 — Revisión semana 5</h4><p>Qué técnicas te funcionan mejor</p></div><span class="day-mins">12 min</span></div></div></div>
-
-    <div class="week-card week-locked" id="week-card-6"><div class="week-header" id="week-header-6"><div class="week-num">6</div><div class="week-info"><h3>Prevención de recaídas</h3><p data-original="Tu plan para el futuro">Tu plan para el futuro</p></div><span class="week-status" id="week-status-6">🔒</span></div><div class="week-content" id="week-content-6"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 36 — Señales de alerta temprana</h4><p>Reconocer el insomnio antes de que vuelva</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 37 — Plan de acción ante recaídas</h4><p>Qué hacer si las noches malas vuelven</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 38 — Mantenimiento a largo plazo</h4><p>Hábitos para conservar lo ganado</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 39 — El sueño en momentos difíciles</h4><p>Estrés, viajes, cambios de rutina</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 40 — Tu perfil de sueño definitivo</h4><p>Lo que sabes ahora que no sabías antes</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 41 — Cuándo volver al programa</h4><p>El programa como recurso permanente</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 42 — Cierre del programa</h4><p>Celebra lo que has conseguido</p></div><span class="day-mins">15 min</span></div></div></div>
+    <div class="sesion-body" id="sesionBody"></div>
+    <div class="sesion-highlight" id="sesionHighlight" style="display:none">
+      <h4>📌 Concepto clave</h4>
+      <p id="sesionHighlightText"></p>
+    </div>
+    <div class="sesion-tarea" id="sesionTarea" style="display:none">
+      <h4>✅ Tarea de hoy</h4>
+      <ul id="sesionTareaList"></ul>
+    </div>
+    <div class="sesion-fuente" id="sesionFuente"></div>
+    <button class="btn-completar" id="btnCompletar" onclick="completarDia()">Marcar como completado ✓</button>
   </div>
 </div>
 
@@ -462,22 +486,51 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
   <div class="info-wrap">
     <div class="info-header"><h2>Aprende</h2><p>Información verificada de fuentes oficiales</p></div>
     <div class="aviso-legal"><span class="aviso-legal-icon">ℹ️</span><p>Todo el contenido proviene de fuentes científicas oficiales. <strong>No sustituye la atención médica.</strong></p></div>
+
+    <div class="info-section">
+      <div class="info-section-title">🌙 El sueño: cómo funciona</div>
+      <div class="info-item"><div class="info-item-top"><h3>Fases del sueño</h3><span class="info-source">SES · AASM</span></div><p>El sueño se divide en ciclos de ~90 minutos. Cada ciclo incluye sueño ligero (N1-N2), sueño profundo (N3 o sueño de ondas lentas) y sueño REM. El N3 es reparador físicamente; el REM consolida la memoria y regula las emociones. Un adulto tiene 4-6 ciclos por noche.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Ritmo circadiano</h3><span class="info-source">SES</span></div><p>El reloj biológico interno regula el ciclo sueño-vigilia en ciclos de ~24 horas. La luz solar es el principal sincronizador. Cuando este ritmo se desajusta (por turnos de trabajo, jet lag o pantallas nocturnas), el sueño se fragmenta y la calidad cae.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Presión de sueño</h3><span class="info-source">Universitat de Berna</span></div><p>La adenosina es un neurotransmisor que se acumula con cada hora de vigilia, creando "presión de sueño". La cafeína bloquea sus receptores, reduciendo esa presión artificialmente. Al metabolizarse, la presión acumulada golpea de golpe — el "crash" de cafeína.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Melatonina: la señal de noche</h3><span class="info-source">SES · NIH</span></div><p>La glándula pineal secreta melatonina cuando hay oscuridad. No induce el sueño directamente — señaliza que es de noche. La luz azul de las pantallas (450-490 nm) suprime esta secreción hasta 3 horas. La melatonina exógena es útil para el jet lag, pero no trata el insomnio crónico.</p></div>
+    </div>
+
     <div class="info-section">
       <div class="info-section-title">😬 Bruxismo nocturno</div>
       <div class="info-item"><div class="info-item-top"><h3>¿Qué es el bruxismo?</h3><span class="info-source">SES</span></div><p>El bruxismo es el hábito inconsciente de apretar o rechinar los dientes durante el sueño. Afecta al 8% de la población. El estrés es el principal desencadenante.</p></div>
-      <div class="info-item"><div class="info-item-top"><h3>Síntomas frecuentes</h3><span class="info-source">SES · Mayo Clinic</span></div><p>Dolor de cabeza al despertar, tensión en la mandíbula, desgaste del esmalte dental, sensibilidad dental aumentada.</p></div>
-      <div class="info-item"><div class="info-item-top"><h3>Qué puedo hacer</h3><span class="info-source">Mayo Clinic</span></div><p>Coloca la lengua entre los dientes para relajar la mandíbula al dormir. Aplica calor en la zona. Si persiste, consulta a tu dentista: puede indicar una férula de descarga.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Síntomas frecuentes</h3><span class="info-source">SES · Mayo Clinic</span></div><p>Dolor de cabeza al despertar, tensión en la mandíbula, desgaste del esmalte dental, sensibilidad dental aumentada y dolor de cuello o hombros.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Qué puedo hacer</h3><span class="info-source">Mayo Clinic</span></div><p>Coloca la lengua entre los dientes para relajar la mandíbula al dormir. Aplica calor en la zona. Practica relajación muscular progresiva antes de acostarte. Si persiste, consulta a tu dentista: puede indicar una férula de descarga.</p></div>
     </div>
+
+    <div class="info-section">
+      <div class="info-section-title">🧠 Insomnio: tipos y causas</div>
+      <div class="info-item"><div class="info-item-top"><h3>Insomnio de conciliación</h3><span class="info-source">SES</span></div><p>Dificultad para dormirse al acostarse. Suele deberse a ansiedad, pensamientos intrusivos o un ritmo circadiano retrasado. Es el tipo más frecuente en jóvenes y adultos con estrés elevado.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Insomnio de mantenimiento</h3><span class="info-source">SES · AASM</span></div><p>Despertares frecuentes durante la noche o despertar muy temprano sin poder volver a dormir. Más frecuente a partir de los 40 años. El alcohol, la apnea y la ansiedad son causas habituales.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>El círculo vicioso del insomnio</h3><span class="info-source">TCC-I · AASM</span></div><p>La preocupación por no dormir activa el sistema de alerta, que impide dormir. Esto genera más preocupación. La TCC-I interrumpe este ciclo atacando tanto los comportamientos como los pensamientos que lo mantienen.</p></div>
+    </div>
+
     <div class="info-section">
       <div class="info-section-title">💡 Mitos sobre el sueño</div>
-      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Hay que dormir 8 horas sí o sí"</div><div class="mito-real">La ciencia dice: <strong>entre 7 y 9 horas es el rango normal</strong> para adultos, pero varía por persona. Fuente: AASM</div></div>
-      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Puedo recuperar el sueño durmiendo el finde"</div><div class="mito-real">La ciencia dice: <strong>el sueño no se recupera</strong> de forma real. La deuda acumulada afecta cognitivamente. Fuente: SES</div></div>
-      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Una copa de vino ayuda a dormir"</div><div class="mito-real">El alcohol facilita conciliar el sueño pero <strong>fragmenta las fases profundas</strong>, reduciendo la calidad total. Fuente: SEN</div></div>
+      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Hay que dormir 8 horas sí o sí"</div><div class="mito-real">La ciencia dice: <strong>entre 7 y 9 horas es el rango normal</strong> para adultos, pero varía por persona. Hay "dormidores cortos" naturales. Fuente: AASM</div></div>
+      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Puedo recuperar el sueño durmiendo el finde"</div><div class="mito-real">La ciencia dice: <strong>el sueño no se recupera</strong> de forma real. La deuda acumulada afecta cognitivamente durante días. El exceso de sueño del fin de semana crea "jet lag social". Fuente: SES</div></div>
+      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Una copa de vino ayuda a dormir"</div><div class="mito-real">El alcohol facilita conciliar el sueño pero <strong>fragmenta las fases profundas</strong> y el REM, reduciendo la calidad total. Amaneces más cansado. Fuente: SEN</div></div>
+      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Si no duermo, mañana estaré fatal"</div><div class="mito-real">La <strong>catastrofización del insomnio</strong> empeora el problema. El cuerpo humano es resiliente: una mala noche raramente impide funcionar al día siguiente. Fuente: TCC-I</div></div>
+      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"La melatonina me ayudará a dormir"</div><div class="mito-real">La melatonina <strong>no es un somnífero</strong>. Es útil para el jet lag y los trastornos del ritmo circadiano, pero no tiene evidencia sólida para tratar el insomnio crónico. Fuente: SES</div></div>
     </div>
+
+    <div class="info-section">
+      <div class="info-section-title">💊 Tratamientos: qué dice la ciencia</div>
+      <div class="info-item"><div class="info-item-top"><h3>TCC-I: primera línea</h3><span class="info-source">SES · AASM · NHS</span></div><p>La Terapia Cognitivo-Conductual para el Insomnio es el tratamiento de primera línea antes que cualquier fármaco. Tasa de éxito del 70-80%. Los efectos son más duraderos que los somníferos porque aborda las causas, no los síntomas.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Somníferos: uso limitado</h3><span class="info-source">Ministerio de Sanidad</span></div><p>Los hipnóticos (benzodiacepinas y similares) son efectivos a corto plazo pero generan tolerancia en semanas. Su uso prolongado puede empeorar el insomnio al retirarlos (efecto rebote). Nunca tomes somníferos sin prescripción médica.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Higiene del sueño: necesaria pero insuficiente</h3><span class="info-source">AASM</span></div><p>Los consejos de higiene del sueño (sin pantallas, horarios fijos, temperatura...) son importantes pero por sí solos tienen un efecto modesto en el insomnio crónico. Son más eficaces combinados con las otras técnicas de la TCC-I.</p></div>
+    </div>
+
     <div class="info-section">
       <div class="info-section-title">🏥 ¿Cuándo ir al médico?</div>
-      <div class="info-item"><div class="info-item-top"><h3>Señales de alerta</h3><span class="info-source">Ministerio de Sanidad</span></div><p>Consulta a tu médico si: llevas más de 3 meses con problemas de sueño, afecta tu vida diaria, tienes ronquidos fuertes o paradas respiratorias, o experimentas somnolencia extrema durante el día.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Señales de alerta</h3><span class="info-source">Ministerio de Sanidad</span></div><p>Consulta a tu médico si: llevas más de 3 meses con problemas de sueño, afecta tu vida diaria, tienes ronquidos fuertes o paradas respiratorias, somnolencia extrema durante el día, o el insomnio va acompañado de síntomas de depresión o ansiedad intensa.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Apnea del sueño</h3><span class="info-source">SEN · SEPAR</span></div><p>La apnea obstructiva del sueño provoca microdespertares que fragmentan el sueño y generan somnolencia extrema. Señales: ronquidos fuertes, pausas en la respiración, despertar con sensación de ahogo, dolor de cabeza matutino. Requiere diagnóstico médico con polisomnografía.</p></div>
     </div>
+
     <div class="app-footer">
       <p>DuermeBien · <strong style="color:var(--amber)">Ayudante Anónimo</strong><br>
       Herramienta educativa · Sin anuncios · Sin datos<br>
@@ -490,7 +543,7 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
 <!-- ASISTENTE -->
 <div class="screen" id="screen-asistente">
   <div class="asistente-wrap">
-    <div class="asistente-header"><h2>Asistente</h2><p>Respuestas verificadas · Sin inteligencia artificial</p></div>
+    <div class="asistente-header"><h2>Asistente</h2><p>Respuestas verificadas sobre el sueño</p></div>
     <div class="aviso-legal"><span class="aviso-legal-icon">ℹ️</span><p>Respuestas basadas en fuentes científicas oficiales. <strong>No sustituyen la atención médica.</strong></p></div>
     <div class="asistente-search">
       <input type="text" id="asistenteInput" placeholder="Escribe tu duda..." autocomplete="off" oninput="buscarRespuesta()">
@@ -507,6 +560,12 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
       <div class="chip" onclick="buscarPorChip('despertarse madrugada')">Despertar madrugada</div>
       <div class="chip" onclick="buscarPorChip('siesta')">Siestas</div>
       <div class="chip" onclick="buscarPorChip('cafeína')">Cafeína</div>
+      <div class="chip" onclick="buscarPorChip('temperatura dormir')">Temperatura</div>
+      <div class="chip" onclick="buscarPorChip('ejercicio dormir')">Ejercicio</div>
+      <div class="chip" onclick="buscarPorChip('tcc-i')">¿Qué es TCC-I?</div>
+      <div class="chip" onclick="buscarPorChip('somníferos')">Somníferos</div>
+      <div class="chip" onclick="buscarPorChip('restricción sueño')">Restricción de sueño</div>
+      <div class="chip" onclick="buscarPorChip('eficiencia sueño')">Eficiencia del sueño</div>
     </div>
     <div id="resultadoCard" class="resultado-card">
       <div class="resultado-pregunta" id="resultadoPregunta"></div>
@@ -521,6 +580,8 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
       <div class="categoria-card" onclick="buscarPorChip('bruxismo')"><span class="categoria-icon">😬</span><h4>Bruxismo</h4><p>Rechinar dientes</p></div>
       <div class="categoria-card" onclick="buscarPorChip('higiene sueño')"><span class="categoria-icon">🛏️</span><h4>Higiene del sueño</h4><p>Hábitos correctos</p></div>
       <div class="categoria-card" onclick="buscarPorChip('cuándo ir médico')"><span class="categoria-icon">🏥</span><h4>¿Cuándo al médico?</h4><p>Señales de alerta</p></div>
+      <div class="categoria-card" onclick="buscarPorChip('restricción sueño')"><span class="categoria-icon">⏰</span><h4>Restricción de sueño</h4><p>La técnica TCC-I más potente</p></div>
+      <div class="categoria-card" onclick="buscarPorChip('ronquido')"><span class="categoria-icon">😤</span><h4>Ronquidos / Apnea</h4><p>Señales de alerta</p></div>
     </div>
   </div>
 </div>
@@ -539,7 +600,7 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
   <div class="modal-box">
     <div class="modal-handle"></div>
     <div class="modal-title">Aviso Legal</div>
-    <div class="modal-section"><h4>Responsable del servicio</h4><p><strong style="color:var(--cream)">Ayudante Anónimo</strong> · Persona física · España<br>Contacto: <a href="mailto:ayudante.anonimo.apps@gmail.com">ayudante.anonimo.apps@gmail.com</a> · X: @AyudanteAnonim0</p></div>
+    <div class="modal-section"><h4>Responsable del servicio</h4><p><strong style="color:var(--cream)">Ayudante Anónimo</strong> · Persona física · España<br>Contacto: ayudante.anonimo.apps@gmail.com · X: @AyudanteAnonim0</p></div>
     <div class="modal-divider"></div>
     <div class="modal-section"><h4>Naturaleza del servicio · LSSI</h4><p>DuermeBien es una <strong style="color:var(--cream)">herramienta de apoyo educativo gratuita</strong>, sin ánimo de lucro. Cumple con la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE).</p></div>
     <div class="modal-divider"></div>
@@ -556,192 +617,527 @@ input.time-val::-webkit-calendar-picker-indicator{display:none}
 
 <script>
 // ═══════════════════════════════════════════════════════
-//  DUERMEBIEN — JS AUDITADO v3
+//  DUERMEBIEN — JS v4 · Sesiones completas · Sin bloqueos
 // ═══════════════════════════════════════════════════════
 
+// ─── CONTENIDO DE LAS 42 SESIONES ───
+var SESIONES = [
+  // SEMANA 1
+  {dia:1,semana:1,semanaTitle:'Semana 1 — Psicoeducación',titulo:'¿Cómo funciona el sueño?',minutos:8,
+   cuerpo:'<p>El sueño no es un estado pasivo. Mientras duermes, tu cerebro y cuerpo realizan un trabajo activo y esencial: consolidan recuerdos, regulan las emociones, reparan tejidos y eliminan toxinas acumuladas durante el día.</p><p>El sueño se organiza en <strong>ciclos de aproximadamente 90 minutos</strong>. Cada ciclo tiene cuatro fases: N1 (adormecimiento), N2 (sueño ligero), N3 (sueño profundo) y REM (sueños). Un adulto sano completa 4-6 ciclos por noche.</p><p>El <strong>sueño profundo (N3)</strong> es el más reparador físicamente. Ocurre sobre todo en la primera mitad de la noche. El sueño <strong>REM</strong>, donde soñamos, domina la segunda mitad y es crucial para la memoria emocional.</p><p>Tu sueño está gobernado por dos sistemas: el <em>ritmo circadiano</em> (el reloj biológico de 24h) y la <em>presión de sueño</em> (la adenosina acumulada con cada hora de vigilia). Cuando ambos se alinean correctamente, dormir es fácil y reparador.</p>',
+   conceptoClave:'La luz solar matutina es el "reset" más potente de tu reloj biológico. Exponerte a luz natural en los primeros 30-60 minutos del día sincroniza tu ritmo circadiano y mejora la calidad del sueño esa noche.',
+   tareas:['Observa a qué hora sientes sueño naturalmente esta noche','Anota mentalmente si te despiertas varias veces o duermes de un tirón','Mañana, registra tus horarios en el Diario de sueño'],
+   fuente:'Sociedad Española del Sueño (SES) · AASM · Walker, M. (2017) "Why We Sleep"'},
+
+  {dia:2,semana:1,semanaTitle:'Semana 1 — Psicoeducación',titulo:'Tu tipo de insomnio',minutos:10,
+   cuerpo:'<p>No todo el insomnio es igual. Identificar tu tipo es el primer paso para abordarlo correctamente.</p><p>El <strong>insomnio de conciliación</strong> es la dificultad para dormirse al acostarse. Tardas más de 30 minutos en quedarte dormido. Es el tipo más frecuente en jóvenes y personas con ansiedad o estrés elevado.</p><p>El <strong>insomnio de mantenimiento</strong> ocurre cuando te despiertas varias veces durante la noche o muy pronto por la mañana sin poder volver a dormir. Es más frecuente a partir de los 40 años y puede estar relacionado con el alcohol, la apnea del sueño o la ansiedad crónica.</p><p>El <strong>insomnio mixto</strong> combina ambos. Es el más común en personas con insomnio crónico establecido.</p><p>El insomnio se clasifica también por duración: <em>agudo</em> (menos de 3 meses, suele resolverse solo) y <em>crónico</em> (más de 3 meses, 3 o más noches por semana — necesita intervención como la TCC-I).</p>',
+   conceptoClave:'El insomnio crónico se mantiene no solo por sus causas originales, sino por los comportamientos y pensamientos que desarrollamos para "compensarlo": siestas largas, irse pronto a la cama, mirar el móvil de madrugada... Estos comportamientos perpetúan el problema.',
+   tareas:['Identifica tu tipo: ¿te cuesta dormirte, te despiertas de madrugada, o ambas?','Lleva el Diario de sueño durante 3-4 días para ver patrones','No intentes "forzar" el sueño esta semana — solo observa'],
+   fuente:'Sociedad Española del Sueño (SES) · Manual TCC-I · AASM Practice Parameters'},
+
+  {dia:3,semana:1,semanaTitle:'Semana 1 — Psicoeducación',titulo:'Tu diario de sueño',minutos:12,
+   cuerpo:'<p>El diario de sueño es la herramienta más importante del programa. No es un simple registro — es la base sobre la que se construye toda la intervención TCC-I.</p><p>El dato clave que vas a monitorizar es la <strong>eficiencia del sueño</strong>: el porcentaje del tiempo en cama que realmente pasas dormido.</p><p>La fórmula es simple: <em>Eficiencia = (horas dormidas ÷ horas en cama) × 100</em></p><p>Una eficiencia <strong>superior al 85%</strong> se considera buena. Si duermes 7h de las 9h que estás en cama, tu eficiencia es del 78% — mejorable. Si duermes 6h de las 9h en cama, es del 67% — baja.</p><p>Esta métrica es más útil que las "horas dormidas" porque refleja la calidad del tiempo en cama, no solo la cantidad. Un insomne que lleva 10 horas en cama durmiendo 5 tiene una eficiencia del 50%: demasiado tiempo despierto en cama, lo que perpetúa el problema.</p>',
+   conceptoClave:'Pasar mucho tiempo en cama intentando dormir es uno de los principales factores que perpetúan el insomnio. La restricción del sueño (Semana 3) usará tu eficiencia para calcular la "ventana de sueño" óptima.',
+   tareas:['Registra tus horarios de esta noche en el Diario (pestaña Diario)','Calcula tu eficiencia con la herramienta automática','Haz lo mismo los próximos 4-5 días para tener datos fiables'],
+   fuente:'Bastien et al. (2001) "Validation of the Insomnia Severity Index" · SES'},
+
+  {dia:4,semana:1,semanaTitle:'Semana 1 — Psicoeducación',titulo:'Higiene del sueño personalizada',minutos:10,
+   cuerpo:'<p>La higiene del sueño es el conjunto de hábitos que favorecen un buen descanso. Pero atención: por sí sola, la higiene del sueño tiene un efecto modesto sobre el insomnio crónico. Es necesaria pero no suficiente.</p><p>Los hábitos con mayor evidencia científica son: <strong>horario fijo para levantarse</strong> (incluso en fin de semana), <strong>evitar pantallas 60-90 min antes de dormir</strong>, <strong>temperatura fresca en la habitación</strong> (16-20°C) y <strong>evitar cafeína después de las 14h</strong>.</p><p>Lo que habitualmente se sobrevalora: la oscuridad total ayuda pero no es imprescindible para todos, el ejercicio nocturno no perjudica a la mayoría, el vaso de leche caliente no tiene evidencia sólida.</p><p>Lo importante es <strong>personalizar</strong>. Tu diario de sueño te dirá qué factores correlacionan con tus peores noches (ansiedad, móvil, cafeína...). Eso es lo que debes atacar primero.</p>',
+   conceptoClave:'El horario de levantarse es más importante que el de acostarse. Levantarse siempre a la misma hora, aunque hayas dormido mal, ancla el ritmo circadiano y es la base del control de estímulos (Semana 2).',
+   tareas:['Elige UNA hora fija para levantarte y mantenla esta semana, incluido el fin de semana','Revisa tu diario: ¿qué noches fueron peores? ¿Hay un patrón?','Reduce la cafeína a partir de las 14h si aún no lo haces'],
+   fuente:'Morin & Espie (2003) "Insomnia: A Clinical Guide to Assessment and Treatment" · SES'},
+
+  {dia:5,semana:1,semanaTitle:'Semana 1 — Psicoeducación',titulo:'El papel de la luz y el móvil',minutos:8,
+   cuerpo:'<p>La relación entre las pantallas y el sueño está bien documentada pero a menudo se exagera en algunos aspectos y se infravalora en otros.</p><p><strong>Lo que sí hace la luz azul</strong>: la luz de longitud de onda corta (450-490 nm), emitida por LEDs y pantallas, suprime la secreción de melatonina de la glándula pineal. Un estudio de Harvard mostró que 2h de exposición a una tablet antes de dormir retrasaba la secreción de melatonina ~1,5 horas y reducía el sueño REM.</p><p><strong>Lo que también importa</strong>: más allá de la luz, el contenido estimulante de las pantallas (redes sociales, noticias, videojuegos) activa el sistema nervioso simpático y mantiene el cerebro en estado de alerta. Esto puede perjudicar el sueño incluso si usas filtros de luz azul.</p><p>La solución más eficaz no es el filtro naranja de la pantalla — es <strong>dejar de usar pantallas 60-90 minutos antes de dormir</strong> y sustituirlas por actividades de baja estimulación: leer en papel, estiramientos suaves, música tranquila.</p>',
+   conceptoClave:'La luz solar matutina (especialmente la primera hora del día) contrarresta los efectos negativos de la luz nocturna. No es solo evitar la luz por la noche — es también exponerse activamente a luz natural por la mañana.',
+   tareas:['Esta noche, apaga pantallas 45 minutos antes de acostarte','Sustitúyelo por una actividad tranquila: leer, estirar, escuchar música','Anota si notas diferencia en la facilidad para dormirte'],
+   fuente:'Chang et al. (2014) PNAS · Brigham and Women\'s Hospital · SES'},
+
+  {dia:6,semana:1,semanaTitle:'Semana 1 — Psicoeducación',titulo:'Alimentación y ejercicio',minutos:8,
+   cuerpo:'<p>La relación entre dieta, ejercicio y sueño es real pero más matizada de lo que suelen presentar los artículos de divulgación.</p><p><strong>Ejercicio:</strong> el ejercicio aeróbico regular mejora la calidad del sueño profundo y reduce el tiempo de conciliación. El efecto es acumulativo: no basta con hacer ejercicio esporádico. La hora del ejercicio importa menos de lo que se creía — la mayoría de adultos puede hacer ejercicio moderado-intenso hasta 2h antes de dormir sin problema. Solo el ejercicio muy intenso justo antes de acostarse puede dificultar el sueño en algunas personas.</p><p><strong>Alimentación:</strong> evita cenas muy copiosas en las 2-3 horas previas. El reflujo y la digestión pesada fragmentan el sueño. El alcohol es el enemigo silencioso: facilita conciliar el sueño pero destruye el sueño profundo y el REM. El triptófano (presente en pavo, plátano, lácteos, nueces) favorece la síntesis de melatonina y serotonina, pero el efecto es modesto.</p>',
+   conceptoClave:'El ejercicio es uno de los factores de estilo de vida con mayor impacto demostrado sobre el sueño. 30 minutos de ejercicio aeróbico moderado, 4-5 días a la semana, mejora significativamente la calidad del sueño en personas con insomnio. Fuente: AASM.',
+   tareas:['Revisa si tu cena es demasiado tardía o copiosa','Si no haces ejercicio regular, plantéate empezar con 20-30 min de caminata diaria','Elimina el alcohol de la rutina nocturna al menos esta semana'],
+   fuente:'Kredlow et al. (2015) "The effects of physical activity on sleep" · AASM · Mayo Clinic'},
+
+  {dia:7,semana:1,semanaTitle:'Semana 1 — Psicoeducación',titulo:'Resumen y tu plan personal',minutos:15,
+   cuerpo:'<p>Has completado la primera semana del programa. Esta semana era sobre entender: cómo funciona el sueño, qué tipo de insomnio tienes y qué factores lo influyen.</p><p>Ahora tienes varios días de datos en tu diario. Es el momento de analizarlos y establecer tus primeras reglas personales del sueño.</p><p>Revisa tu diario de esta semana: ¿cuál fue tu eficiencia media? ¿Qué noches fueron mejores y qué tenían en común? ¿Qué factores (ansiedad, móvil, cafeína...) aparecen más en las noches malas?</p><p>A partir de hoy tienes también una <strong>hora fija de levantarte</strong>. Esto es tu ancla. Respétala incluso si has dormido mal. La semana que viene trabajaremos el control de estímulos — la técnica que reconecta tu cerebro con la cama como señal de sueño, no de vigilia.</p>',
+   conceptoClave:'La consistencia supera a la perfección. Una semana con horario irregular de sueño daña más el ritmo circadiano que varias noches mal dormidas con horario fijo. La disciplina de levantarse siempre a la misma hora es el fundamento de todo lo demás.',
+   tareas:['Calcula tu eficiencia media de la semana en el Diario','Identifica tu mayor obstáculo esta semana (ansiedad, móvil, horarios...)','Mantén tu hora fija de levantarte — eso es todo lo que necesitas esta semana'],
+   fuente:'Morin & Benca (2012) "Chronic insomnia" The Lancet · SES'},
+
+  // SEMANA 2
+  {dia:8,semana:2,semanaTitle:'Semana 2 — Control de estímulos',titulo:'La regla de los 20 minutos',minutos:10,
+   cuerpo:'<p>El control de estímulos es una de las técnicas más eficaces de la TCC-I. La idea central es simple pero poderosa: <strong>tu cerebro aprende por asociación</strong>. Si pasas muchas horas en cama despierto, frustrado, mirando el techo o el móvil, tu cerebro aprende que la cama es un lugar de activación, no de descanso.</p><p>La regla de los 20 minutos es la herramienta principal del control de estímulos: <strong>si llevas más de 20 minutos en cama sin poder dormirte (o sin poder volver a dormirte tras un despertar nocturno), levántate.</strong></p><p>No mires el reloj — estima. Cuando sientas que llevan demasiado tiempo despierto sin señales de sueño, levántate.</p><p>Ve a otra habitación. Haz algo tranquilo con poca luz: leer, estirar, escuchar música suave. Vuelve a la cama solo cuando sientas sueño real (párpados pesados, cuerpo relajado). Repite cuantas veces sea necesario.</p>',
+   conceptoClave:'Esta técnica es incómoda al principio — implica pasar noches levantándote varias veces. Pero en 1-2 semanas el cerebro aprende que la cama = sueño. Es la diferencia entre un condicionamiento negativo (cama = frustración) y uno positivo (cama = descanso).',
+   tareas:['Esta noche: si tardas más de 20 min en dormirte, levántate','Prepara un "kit de espera": algo tranquilo para hacer fuera de la cama','No mires el móvil durante esas esperas'],
+   fuente:'Bootzin (1972) "Stimulus control treatment for insomnia" · Morin et al. (2006) · AASM'},
+
+  {dia:9,semana:2,semanaTitle:'Semana 2 — Control de estímulos',titulo:'La cama solo para dormir',minutos:8,
+   cuerpo:'<p>La segunda regla del control de estímulos es tan importante como la primera: <strong>usa la cama solo para dormir (y para el sexo)</strong>. Nada más.</p><p>Esto significa: no ver series en la cama, no trabajar con el portátil, no comer, no hablar por teléfono, no scrollear en redes sociales, no leer (salvo que sea tu ritual de relajación y funcione bien para ti). Incluso estar tumbado despierto pensando activamente — fuera de la cama.</p><p>El objetivo es que tu cerebro desarrolle una asociación fuerte y clara: cama = sueño. Cada vez que haces otra actividad en la cama, debilitas esa asociación.</p><p>Para muchas personas, esta regla es la más difícil de cumplir porque implica cambiar hábitos muy arraigados. Pero es también, junto con la hora fija de levantarse, la que produce resultados más consistentes.</p>',
+   conceptoClave:'Si llevas meses o años usando la cama para otras cosas, el cerebro ha aprendido a estar activado en ella. Recuperar esa asociación cama-sueño lleva tiempo — normalmente 2-3 semanas de aplicación consistente.',
+   tareas:['Haz un inventario de todo lo que haces en la cama que no sea dormir','Elige UNA cosa para eliminar esta semana (empezando por el móvil)','Crea un espacio alternativo para esas actividades fuera del dormitorio si es posible'],
+   fuente:'Perlis et al. (2008) "CBT for Insomnia" · SES · Bootzin & Perlis (1992)'},
+
+  {dia:10,semana:2,semanaTitle:'Semana 2 — Control de estímulos',titulo:'Rutina de desconexión',minutos:12,
+   cuerpo:'<p>Una rutina de desconexión nocturna es la transición entre el estado de alerta del día y el estado de calma necesario para dormir. El sistema nervioso autónomo necesita tiempo para cambiar del modo simpático (alerta, acción) al parasimpático (descanso, digestión).</p><p>La rutina ideal dura entre 20 y 45 minutos y es consistente: <strong>siempre las mismas actividades, en el mismo orden</strong>. Con el tiempo, el inicio de la rutina se convierte en una señal pavloviana que le dice al cerebro "es hora de dormir".</p><p>Elementos que funcionan bien: ducha o baño templado (baja la temperatura corporal, favorece el sueño), estiramientos suaves o yoga restaurativo, lectura en papel con luz cálida y tenue, meditación o respiración lenta, música ambiental o sonidos naturales.</p><p>Lo que no funciona: ver series emocionantes, revisar el email del trabajo, discusiones o conversaciones estresantes, ejercicio intenso.</p>',
+   conceptoClave:'Una ducha templada (no fría) 1-2 horas antes de dormir es uno de los trucos mejor documentados. Al salir, la temperatura corporal cae rápidamente — esta bajada de temperatura es una de las señales que induce el sueño.',
+   tareas:['Diseña tu rutina de 20-30 minutos: elige 3-4 actividades concretas','Escríbela y colócala en un lugar visible','Empieza a aplicarla esta noche, aunque sea de forma imperfecta'],
+   fuente:'Haghayegh et al. (2019) "Before-bedtime passive body heating" Sleep Medicine Reviews · SES'},
+
+  {dia:11,semana:2,semanaTitle:'Semana 2 — Control de estímulos',titulo:'Horario fijo de levantarse',minutos:8,
+   cuerpo:'<p>Si hay una sola regla que debes mantener durante todo el programa, es esta: <strong>levántate siempre a la misma hora, independientemente de cómo hayas dormido la noche anterior.</strong></p><p>¿Por qué? Porque el horario de levantarse es el "ancla" principal de tu ritmo circadiano. El cuerpo ajusta su reloj biológico principalmente por la hora en que recibes luz solar después de despertarte. Si esta hora varía constantemente, el ritmo circadiano se desajusta, haciendo más difícil dormirse a la hora deseada.</p><p>Además, levantarte siempre a la misma hora acumula presión de sueño de forma predecible. Si una noche duermes mal y te "recuperas" durmiendo hasta tarde, reduces la presión de sueño disponible para esa noche, perpetuando el ciclo.</p><p>El fin de semana es el punto crítico. Muchas personas "compensan" durmiendo 2-3 horas más los sábados y domingos, creando un jet lag social que arruina el lunes y el martes.</p>',
+   conceptoClave:'Levantarte a la misma hora el fin de semana puede parecer un sacrificio, pero es la palanca más potente del programa. Muchos pacientes ven mejoras en su sueño nocturno solo con esta medida, en 1-2 semanas.',
+   tareas:['Confirma tu hora fija de levantarte (la que elegiste la semana pasada)','Programa la alarma también para el sábado y el domingo','Si te despiertas antes, no te quedes en cama dando vueltas: levántate'],
+   fuente:'Roenneberg et al. (2012) "Social jetlag" Current Biology · SES · AASM'},
+
+  {dia:12,semana:2,semanaTitle:'Semana 2 — Control de estímulos',titulo:'Gestionar los despertares',minutos:10,
+   cuerpo:'<p>Despertarse durante la noche es normal — todo el mundo lo hace varias veces sin recordarlo. El problema no es despertarse, sino no poder volver a dormirse y la espiral de ansiedad que se genera.</p><p>Cuando te despiertes de madrugada, la regla es la misma que al principio de la noche: <strong>si llevas más de 20 minutos despierto sin señales de sueño, levántate</strong>. No mires el reloj (aumenta la ansiedad), no cojas el móvil, no te quedes tumbado dando vueltas.</p><p>Si te despiertas muy pronto (ej. a las 5h cuando tu alarma es a las 7h), evalúa si realmente no tienes sueño. Si el cuerpo dice "ya no duermo más", considera levantarte. Quedarte en cama 2 horas despierto frustrándote debilita la asociación cama-sueño.</p><p>Lo más importante: <strong>no catastrofices</strong>. Despertar de madrugada no significa que la noche esté "arruinada". El cuerpo tiene una notable capacidad de recuperación con solo unos ciclos de sueño profundo.</p>',
+   conceptoClave:'La ansiedad ante el despertar nocturno es frecuentemente peor que el propio despertar. El pensamiento "son las 3am y no puedo dormir, mañana estaré fatal" activa el sistema de alerta y hace imposible volver a dormirse. La semana 4 trabajará esto directamente.',
+   tareas:['Si te despiertas esta noche: no mires el reloj','Aplica la regla de los 20 minutos si no vuelves a dormirte','Recuérdate: "Un despertar es normal. Mi cuerpo sabe lo que hace."'],
+   fuente:'Harvey & Espie (2004) "CBT for Primary Insomnia" · SES'},
+
+  {dia:13,semana:2,semanaTitle:'Semana 2 — Control de estímulos',titulo:'Tu ambiente de sueño',minutos:8,
+   cuerpo:'<p>El entorno físico del dormitorio influye en la calidad del sueño, aunque su efecto es menor que los cambios conductuales y cognitivos de la TCC-I. Sin embargo, hay tres factores especialmente relevantes.</p><p><strong>Temperatura:</strong> el cuerpo necesita bajar su temperatura interna ~1°C para iniciar el sueño. Una habitación fresca (16-20°C) facilita este proceso. Demasiado calor es uno de los factores más frecuentes de despertares nocturnos.</p><p><strong>Oscuridad:</strong> la luz inhibe la melatonina incluso a través de los párpados cerrados. Unas buenas cortinas oscurecedoras o un antifaz son inversiones que valen la pena. También la luz de los dispositivos en standby.</p><p><strong>Ruido:</strong> los ruidos intermitentes (tráfico, pareja, vecinos) son más disruptivos que el ruido constante. El ruido blanco o rosa puede enmascarar los ruidos del entorno y mejorar la continuidad del sueño.</p>',
+   conceptoClave:'El dormitorio ideal tiene tres características: fresco, oscuro y silencioso. Si no puedes controlar el ruido exterior, el ruido blanco (un ventilador, una app) puede reducir los microdespertares causados por sonidos intermitentes.',
+   tareas:['Revisa la temperatura de tu dormitorio: ¿está entre 16-20°C?','¿Entra luz externa? Valora cortinas oscurecedoras o antifaz','¿Hay ruidos perturbadores? Considera ruido blanco o tapones'],
+   fuente:'Hume et al. (2012) "Effects of noise on sleep" · SES · National Sleep Foundation'},
+
+  {dia:14,semana:2,semanaTitle:'Semana 2 — Control de estímulos',titulo:'Revisión semana 2',minutos:12,
+   cuerpo:'<p>Has completado dos semanas. Esta semana fue de acción: cambios de comportamiento concretos que empiezan a reconstruir la asociación cama-sueño.</p><p>El control de estímulos es exigente al principio. Levantarte de la cama cuando no puedes dormir va contra el instinto de "quedarme aquí y esperar". Pero los datos de ensayos clínicos son claros: es una de las intervenciones más eficaces para el insomnio crónico.</p><p>Revisa tu diario: ¿ha mejorado tu eficiencia del sueño respecto a la semana 1? No esperes milagros en solo dos semanas — pero deberías ver pequeñas mejoras. Si tu eficiencia es aún inferior al 75%, la técnica de restricción del sueño de la semana que viene puede ser particularmente útil para ti.</p><p>¿Qué ha sido más difícil esta semana? ¿La regla de los 20 minutos? ¿No usar el móvil en la cama? ¿Mantener el horario de levantarse? Identifica tu mayor obstáculo porque será el que más trabajes las próximas semanas.</p>',
+   conceptoClave:'El control de estímulos funciona a través del condicionamiento. Como cualquier proceso de aprendizaje, requiere repetición y consistencia. Una semana imperfecta no arruina el proceso — lo que importa es la tendencia general.',
+   tareas:['Calcula tu eficiencia media de las dos semanas','Compara: ¿hay mejora respecto a la semana 1?','Elige UNA regla que aplicarás con más consistencia la semana que viene'],
+   fuente:'Morin et al. (2006) "Psychological and Behavioral Treatment of Insomnia" Sleep · SES'},
+
+  // SEMANA 3
+  {dia:15,semana:3,semanaTitle:'Semana 3 — Restricción del sueño',titulo:'Qué es la restricción del sueño',minutos:12,
+   cuerpo:'<p>La restricción del sueño es la técnica más potente — y más contraintuitiva — de toda la TCC-I. La idea es: <strong>si duermes menos tiempo en cama, la presión de sueño aumenta, lo que hace que el sueño sea más profundo, más eficiente y más continuo.</strong></p><p>Es temporalmente incómoda. Durante los primeros días tendrás más somnolencia diurna. Pero en 1-2 semanas, la mayoría de personas experimenta una mejora significativa en la calidad y continuidad del sueño.</p><p>El principio es el mismo que el ayuno intermitente para el apetito: cuando reduces la "ventana de alimentación", el hambre se concentra y la eficiencia mejora. Con el sueño ocurre lo mismo.</p><p>Importante: la restricción del sueño <strong>no es privación de sueño</strong>. La ventana mínima es de 5,5 horas. Y se ajusta semanalmente según tu eficiencia: si mejora, amplías la ventana.</p>',
+   conceptoClave:'La restricción del sueño fue desarrollada por Arthur Spielman en los años 80. Sus estudios mostraron que en 4-6 semanas, la mayoría de pacientes con insomnio crónico pasaban de una eficiencia del 60-70% a más del 85-90%.',
+   tareas:['Calcula tu eficiencia media de los últimos 7 días usando el diario','Esta es la base para calcular tu ventana de sueño mañana','No hagas nada todavía — mañana definimos tu ventana'],
+   fuente:'Spielman et al. (1987) "Treatment of chronic insomnia by restriction of time in bed" Sleep · AASM'},
+
+  {dia:16,semana:3,semanaTitle:'Semana 3 — Restricción del sueño',titulo:'Calculando tu ventana de sueño',minutos:10,
+   cuerpo:'<p>La ventana de sueño es el período durante el que puedes estar en cama. Se calcula así:</p><p><strong>1. Calcula tus horas medias dormidas</strong> en los últimos 7 días (tiempo total dormido, no tiempo en cama). Si duermes una media de 5,5h, esa es tu ventana inicial. Nunca inferior a 5,5h.</p><p><strong>2. Elige tu hora de levantarse</strong> (la que llevas usando desde la semana 1). Esta es fija e inamovible.</p><p><strong>3. Cuenta hacia atrás</strong> desde tu hora de levantarse. Si te levantas a las 7h y tu ventana es de 6h, no puedes acostarte antes de la 1h.</p><p>Sí, puede parecer muy tarde. Eso es intencionado. La acumulación de presión de sueño hace que cuando finalmente te acuestes, el sueño llegue rápido y sea profundo.</p><p><strong>4. Ajusta semanalmente:</strong> si tu eficiencia supera el 90% durante una semana, amplía la ventana 15 minutos. Si cae por debajo del 85%, mantenla igual. Si cae del 85% durante más de 3 noches, reduce 15 minutos.</p>',
+   conceptoClave:'La hora de acostarse puede ser más tarde de lo que estás acostumbrado. No es un castigo — es una herramienta. El objetivo es que cuando llegues a la cama, tengas tanta presión de sueño acumulada que te duermas en minutos.',
+   tareas:['Calcula tu ventana: horas medias dormidas esta semana','Determina tu hora de acostarte: hora de levantarse menos tu ventana','Esta noche, no te acuestes hasta esa hora aunque tengas sueño antes'],
+   fuente:'Spielman et al. (1987) · Kyle et al. (2015) "Sleep restriction therapy for insomnia" British Journal of General Practice'},
+
+  {dia:17,semana:3,semanaTitle:'Semana 3 — Restricción del sueño',titulo:'Primera semana de restricción',minutos:10,
+   cuerpo:'<p>Has empezado la restricción. Es normal que los primeros 2-3 días sean los más difíciles. La somnolencia diurna puede aumentar, y tendrás ganas de acostarte antes de la hora establecida.</p><p><strong>Qué hacer con la somnolencia diurna:</strong> si tienes un pico de sueño insoportable antes de tu hora de acostarte, puedes hacer una siesta corta de máximo 20 minutos antes de las 15h. Pon alarma. Nada más.</p><p><strong>Señales de que está funcionando:</strong> te duermes más rápido al acostarte, duermes de forma más continua, el sueño se siente más profundo. Estas mejoras suelen aparecer en 4-7 días.</p><p>No abandones por una mala noche. El proceso requiere consistencia. Si una noche no llegas a la hora de acostarte (te quedaste dormido en el sofá), simplemente empieza de nuevo al día siguiente.</p>',
+   conceptoClave:'La restricción del sueño funciona porque la presión de sueño (adenosina acumulada) es el mecanismo más poderoso para inducir sueño profundo. Al comprimir la ventana, toda esa presión se libera en menos tiempo, produciendo sueño más eficiente.',
+   tareas:['Mantén tu hora de acostarte sin excepciones esta noche','Si tienes somnolencia antes: aguanta, camina, haz algo activo','Registra en el diario: ¿cuánto tardaste en dormirte? ¿Te despertaste menos?'],
+   fuente:'Spielman et al. (1987) · Perlis et al. (2008) "CBT for Insomnia: A Step-by-Step Guide"'},
+
+  {dia:18,semana:3,semanaTitle:'Semana 3 — Restricción del sueño',titulo:'Ajustar la ventana',minutos:8,
+   cuerpo:'<p>La restricción del sueño no es fija para siempre — se ajusta de forma dinámica según tu respuesta. El objetivo final no es dormir poco, sino encontrar tu ventana de sueño óptima con alta eficiencia.</p><p><strong>Reglas de ajuste semanal:</strong></p><p>Si tu eficiencia es <strong>90% o superior</strong> durante 5-7 días consecutivos: amplía la ventana 15 minutos (acuéstate 15 minutos antes o levántate 15 minutos después).</p><p>Si tu eficiencia está <strong>entre 85% y 90%</strong>: mantén la ventana actual otra semana.</p><p>Si tu eficiencia está <strong>por debajo del 85%</strong> más de 3-4 días: reduce la ventana 15 minutos.</p><p>Este proceso continúa hasta que encuentras el tiempo en cama que te da una eficiencia sostenida del 85-90% y te sientes descansado. Para la mayoría de adultos, ese punto está entre 7 y 8,5 horas.</p>',
+   conceptoClave:'El proceso de ajuste puede llevar 4-6 semanas hasta estabilizarse. La impaciencia es el enemigo principal. Si amplías la ventana demasiado pronto (antes de que la eficiencia sea consistentemente alta), el progreso se estanca.',
+   tareas:['Calcula tu eficiencia media de los últimos 5 días','¿Supera el 90%? Amplía 15 min esta semana','¿Está entre 85-90%? Mantén. ¿Por debajo? Reduce 15 min'],
+   fuente:'Kyle et al. (2015) British Journal of General Practice · Espie et al. (2019)'},
+
+  {dia:19,semana:3,semanaTitle:'Semana 3 — Restricción del sueño',titulo:'Somnolencia diurna',minutos:8,
+   cuerpo:'<p>La somnolencia diurna durante las primeras semanas de restricción es una señal de que el proceso está funcionando — estás acumulando presión de sueño real. Pero gestionarla bien es importante para no comprometer la restricción.</p><p><strong>Estrategias para manejar la somnolencia diurna:</strong></p><p>La siesta de 20 minutos antes de las 15h es el único "comodín" permitido. Pon alarma y no la superes — una siesta larga o tardía reduce la presión de sueño nocturna y sabotea la restricción.</p><p>Otras estrategias: exposición a luz natural, actividad física leve (caminar), cafeína antes de las 14h (no después), mantente activo y social, evita actividades sedentarias monótonas en los momentos de mayor somnolencia.</p><p><strong>Cuándo preocuparse:</strong> si la somnolencia es tan extrema que compromete tu seguridad al conducir o manejar maquinaria, pausa la restricción y consulta a tu médico.</p>',
+   conceptoClave:'La somnolencia diurna suele alcanzar su pico en los días 3-5 de restricción y luego disminuye a medida que el sueño nocturno mejora. La mayoría de personas describe que en la semana 2 de restricción se sienten mejor que antes de empezar.',
+   tareas:['Prepara estrategias para los momentos de mayor somnolencia (normalmente tarde de tarde)','Si conduces: hazlo solo cuando estés bien despierto','Recuerda que es temporal — el sueño nocturno mejorará pronto'],
+   fuente:'Perlis et al. (2008) · AASM Sleep Restriction Therapy Guidelines'},
+
+  {dia:20,semana:3,semanaTitle:'Semana 3 — Restricción del sueño',titulo:'La presión de sueño',minutos:10,
+   cuerpo:'<p>La adenosina es el neurotransmisor que crea la "presión de sueño". Se produce como subproducto del metabolismo neuronal durante la vigilia y se acumula progresivamente. Cuando alcanza niveles suficientemente altos, inicia el sueño.</p><p>La cafeína bloquea los receptores de adenosina — no elimina la adenosina, solo impide que actúe. Cuando la cafeína se metaboliza, toda la adenosina acumulada actúa de golpe. Por eso el "bajón de cafeína" se siente tan intenso.</p><p>El sueño profundo (N3) es el que más eficientemente elimina la adenosina. Por eso, cuando duermes muy poco una noche, la noche siguiente tienes más sueño profundo (el cuerpo "compensa"). Y por eso la restricción del sueño funciona: al aumentar la presión acumulada, la primera hora de sueño es especialmente profunda.</p><p>La siesta reduce la presión de sueño disponible para la noche. Una siesta de 30 minutos reduce la presión aproximadamente el equivalente a 30 minutos de vigilia. Por eso la siesta larga o tardía interfiere con el sueño nocturno.</p>',
+   conceptoClave:'Entender la adenosina te da control. Si una noche duermes mal, no entres en pánico: la presión de sueño acumulada garantiza que la siguiente noche tendrás más sueño profundo. Tu cuerpo tiene mecanismos de compensación incorporados.',
+   tareas:['Observa hoy cuándo sientes más somnolencia — es cuando la adenosina está alta','Evita la cafeína después de las 14h para no interferir con la presión nocturna','Confía en el proceso: el sueño profundo de esta noche eliminará la deuda acumulada'],
+   fuente:'Porkka-Heiskanen et al. (1997) "Adenosine: A mediator of the sleep-inducing effects of prolonged wakefulness" Science · SES'},
+
+  {dia:21,semana:3,semanaTitle:'Semana 3 — Restricción del sueño',titulo:'Revisión semana 3',minutos:15,
+   cuerpo:'<p>Tres semanas completadas. La restricción del sueño es la semana más dura del programa — y la que produce los cambios más visibles en la calidad del sueño.</p><p>Revisa tus datos: ¿ha mejorado tu eficiencia? ¿Te duermes más rápido? ¿Tienes menos despertares? Si llevas la restricción con consistencia, deberías ver una mejora clara en los datos del diario.</p><p>A partir de aquí, el programa cambia de enfoque. Las semanas 1-3 han sido sobre comportamiento: cambiar lo que haces. Las semanas 4-5 son sobre cognición: cambiar cómo piensas sobre el sueño. Esto es igualmente importante, porque los pensamientos negativos sobre el sueño son uno de los principales factores que mantienen el insomnio crónico.</p>',
+   conceptoClave:'El 70-80% del efecto de la TCC-I proviene de las tres técnicas que has aprendido: control de estímulos, horario fijo y restricción. Lo que viene ahora es la "capa cognitiva" que consolida y profundiza los cambios.',
+   tareas:['Calcula tu eficiencia media de la semana 3','Si supera el 90%, amplía tu ventana 15 minutos','Prepárate para la semana 4: empieza a observar tus pensamientos sobre el sueño'],
+   fuente:'Morin et al. (1999) "Cognitive-Behavior Therapy for Late-Life Insomnia" Journal of Consulting and Clinical Psychology'},
+
+  // SEMANA 4
+  {dia:22,semana:4,semanaTitle:'Semana 4 — Reestructuración cognitiva',titulo:'Pensamientos que roban el sueño',minutos:12,
+   cuerpo:'<p>Llevas tres semanas trabajando en el comportamiento. Ahora atacamos el componente cognitivo del insomnio: los pensamientos que activan el sistema de alerta justo cuando quieres dormir.</p><p>La rumiación nocturna es muy frecuente: preocupaciones del día, problemas sin resolver, planificación compulsiva, catastrofismo sobre el insomnio mismo ("si no duermo, mañana no podré funcionar"). Estos pensamientos activan el sistema nervioso simpático, aumentan el cortisol y hacen imposible el sueño.</p><p>El primer paso es <strong>identificar tus pensamientos típicos</strong>. ¿Qué piensas cuando llevas 20 minutos sin dormir? ¿Miras el reloj y calculas cuántas horas te quedan? ¿Empiezas a planificar el día siguiente? ¿Te preocupas por las consecuencias de dormir poco?</p><p>Observa sin juzgar. Esta semana es de identificación — la semana que viene de transformación.</p>',
+   conceptoClave:'Los pensamientos activadores nocturnos son automáticos e involuntarios al principio — pero con práctica se pueden reconocer e interrumpir. El primer paso siempre es la consciencia: no puedes cambiar lo que no ves.',
+   tareas:['Esta noche, cuando estés en la cama, observa qué pensamientos aparecen','¿Son preocupaciones del día? ¿Pensamientos sobre el sueño? ¿Planificación?','Anótalos brevemente mañana — sin juzgar, solo registrar'],
+   fuente:'Harvey (2002) "A cognitive model of insomnia" Behaviour Research and Therapy · SES'},
+
+  {dia:23,semana:4,semanaTitle:'Semana 4 — Reestructuración cognitiva',titulo:'Creencias erróneas sobre el sueño',minutos:10,
+   cuerpo:'<p>Las creencias disfuncionales sobre el sueño son ideas incorrectas o exageradas que generan ansiedad y perpetúan el insomnio. Son tan comunes que muchos insomnes las dan por verdades absolutas.</p><p><strong>"Necesito dormir 8 horas o no funcionaré":</strong> falso. Los adultos tienen un rango normal de 7-9 horas. Muchas personas funcionan perfectamente con 6,5-7h. La creencia de las "8 horas obligatorias" genera ansiedad innecesaria.</p><p><strong>"Una mala noche arruina mi salud":</strong> el cuerpo es resiliente. El deterioro cognitivo significativo por el sueño requiere privación severa y sostenida, no una mala noche ocasional.</p><p><strong>"No puedo controlar mi sueño":</strong> de hecho, puedes influir enormemente en tu sueño mediante el comportamiento y los pensamientos — exactamente lo que estás haciendo.</p><p><strong>"Necesito medicación para dormir":</strong> la TCC-I tiene mayor efectividad a largo plazo que cualquier somnífero, sin los efectos secundarios.</p>',
+   conceptoClave:'La reestructuración cognitiva no es "pensar positivo". Es examinar las evidencias reales de una creencia y sustituirla por una versión más equilibrada y realista. No se trata de engañarse, sino de pensar con más precisión.',
+   tareas:['Identifica UNA creencia disfuncional que tengas sobre tu sueño','Escríbela: ¿qué evidencia la apoya? ¿Qué evidencia la contradice?','Formula una versión más equilibrada de esa creencia'],
+   fuente:'Morin (1993) "Insomnia: Psychological Assessment and Management" · DBAS (Dysfunctional Beliefs and Attitudes about Sleep)'},
+
+  {dia:24,semana:4,semanaTitle:'Semana 4 — Reestructuración cognitiva',titulo:'La técnica de la silla',minutos:10,
+   cuerpo:'<p>La técnica de la silla (también llamada "tiempo de preocupación programado") es una herramienta cognitiva muy eficaz para contener la rumiación nocturna.</p><p>El principio: <strong>reserva 15-20 minutos al día, siempre en el mismo momento (nunca antes de las 20h), para preocuparte de forma activa</strong>. Siéntate en una silla específica (no en la cama, no en el sofá habitual), escribe tus preocupaciones, piensa en posibles soluciones y luego cierra físicamente el cuaderno.</p><p>Cuando de noche aparezca un pensamiento intrusivo, dite a ti mismo: "Eso ya lo pensé hoy a las 19h. Está en el cuaderno. Mañana a las 19h lo pienso de nuevo." Y devuelve la atención a la respiración o al cuerpo.</p><p>Esta técnica funciona porque el cerebro rumia en parte porque teme olvidar o no procesar los problemas. Al darle un momento dedicado para hacerlo, la mente nocturna puede "soltar".</p>',
+   conceptoClave:'El tiempo de preocupación programado reduce la rumiación nocturna porque entrena al cerebro a contener las preocupaciones en un compartimento temporal específico. Con práctica (2-3 semanas), los pensamientos intrusivos nocturnos disminuyen significativamente.',
+   tareas:['Elige una hora y lugar para tu "tiempo de preocupación" diario (ej. 19h, en la cocina)','Esta tarde, haz tu primera sesión: 15 min escribiendo preocupaciones y posibles pasos','Si esta noche aparece un pensamiento: "Ya está en el cuaderno. Mañana a las 19h."'],
+   fuente:'Borkovec et al. (1983) "Stimulus Control Applications to the Treatment of Worry" · SES'},
+
+  {dia:25,semana:4,semanaTitle:'Semana 4 — Reestructuración cognitiva',titulo:'Reencuadrar el insomnio',minutos:12,
+   cuerpo:'<p>Una de las paradojas del insomnio es que cuanto más intentas dormir, más difícil se hace. El esfuerzo por dormir crea activación. La solución contraintuitiva es <strong>cambiar el objetivo: en lugar de intentar dormir, intenta simplemente descansar.</strong></p><p>El reencuadre cognitivo del insomnio implica cambiar la narrativa: de "soy un insomne que no puede dormir" a "tengo un sistema de sueño que está aprendiendo a regularse de nuevo". De "esta noche va a ser horrible" a "esta noche observaré cómo me siento sin juzgar".</p><p>Otro reencuadre poderoso: el descanso en cama, aunque no duermas, tiene valor. Estar tumbado en oscuridad con el cuerpo relajado restaura físicamente, aunque no sea tan eficiente como el sueño profundo. No es "perder el tiempo".</p><p>La intención paradójica, que ya viste en la sección de crisis, es el reencuadre llevado al extremo: intenta activamente quedarte despierto. Al quitar la presión de dormirse, la activación disminuye y el sueño llega solo.</p>',
+   conceptoClave:'La hipervigilancia sobre el sueño es uno de los factores centrales del insomnio crónico. Medir la hora constantemente, monitorizar cada despertar, calcular horas que quedan... todo esto aumenta la activación. El objetivo de esta semana es reducir esa vigilancia.',
+   tareas:['Esta noche: no mires el reloj cuando estés en la cama','Si no puedes dormir: recuérdate "estoy descansando, eso también tiene valor"','Prueba la intención paradójica: intenta quedarte despierto con los ojos abiertos'],
+   fuente:'Ascher & Turner (1979) "Paradoxical intention and insomnia" Behaviour Research and Therapy · SES'},
+
+  {dia:26,semana:4,semanaTitle:'Semana 4 — Reestructuración cognitiva',titulo:'Mindfulness para el sueño',minutos:12,
+   cuerpo:'<p>El mindfulness (atención plena) no es una técnica de relajación al uso — es una habilidad para observar la experiencia presente sin juzgarla ni reaccionar a ella. Aplicado al insomnio, cambia la relación con los pensamientos y sensaciones nocturnas.</p><p>La práctica central es simple: <strong>observa lo que ocurre (pensamientos, sensaciones físicas, sonidos) sin intentar cambiarlo ni reaccionar a él.</strong> Un pensamiento de preocupación no es el problema — el problema es el ciclo de reacción que genera.</p><p>Hay evidencia creciente de que las intervenciones basadas en mindfulness (especialmente MBSR - Mindfulness-Based Stress Reduction) mejoran la calidad subjetiva del sueño y reducen la rumiación nocturna. El efecto es más modesto que la restricción del sueño o el control de estímulos, pero complementario.</p><p>El body scan nocturno (exploración corporal lenta de pies a cabeza) es una de las aplicaciones más efectivas al sueño: dirige la atención hacia sensaciones físicas neutras, alejándola de los pensamientos activadores.</p>',
+   conceptoClave:'El mindfulness no intenta "vaciar la mente" — eso es un mito. Entrena la capacidad de observar los pensamientos como eventos mentales pasajeros, sin identificarte con ellos ni amplificarlos. Un pensamiento de preocupación es solo un pensamiento, no una realidad.',
+   tareas:['Antes de dormir, haz 5 minutos de body scan: recorre tu cuerpo de pies a cabeza, solo observando sensaciones sin juzgar','Si aparece un pensamiento, reconócelo ("hay un pensamiento de preocupación") y vuelve a las sensaciones físicas','No esperes "no pensar" — espera "observar sin reaccionar"'],
+   fuente:'Ong et al. (2014) "A randomized controlled trial of mindfulness meditation for chronic insomnia" Sleep · MBSR Kabat-Zinn'},
+
+  {dia:27,semana:4,semanaTitle:'Semana 4 — Reestructuración cognitiva',titulo:'Reducir la ansiedad anticipatoria',minutos:10,
+   cuerpo:'<p>La ansiedad anticipatoria del sueño es el miedo a no dormir que aparece antes de acostarse. "¿Y si esta noche tampoco duermo?" "Mañana tengo una reunión importante y necesito dormir bien." Este miedo activa el sistema de alerta exactamente cuando quieres calmarlo.</p><p>El círculo vicioso es claro: ansiedad → activación → no duermo → más ansiedad → más activación. La TCC-I interrumpe este círculo desde múltiples puntos.</p><p>Herramientas específicas para la ansiedad anticipatoria: <strong>desdramatización</strong> ("incluso si duermo poco, podré funcionar — ya lo he demostrado"), <strong>desvinculación del resultado</strong> ("mi trabajo es acostarme relajado, no garantizar el sueño"), y <strong>la regla de los 20 minutos</strong> (saber que tienes un plan si no duermes reduce la ansiedad).</p>',
+   conceptoClave:'Saber que tienes un plan (la regla de los 20 minutos, levantarte si no duermes) reduce paradójicamente la ansiedad anticipatoria. La sensación de control sobre la situación disminuye la activación del sistema de alerta.',
+   tareas:['Identifica: ¿en qué momento del día empieza tu ansiedad por el sueño?','Cuando aparezca: "Mi trabajo es acostarme tranquilo. El sueño hará el resto."','Escribe 3 evidencias de que has podido funcionar después de noches malas'],
+   fuente:'Harvey (2002) "A cognitive model of insomnia" · Ong et al. (2012) "A mindfulness-based approach to the treatment of insomnia"'},
+
+  {dia:28,semana:4,semanaTitle:'Semana 4 — Reestructuración cognitiva',titulo:'Revisión semana 4',minutos:15,
+   cuerpo:'<p>Cuatro semanas. Has completado el núcleo de la TCC-I. Las semanas 1-4 contienen las intervenciones con mayor evidencia científica para el insomnio crónico.</p><p>Esta semana ha sido diferente: más interior, más sutil. Los cambios cognitivos son más lentos que los conductuales, pero igualmente importantes. La forma en que piensas sobre tu sueño determina en gran medida cómo duermes.</p><p>Pregúntate: ¿ha cambiado tu relación con el insomnio? ¿Lo vives con menos catastrofismo? ¿Tienes más herramientas para los pensamientos nocturnos? No se trata de haber eliminado la ansiedad — se trata de gestionarla mejor.</p>',
+   conceptoClave:'A estas alturas, muchas personas reportan una mejora significativa en su sueño. Si no es tu caso, no te preocupes — la respuesta es variable. Las semanas 5 y 6 añaden herramientas de relajación y prevención de recaídas que complementan lo aprendido.',
+   tareas:['Calcula tu eficiencia media de las cuatro semanas — ¿ves una tendencia de mejora?','¿Qué técnica cognitiva te ha resultado más útil?','Continúa con la restricción del sueño ajustando según tu eficiencia'],
+   fuente:'Morin & Espie (2003) "Insomnia: A Clinical Guide to Assessment and Treatment" · SES'},
+
+  // SEMANA 5
+  {dia:29,semana:5,semanaTitle:'Semana 5 — Relajación y mindfulness',titulo:'Relajación muscular progresiva',minutos:15,
+   cuerpo:'<p>La relajación muscular progresiva (RMP) fue desarrollada por el médico Edmund Jacobson en los años 20. Es una de las técnicas de relajación con mayor evidencia científica y una de las más usadas en la TCC-I.</p><p>El principio es sencillo: <strong>la tensión muscular consciente seguida de relajación produce un estado de relajación más profundo que intentar relajarse directamente.</strong> El contraste entre tensión y relajación hace que la relajación sea más percibible y efectiva.</p><p><strong>Cómo practicarla:</strong> túmbate en la cama o en el suelo. Empieza por los pies. Tensa con fuerza los músculos del pie derecho durante 5-7 segundos. Suelta completamente y observa la sensación de relajación durante 20-30 segundos. Repite con el pie izquierdo, luego pantorrillas, muslos, glúteos, abdomen, manos, antebrazos, hombros, cuello y cara.</p><p>El proceso completo dura 15-20 minutos. Con práctica, puedes hacer versiones abreviadas (4-6 grupos musculares) en 8-10 minutos.</p>',
+   conceptoClave:'La RMP reduce el arousal fisiológico: disminuye la frecuencia cardíaca, la presión arterial y los niveles de cortisol. A diferencia de las técnicas cognitivas, actúa directamente sobre el cuerpo. Es especialmente útil para quienes experimentan tensión física (mandíbula, hombros, estómago) durante la noche.',
+   tareas:['Esta noche, practica la RMP completa antes de acostarte (15-20 min)','Pon música suave o silencio — sin pantallas durante la práctica','Observa cómo se siente el cuerpo después. ¿Hay diferencia?'],
+   fuente:'Jacobson (1938) "Progressive Relaxation" · Bernstein & Borkovec (1973) · Mayo Clinic'},
+
+  {dia:30,semana:5,semanaTitle:'Semana 5 — Relajación y mindfulness',titulo:'Respiración diafragmática',minutos:10,
+   cuerpo:'<p>La respiración diafragmática (también llamada respiración abdominal o profunda) activa el sistema nervioso parasimpático — el "modo calma" del cuerpo — a través del nervio vago.</p><p>La mayoría de personas, especialmente bajo estrés, respira de forma superficial y torácica. Esto mantiene al sistema nervioso en un estado de ligera activación. Respirar con el diafragma invierte este proceso.</p><p><strong>Técnica básica:</strong> coloca una mano en el pecho y otra en el abdomen. Al inspirar, el abdomen debe expandirse (la mano del abdomen sube) mientras el pecho se mueve poco. Al exhalar, el abdomen se contrae. La exhalación debe ser más lenta que la inhalación (ej. inhala 4 seg, exhala 6-8 seg).</p><p>La respiración 4-7-8 que ya conoces es una variante de esto. Otras variantes efectivas: respiración cuadrada (4-4-4-4), coherencia cardíaca (5 seg inhala, 5 seg exhala, 6 minutos).</p>',
+   conceptoClave:'La exhalación lenta es la clave. El nervio vago se activa principalmente durante la exhalación. Por eso, las técnicas de respiración que alargan la espiración (como 4-7-8) son más calmantes que las que equilibran inspiración y espiración.',
+   tareas:['Practica 5 minutos de respiración diafragmática ahora mismo','Esta noche, como parte de tu rutina de desconexión, añade 5 min de respiración lenta','Combínala con la RMP: primero respiración, luego tensión-relajación muscular'],
+   fuente:'Jerath et al. (2006) "Physiology of long pranayamic breathing" Medical Hypotheses · Dr. Andrew Weil · SES'},
+
+  {dia:31,semana:5,semanaTitle:'Semana 5 — Relajación y mindfulness',titulo:'Imágenes mentales guiadas',minutos:12,
+   cuerpo:'<p>Las imágenes mentales guiadas (visualización) son una técnica de relajación que utiliza la capacidad de la mente para evocar respuestas fisiológicas a través de la imaginación. Cuando visualizas vívidamente un lugar tranquilo, el cuerpo responde parcialmente como si estuvieras ahí.</p><p>La técnica consiste en crear y mantener una imagen mental detallada y sensorial de un lugar que asocies con la seguridad y el descanso. Puede ser real (una playa que recuerdas) o imaginado.</p><p><strong>Cómo hacerlo:</strong> cierra los ojos. Imagina ese lugar con el máximo detalle sensorial: ¿qué ves? (colores, luz, elementos del entorno), ¿qué escuchas? (agua, viento, silencio), ¿qué sientes en tu piel? (temperatura, textura), ¿qué hueles? Cuanto más detallada y específica sea la imagen, más efectiva.</p><p>Si aparece un pensamiento intrusivo, reconócelo y vuelve suavemente a la imagen. No pelees con los pensamientos — simplemente rediriges la atención.</p>',
+   conceptoClave:'Las imágenes mentales guiadas funcionan mejor para personas con imaginación visual activa. Si prefieres el pensamiento abstracto o verbal, la RMP o la respiración pueden ser más accesibles. Experimenta con varias técnicas y quédate con las que más te ayuden.',
+   tareas:['Elige tu "lugar de descanso": un sitio que te genere calma (real o imaginado)','Esta noche, antes de dormir, pasa 5-10 minutos en ese lugar mental','Añade detalles sensoriales cada vez que practiques para hacerlo más vívido'],
+   fuente:'Schaffer et al. (1998) "Guided imagery" · Academy for Guided Imagery · SES'},
+
+  {dia:32,semana:5,semanaTitle:'Semana 5 — Relajación y mindfulness',titulo:'Body scan nocturno',minutos:12,
+   cuerpo:'<p>El body scan (escaneo corporal) es una práctica de mindfulness que dirige la atención de forma sistemática por cada parte del cuerpo, observando sensaciones sin intentar cambiarlas. Es especialmente efectivo para el sueño porque ancla la atención en el presente físico, alejándola de los pensamientos sobre el pasado o el futuro.</p><p><strong>Cómo practicarlo:</strong> túmbate cómodamente. Cierra los ojos. Dirige la atención a la planta del pie izquierdo. Observa cualquier sensación: hormigueo, temperatura, presión, tensión, nada. No juzgues — solo observa. Después de 20-30 segundos, mueve la atención al tobillo, luego a la pantorrilla, rodilla, muslo... Sube lentamente por todo el cuerpo hasta la coronilla.</p><p>Si la mente divaga, está bien — es lo que hace la mente. Simplemente nota que ha divagado y vuelve al punto donde dejaste el recorrido. Sin frustración, sin juicio.</p>',
+   conceptoClave:'El body scan es la técnica de mindfulness aplicado al sueño con mayor evidencia clínica. Un estudio de la Universidad de Oxford mostró que 8 semanas de práctica regular reducía el tiempo hasta dormirse y mejoraba la calidad subjetiva del sueño.',
+   tareas:['Esta noche, ya en la cama, practica el body scan completo','Deja que la atención recorra el cuerpo sin prisa — 10-15 minutos','Si te duermes durante la práctica: perfecto, ese es el objetivo'],
+   fuente:'Ong et al. (2014) Sleep · Kabat-Zinn (1990) "Full Catastrophe Living" · SES'},
+
+  {dia:33,semana:5,semanaTitle:'Semana 5 — Relajación y mindfulness',titulo:'Tu ritual de 20 minutos',minutos:10,
+   cuerpo:'<p>A estas alturas tienes varias herramientas de relajación: respiración diafragmática, RMP, imágenes guiadas, body scan. El objetivo de hoy es <strong>combinarlas en un ritual personal de 20-30 minutos</strong> que uses de forma consistente cada noche.</p><p>No existe una combinación universalmente mejor. Lo que importa es que funcione para ti y que la sigas con consistencia. La consistencia transforma un conjunto de técnicas en una señal de sueño para el cerebro.</p><p>Un ejemplo de ritual: 5 min de respiración diafragmática → 10 min de RMP → 5 min de body scan o visualización. Otro: 10 min de lectura en papel → 5 min de respiración → 5 min de body scan.</p><p>El ritual debe empezar siempre a la misma hora, en el mismo lugar (fuera de la cama si es posible, para preservar la asociación cama-sueño), con las mismas condiciones de luz y sonido.</p>',
+   conceptoClave:'Con 2-3 semanas de práctica consistente, el simple hecho de iniciar el ritual activa una respuesta de relajación condicionada. El cerebro "aprende" que este ritual precede al sueño, igual que un perro de Pavlov saliva al escuchar la campana.',
+   tareas:['Diseña tu ritual personal de 20-30 minutos combinando las técnicas que más te han funcionado','Escríbelo y colócalo en un lugar visible del dormitorio o baño','Esta noche, aplícalo completo por primera vez'],
+   fuente:'Lichstein & Morin (2000) "Treatment of Late-Life Insomnia" · SES'},
+
+  {dia:34,semana:5,semanaTitle:'Semana 5 — Relajación y mindfulness',titulo:'Gestión del estrés diurno',minutos:12,
+   cuerpo:'<p>El estrés diurno y el sueño nocturno están íntimamente conectados. El cortisol, la hormona del estrés, tiene un ciclo natural que baja por la noche para permitir el sueño. Cuando el estrés crónico mantiene el cortisol elevado durante el día, ese "reseteo" nocturno es insuficiente.</p><p>Las intervenciones de gestión del estrés que más impacto tienen en el sueño son: <strong>ejercicio aeróbico regular</strong> (metaboliza el cortisol), <strong>el tiempo de preocupación programado</strong> (que ya conoces), <strong>límites en el trabajo nocturno</strong> (el email del trabajo después de las 20h activa el eje HPA del estrés), y <strong>conexiones sociales positivas</strong> (la oxitocina tiene efecto calmante).</p><p>El mindfulness en la vida diaria — no solo antes de dormir — también tiene un impacto documentado: pequeñas pausas durante el día (1-2 minutos de respiración consciente) reducen la carga de estrés acumulada que llega a la noche.</p>',
+   conceptoClave:'Dormir mal genera más estrés, y más estrés genera peor sueño. Intervenir en el estrés diurno rompe este ciclo desde arriba. El sueño mejorado reduce el estrés, y la reducción del estrés mejora el sueño: un círculo virtuoso.',
+   tareas:['Identifica tu mayor fuente de estrés diurno que afecta al sueño','¿Qué límite concreto puedes establecer? (ej. no mail de trabajo después de las 20h)','Añade una pausa de 2 minutos de respiración consciente en algún momento del día'],
+   fuente:'Epel et al. (2019) "More than a feeling: A unified view of stress measurement for population science" Frontiers · SES'},
+
+  {dia:35,semana:5,semanaTitle:'Semana 5 — Relajación y mindfulness',titulo:'Revisión semana 5',minutos:12,
+   cuerpo:'<p>Cinco semanas. Estás en la recta final del programa. En este punto, la mayoría de personas que han seguido el programa con consistencia reportan una mejora significativa: más eficiencia del sueño, menos tiempo para dormirse, menos despertares nocturnos, y — igualmente importante — menos ansiedad en torno al sueño.</p><p>Las herramientas de relajación de esta semana complementan y refuerzan todo lo aprendido. La RMP, el body scan y la respiración diafragmática actúan directamente sobre el sistema nervioso, reduciendo el arousal fisiológico que mantiene el insomnio.</p><p>¿Cuáles te han funcionado mejor? No todas las técnicas funcionan igual para todas las personas. Quédate con las que sientas que tienen más efecto y construye tu ritual personal a partir de ellas.</p>',
+   conceptoClave:'La TCC-I no es un menú del que eliges un plato — es un sistema. Las piezas se refuerzan mutuamente. Los mejores resultados vienen de aplicar las técnicas de forma integrada: control de estímulos + restricción + reestructuración cognitiva + relajación.',
+   tareas:['Evalúa cuál de las técnicas de relajación te ha resultado más útil','Incorpórala como elemento permanente de tu rutina nocturna','Prepárate para la semana 6: la prevención de recaídas'],
+   fuente:'Morin et al. (2009) "Cognitive behavioral therapy, singly and combined with medication, for persistent insomnia" JAMA'},
+
+  // SEMANA 6
+  {dia:36,semana:6,semanaTitle:'Semana 6 — Prevención de recaídas',titulo:'Señales de alerta temprana',minutos:10,
+   cuerpo:'<p>Has completado el núcleo del programa. La semana 6 es sobre el largo plazo: cómo mantener lo ganado y qué hacer cuando el sueño empeora temporalmente.</p><p>El insomnio puede reaparecer. Los periodos de estrés intenso (un cambio laboral, una pérdida, una enfermedad), los cambios de horario (vuelos, turnos, viajes), o simplemente una mala racha pueden provocar un empeoramiento temporal del sueño.</p><p>La diferencia ahora es que tienes herramientas. Y reconocer las señales tempranas antes de que el insomnio se cronifique de nuevo es la clave de la prevención.</p><p><strong>Señales de alerta:</strong> más de 3 noches seguidas con eficiencia inferior al 85%, tiempo de conciliación superior a 45 minutos de forma habitual, regreso de la ansiedad anticipatoria intensa, y — importante — el regreso de comportamientos que sabes que no ayudan (móvil en la cama, siestas largas, horarios irregulares).</p>',
+   conceptoClave:'El primer signo de una posible recaída no es el mal sueño en sí — es el regreso de los comportamientos y pensamientos que mantienen el insomnio. Detectarlos pronto te permite intervenir antes de que el problema se consolide.',
+   tareas:['Escribe tus 3 principales señales de alerta personales (las que más te afectan)','¿Qué situaciones o periodos de vida han desencadenado insomnio en el pasado?','Guarda esta información — es tu "plan de contingencia" personal'],
+   fuente:'Morin et al. (2009) · Perlis et al. (2008) "CBT for Insomnia"'},
+
+  {dia:37,semana:6,semanaTitle:'Semana 6 — Prevención de recaídas',titulo:'Plan de acción ante recaídas',minutos:12,
+   cuerpo:'<p>Cuando el sueño empeora durante más de una semana, es el momento de activar el plan. No esperes a que el problema lleve meses consolidado — intervén pronto.</p><p><strong>El plan de recaídas en 3 pasos:</strong></p><p><strong>1. Vuelve al diario:</strong> registra tu sueño durante 5-7 días. Calcula tu eficiencia. Los datos te mostrarán si es una mala racha pasajera (eficiencia >80%) o algo que necesita intervención activa (eficiencia <75% durante más de una semana).</p><p><strong>2. Vuelve a los fundamentos:</strong> revisa las tres reglas básicas — ¿estás cumpliendo la hora fija de levantarte? ¿Usas la regla de los 20 minutos? ¿Has vuelto a usar el móvil en la cama? La mayoría de recaídas se resuelven simplemente volviendo a las reglas básicas.</p><p><strong>3. Si persiste, vuelve a la restricción:</strong> si tras 1-2 semanas de vuelta a los fundamentos la eficiencia sigue baja, aplica de nuevo la restricción del sueño. Normalmente una aplicación más corta (1-2 semanas) es suficiente en una recaída.</p>',
+   conceptoClave:'Una recaída no borra el progreso. Las habilidades aprendidas no desaparecen — solo necesitan reactivarse. La segunda vez que aplicas la TCC-I, los resultados suelen ser más rápidos porque ya conoces el proceso.',
+   tareas:['Escribe tu plan de recaídas personal en 3 pasos concretos','¿A qué hora específica fijarás la alarma si hay recaída?','¿Cuál es tu señal para volver a la restricción?'],
+   fuente:'Morin (2004) "Cognitive-behavioral approaches to the treatment of insomnia" Journal of Clinical Psychiatry'},
+
+  {dia:38,semana:6,semanaTitle:'Semana 6 — Prevención de recaídas',titulo:'Mantenimiento a largo plazo',minutos:10,
+   cuerpo:'<p>El mantenimiento a largo plazo de un buen sueño no requiere seguir el programa al pie de la letra para siempre — requiere mantener los hábitos centrales que han demostrado marcar la diferencia para ti.</p><p>Para la mayoría de personas que completan la TCC-I, los hábitos que más merecen mantenerse a largo plazo son: la hora fija de levantarse (incluso en vacaciones, con flexibilidad de 30-45 minutos máximo), evitar el móvil en la cama, el ritual de desconexión nocturna, y el diario de sueño esporádico (ej. una semana cada trimestre para monitorizar).</p><p>Lo que no hace falta mantener indefinidamente: la restricción estricta del sueño (solo se reintroduce en recaídas), el tiempo de preocupación programado diario (solo cuando hay períodos de estrés alto).</p>',
+   conceptoClave:'Los estudios de seguimiento de la TCC-I muestran que los efectos se mantienen — e incluso mejoran — a los 6 y 12 meses. Esto es lo opuesto a los somníferos, cuyos efectos desaparecen al dejarlos. La diferencia es que la TCC-I modifica los mecanismos subyacentes, no solo los síntomas.',
+   tareas:['Identifica los 3 hábitos del programa que más impacto han tenido en tu sueño','Decide cuáles vas a mantener de forma permanente','Programa un "check-in" de sueño en 1 mes: revisarás tu diario esa semana'],
+   fuente:'Morin et al. (2006) "Psychological and behavioral treatment of insomnia" Sleep · SES'},
+
+  {dia:39,semana:6,semanaTitle:'Semana 6 — Prevención de recaídas',titulo:'El sueño en momentos difíciles',minutos:10,
+   cuerpo:'<p>Algunos periodos de vida estresan especialmente el sueño: viajes con cambio de zona horaria, cambios de turno laboral, periodos de duelo o pérdida, enfermedades, embarazo y posparto, menopausia, y períodos de estrés profesional o familiar intenso.</p><p><strong>Viajes y jet lag:</strong> adapta tu horario al destino lo antes posible, exponte a luz solar en el horario local, evita la siesta larga el primer día. La melatonina (0,5-1 mg) puede ayudar al reajuste del ritmo circadiano en el jet lag.</p><p><strong>Turnos de trabajo:</strong> los trabajadores a turnos tienen mayor riesgo de insomnio crónico y problemas de salud. Las estrategias de TCC-I son aplicables, pero con ventanas de sueño adaptadas al horario de trabajo.</p><p><strong>Estrés agudo:</strong> en períodos de estrés intenso, el insomnio agudo es normal. Aplicar las técnicas de relajación y el control de estímulos desde el principio evita que se cronifique.</p>',
+   conceptoClave:'La clave en los momentos difíciles no es dormir perfectamente — es no desarrollar comportamientos de compensación (más tiempo en cama, siestas largas, irregular) que conviertan el insomnio agudo en crónico. Mantener los fundamentos en esos momentos es lo más protector.',
+   tareas:['Identifica un momento difícil próximo que podría afectar tu sueño (viaje, periodo de trabajo intenso...)','Prepara un mini-plan para ese momento: ¿qué reglas mantendrás?','Recuerda: el insomnio agudo en momentos de estrés es normal — no el inicio de una recaída si lo manejas bien'],
+   fuente:'Reid & Zee (2009) "Circadian rhythm sleep disorders" · Leger et al. (2009) "Shift work and insomnia"'},
+
+  {dia:40,semana:6,semanaTitle:'Semana 6 — Prevención de recaídas',titulo:'Tu perfil de sueño definitivo',minutos:12,
+   cuerpo:'<p>Después de seis semanas de monitorización y trabajo activo, ya conoces tu sueño mejor que nunca. Tienes datos reales sobre tu eficiencia, tus patrones, tus factores de riesgo y las técnicas que más te ayudan.</p><p>Construye tu perfil de sueño personal respondiendo estas preguntas:</p><p>¿Cuál es tu ventana de sueño óptima? (el tiempo en cama con eficiencia sostenida del 85-90%)</p><p>¿Cuál es tu hora natural de somnolencia? (aproximadamente)</p><p>¿Cuáles son tus mayores factores de riesgo personales? (ansiedad, móvil, cafeína tardía, horarios irregulares...)</p><p>¿Qué técnicas te han resultado más eficaces? (RMP, body scan, regla de los 20 minutos, restricción...)</p><p>Este perfil es tu manual personal de sueño — más valioso que cualquier consejo genérico.</p>',
+   conceptoClave:'Tu sueño es único. Los datos de seis semanas de diario son una fuente de información sobre tu biología del sueño que ningún libro puede darte. Úsalos.',
+   tareas:['Escribe tu perfil de sueño personal: ventana óptima, horarios naturales, factores de riesgo, técnicas más útiles','Guárdalo junto a tu plan de recaídas','Es tu referencia para siempre'],
+   fuente:'Bastien et al. (2004) · Perlis et al. (2008) "CBT for Insomnia"'},
+
+  {dia:41,semana:6,semanaTitle:'Semana 6 — Prevención de recaídas',titulo:'Cuándo volver al programa',minutos:8,
+   cuerpo:'<p>DuermeBien es un recurso permanente. Puedes volver a él en cualquier momento — no solo en recaídas.</p><p>Algunas razones para revisitar el programa: después de un período de sueño alterado por un cambio vital (nuevo trabajo, mudanza, hijo, pérdida), antes de un período de estrés previsible como preparación preventiva, o simplemente para repasar alguna técnica específica que quieras reforzar.</p><p>No tienes que empezar desde el Día 1 cada vez. Si ya conoces los fundamentos, puedes ir directamente a la semana o técnica que necesites. La Semana 3 (restricción) es habitualmente el punto de partida más efectivo en recaídas. La Semana 4 (reestructuración cognitiva) es útil cuando la ansiedad nocturna es el síntoma principal.</p>',
+   conceptoClave:'Haber completado este programa es un activo de por vida. Las habilidades aprendidas no desaparecen — pueden necesitar reactivarse, pero siempre están ahí. Cada vez que apliques estas técnicas, los resultados serán más rápidos.',
+   tareas:['Marca en tu calendario un check-in de sueño en 1 mes','Si el sueño está bien: solo anota tu eficiencia media esa semana','Si el sueño está mal: vuelve a los fundamentos (Semana 2) o a la restricción (Semana 3)'],
+   fuente:'Morin et al. (2009) "Cognitive behavioral therapy... for persistent insomnia" JAMA · SES'},
+
+  {dia:42,semana:6,semanaTitle:'Semana 6 — Prevención de recaídas',titulo:'Cierre del programa',minutos:15,
+   cuerpo:'<p>Has completado el programa TCC-I de DuermeBien. Seis semanas, 42 días, un cambio profundo en tu relación con el sueño.</p><p>Recuerda de dónde venías: noches de dar vueltas en la cama, ansiedad al llegar la noche, la frustración de no poder hacer algo tan aparentemente básico como dormir. Eso no era debilidad — era el resultado de un sistema de sueño atrapado en un ciclo que se auto-perpetuaba.</p><p>Lo que has aprendido y practicado — el control de estímulos, la restricción del sueño, la reestructuración cognitiva, las técnicas de relajación — son las mismas intervenciones que utilizan los especialistas en medicina del sueño en todo el mundo. No son atajos ni placebos. Tienen décadas de investigación respaldándolas.</p><p>El sueño puede seguir teniendo noches malas. Los periodos de estrés volverán. Pero ahora tienes un mapa, un conjunto de herramientas y — lo más importante — la experiencia de haber mejorado tu sueño mediante tu propio esfuerzo.</p><p>Eso no te lo quita nadie.</p>',
+   conceptoClave:'El insomnio crónico no es una condena de por vida. Es un patrón aprendido — y los patrones aprendidos pueden desaprenderse. Has demostrado que puedes hacerlo.',
+   tareas:['Calcula tu eficiencia media de las 6 semanas y compárala con la semana 1','Guarda tu perfil de sueño y tu plan de recaídas','Considera compartir DuermeBien con alguien que pueda necesitarlo — es gratis, para siempre'],
+   fuente:'Morin & Espie (2003) · AASM Clinical Practice Guideline 2021 · Sociedad Española del Sueño'}
+];
+
+// Organizar semanas
+var SEMANAS = [
+  {num:1, titulo:'Psicoeducación del sueño', sub:'Entender cómo funciona tu sueño'},
+  {num:2, titulo:'Control de estímulos', sub:'Reconectar cama con sueño'},
+  {num:3, titulo:'Restricción del sueño', sub:'La técnica más potente de TCC-I'},
+  {num:4, titulo:'Reestructuración cognitiva', sub:'Cambiar pensamientos sobre el sueño'},
+  {num:5, titulo:'Relajación y mindfulness', sub:'Técnicas basadas en evidencia'},
+  {num:6, titulo:'Prevención de recaídas', sub:'Tu plan para el futuro'}
+];
+
 // ─── ESTRELLAS ONBOARDING ───
-const starsEl = document.getElementById('starsEl');
-for (let i = 0; i < 50; i++) {
-  const s = document.createElement('div');
+var starsEl = document.getElementById('starsEl');
+for (var i = 0; i < 50; i++) {
+  var s = document.createElement('div');
   s.className = 'star';
-  s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*4}s;opacity:${0.1+Math.random()*0.5}`;
+  s.style.cssText = 'left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;--d:'+(2+Math.random()*4)+'s;--delay:'+Math.random()*4+'s;opacity:'+(0.1+Math.random()*0.5);
   starsEl.appendChild(s);
 }
 
 // ─── FECHAS ───
-const DIAS  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-const HOY   = new Date();
-const HOY_KEY = HOY.toISOString().split('T')[0];
+var DIAS  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+var MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+var HOY   = new Date();
+var HOY_KEY = HOY.toISOString().split('T')[0];
 
-document.getElementById('diaryDate').textContent =
-  DIAS[HOY.getDay()] + ', ' + HOY.getDate() + ' de ' + MESES[HOY.getMonth()];
-document.getElementById('homeDate').textContent =
-  HOY.getDate() + ' de ' + MESES[HOY.getMonth()];
+document.getElementById('diaryDate').textContent = DIAS[HOY.getDay()] + ', ' + HOY.getDate() + ' de ' + MESES[HOY.getMonth()];
+
+// Saludo según hora
+var hora = HOY.getHours();
+var saludo = hora < 14 ? 'Buenos días' : hora < 21 ? 'Buenas tardes' : 'Buenas noches';
+document.getElementById('homeGreeting').innerHTML = saludo + ', <em>¿cómo estás?</em>';
+document.getElementById('homeDate').textContent = HOY.getDate() + ' de ' + MESES[HOY.getMonth()];
 
 // ─── ONBOARDING ───
-let currentSlide = 0;
-
+var currentSlide = 0;
 function nextSlide() {
   if (currentSlide < 2) {
     currentSlide++;
-    document.getElementById('onbSlides').style.transform =
-      'translateX(-' + (currentSlide * 33.333) + '%)';
+    document.getElementById('onbSlides').style.transform = 'translateX(-'+(currentSlide*33.333)+'%)';
   }
 }
-
 function skipOnboarding() {
-  if (!localStorage.getItem('db_inicio')) {
-    localStorage.setItem('db_inicio', Date.now());
-  }
+  if (!localStorage.getItem('db_inicio')) localStorage.setItem('db_inicio', Date.now());
   document.getElementById('screen-onboarding').classList.remove('active');
   document.getElementById('screen-home').classList.add('active');
   document.getElementById('bottomNav').classList.add('visible');
   actualizarEstadisticasHome();
   renderizarGrafico();
-  desbloquearSemanas();
+  renderizarPrograma();
 }
 
 // ─── NAVEGACIÓN ───
-let currentScreen  = 'home';
-let previousScreen = 'home';
-
+var currentScreen = 'home';
 function goTo(name) {
-  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
-  previousScreen = currentScreen;
-  currentScreen  = name;
-
-  var target = document.getElementById('screen-' + name);
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  currentScreen = name;
+  var target = document.getElementById('screen-'+name);
   if (target) { target.classList.add('active'); target.scrollTop = 0; }
-
-  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
-  var navBtn = document.getElementById('nav-' + name);
+  document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+  var navBtn = document.getElementById('nav-'+name);
   if (navBtn) navBtn.classList.add('active');
-
-  document.getElementById('bottomNav').classList.toggle('visible', name !== 'crisis');
-
+  document.getElementById('bottomNav').classList.toggle('visible', name !== 'crisis' && name !== 'sesion');
   if (name === 'diary') { renderizarGrafico(); cargarUltimoRegistro(); }
   if (name === 'home')  { actualizarEstadisticasHome(); }
 }
 
-// ─── SEMANAS PROGRAMA ───
+// ─── PROGRAMA: RENDERIZAR ───
+function renderizarPrograma() {
+  var diasCompletados = {};
+  try { diasCompletados = JSON.parse(localStorage.getItem('db_dias_completados') || '{}'); } catch(e) {}
+
+  var container = document.getElementById('programWeeks');
+  container.innerHTML = '';
+
+  SEMANAS.forEach(function(sem) {
+    var diasSem = SESIONES.filter(function(s){ return s.semana === sem.num; });
+    var completadosSem = diasSem.filter(function(s){ return diasCompletados['dia'+s.dia]; }).length;
+    var todosCompletos = completadosSem === 7;
+    var alguno = completadosSem > 0;
+
+    var weekClass = todosCompletos ? 'week-done' : 'week-active';
+
+    var card = document.createElement('div');
+    card.className = 'week-card ' + weekClass;
+    card.id = 'week-card-'+sem.num;
+
+    var statusIcon = todosCompletos ? '✓' : '▾';
+
+    var daysHTML = diasSem.map(function(sesion) {
+      var completado = !!diasCompletados['dia'+sesion.dia];
+      var checkClass = completado ? 'done' : '';
+      var checkContent = completado ? '✓' : '';
+      return '<div class="day-item" onclick="abrirSesion('+sesion.dia+')">' +
+        '<div class="day-check '+checkClass+'">'+checkContent+'</div>' +
+        '<div class="day-text"><h4>Día '+sesion.dia+' — '+sesion.titulo+'</h4>' +
+        '<p>'+sesion.semanaTitle+'</p></div>' +
+        '<span class="day-mins">'+sesion.minutos+' min</span>' +
+        '</div>';
+    }).join('');
+
+    card.innerHTML =
+      '<div class="week-header" onclick="toggleWeek('+sem.num+')">' +
+        '<div class="week-num">'+sem.num+'</div>' +
+        '<div class="week-info"><h3>'+sem.titulo+'</h3><p>'+sem.sub+'</p></div>' +
+        '<span class="week-status" id="week-status-'+sem.num+'">'+statusIcon+'</span>' +
+      '</div>' +
+      '<div class="week-content'+(sem.num===1?' open':'')+'" id="week-content-'+sem.num+'">'+daysHTML+'</div>';
+
+    container.appendChild(card);
+  });
+}
+
 function toggleWeek(num) {
-  var content = document.getElementById('week-content-' + num);
-  var status  = document.getElementById('week-status-'  + num);
+  var content = document.getElementById('week-content-'+num);
+  var status  = document.getElementById('week-status-'+num);
   if (!content) return;
   var isOpen = content.classList.contains('open');
   content.classList.toggle('open', !isOpen);
-  status.textContent = isOpen ? '›' : '▾';
+  if (status && status.textContent !== '✓') status.textContent = isOpen ? '›' : '▾';
 }
 
-function desbloquearSemanas() {
-  var inicio = parseInt(localStorage.getItem('db_inicio') || Date.now());
-  var diasTranscurridos = Math.floor((Date.now() - inicio) / 86400000);
+// ─── SESIÓN: ABRIR ───
+var sesionDiaActual = null;
+function abrirSesion(dia) {
+  var sesion = SESIONES.find(function(s){ return s.dia === dia; });
+  if (!sesion) return;
+  sesionDiaActual = dia;
 
-  for (var semana = 2; semana <= 6; semana++) {
-    var diasNecesarios = (semana - 1) * 7;
-    var card   = document.getElementById('week-card-'   + semana);
-    var header = document.getElementById('week-header-' + semana);
-    var status = document.getElementById('week-status-' + semana);
-    if (!card) continue;
+  document.getElementById('sesionWeekTag').textContent = sesion.semanaTitle;
+  document.getElementById('sesionTitle').textContent = 'Día ' + dia + ' — ' + sesion.titulo;
+  document.getElementById('sesionMeta').innerHTML = '<span>⏱ '+sesion.minutos+' min</span><span>📚 Día '+dia+' de 42</span>';
+  document.getElementById('sesionBody').innerHTML = sesion.cuerpo;
 
-    if (diasTranscurridos >= diasNecesarios) {
-      card.classList.remove('week-locked');
-      card.classList.add('week-active');
-      header.classList.add('clickable');
-      status.textContent = '›';
-      // closure para capturar semana correctamente
-      (function(s) {
-        header.onclick = function() { toggleWeek(s); };
-      })(semana);
-    } else {
-      var faltan = diasNecesarios - diasTranscurridos;
-      (function(c, f) {
-        header.onclick = function() {
-          var pEl = c.querySelector('.week-info p');
-          var original = pEl.getAttribute('data-original');
-          pEl.textContent = 'Se desbloquea en ' + f + ' día' + (f > 1 ? 's' : '');
-          setTimeout(function() { pEl.textContent = original; }, 2500);
-        };
-      })(card, faltan);
-    }
+  var highlightEl = document.getElementById('sesionHighlight');
+  var highlightText = document.getElementById('sesionHighlightText');
+  if (sesion.conceptoClave) {
+    highlightText.textContent = sesion.conceptoClave;
+    highlightEl.style.display = 'block';
+  } else {
+    highlightEl.style.display = 'none';
+  }
+
+  var tareaEl = document.getElementById('sesionTarea');
+  var tareaList = document.getElementById('sesionTareaList');
+  if (sesion.tareas && sesion.tareas.length) {
+    tareaList.innerHTML = sesion.tareas.map(function(t){ return '<li>'+t+'</li>'; }).join('');
+    tareaEl.style.display = 'block';
+  } else {
+    tareaEl.style.display = 'none';
+  }
+
+  document.getElementById('sesionFuente').textContent = '📚 Fuente: ' + sesion.fuente;
+
+  var diasCompletados = {};
+  try { diasCompletados = JSON.parse(localStorage.getItem('db_dias_completados') || '{}'); } catch(e) {}
+  var btnCompletar = document.getElementById('btnCompletar');
+  if (diasCompletados['dia'+dia]) {
+    btnCompletar.textContent = '✓ Día completado';
+    btnCompletar.classList.add('done');
+  } else {
+    btnCompletar.textContent = 'Marcar como completado ✓';
+    btnCompletar.classList.remove('done');
+  }
+
+  goTo('sesion');
+  document.getElementById('sesionBackBtn').onclick = function(){ goTo('program'); renderizarPrograma(); };
+}
+
+function completarDia() {
+  if (!sesionDiaActual) return;
+  var diasCompletados = {};
+  try { diasCompletados = JSON.parse(localStorage.getItem('db_dias_completados') || '{}'); } catch(e) {}
+  diasCompletados['dia'+sesionDiaActual] = true;
+  localStorage.setItem('db_dias_completados', JSON.stringify(diasCompletados));
+  var btn = document.getElementById('btnCompletar');
+  btn.textContent = '✓ Día completado';
+  btn.classList.add('done');
+}
+
+// ─── PROGRESO HOME ───
+function actualizarProgresoHome() {
+  var diasCompletados = {};
+  try { diasCompletados = JSON.parse(localStorage.getItem('db_dias_completados') || '{}'); } catch(e) {}
+  var total = Object.keys(diasCompletados).length;
+
+  // Semana actual
+  var semanaActual = Math.min(6, Math.floor(total / 7) + 1);
+  var sem = SEMANAS[semanaActual - 1];
+  var diasEnSemana = Object.keys(diasCompletados).filter(function(k){
+    var dia = parseInt(k.replace('dia',''));
+    return dia >= (semanaActual-1)*7+1 && dia <= semanaActual*7;
+  }).length;
+
+  document.getElementById('homeWeekTitle').textContent = 'Semana '+semanaActual+' — '+sem.titulo;
+  document.getElementById('homeWeekDays').textContent = diasEnSemana+'/7 días';
+  document.getElementById('homeProgressBar').style.width = Math.round((diasEnSemana/7)*100)+'%';
+
+  // Siguiente día
+  var siguienteDia = total + 1;
+  if (siguienteDia <= 42) {
+    var s = SESIONES.find(function(x){ return x.dia === siguienteDia; });
+    if (s) document.getElementById('homeCurrentDay').textContent = 'Día '+siguienteDia+' — '+s.titulo;
+  } else {
+    document.getElementById('homeCurrentDay').textContent = '¡Programa completado! 🎉';
   }
 }
 
 // ─── RESPIRACIÓN ───
 var breathSeq = [];
-for (var i = 0; i < 4; i++)  breathSeq.push('Inhala...');
-for (var i = 0; i < 7; i++)  breathSeq.push('Aguanta...');
-for (var i = 0; i < 8; i++)  breathSeq.push('Exhala...');
+for (var i=0;i<4;i++) breathSeq.push('Inhala...');
+for (var i=0;i<7;i++) breathSeq.push('Aguanta...');
+for (var i=0;i<8;i++) breathSeq.push('Exhala...');
 var breathIdx = 0;
-setInterval(function() {
+setInterval(function(){
   var el = document.getElementById('breathLabel');
   if (el) el.textContent = breathSeq[breathIdx % breathSeq.length];
   breathIdx++;
 }, 1000);
 
-// ─── ESTRELLAS DIARIO (solo #diaryStars) ───
+// ─── ESTRELLAS DIARIO ───
 var diaryStarValue = 3;
 function setDiaryStar(n) {
   diaryStarValue = n;
-  var stars = document.querySelectorAll('#diaryStars .star-btn');
-  stars.forEach(function(btn, i) { btn.classList.toggle('active', i < n); });
+  document.querySelectorAll('#diaryStars .star-btn').forEach(function(btn,i){ btn.classList.toggle('active', i<n); });
 }
 
 // ─── EFICIENCIA ───
-function toMinutos(t) {
-  var parts = t.split(':');
-  return parseInt(parts[0]) * 60 + parseInt(parts[1]);
-}
-
+function toMinutos(t) { var p=t.split(':'); return parseInt(p[0])*60+parseInt(p[1]); }
 function calcularEficiencia() {
-  var acostarse = document.getElementById('timeAcostarse').value;
-  var dormi     = document.getElementById('timeDormi').value;
-  var levante   = document.getElementById('timeLevante').value;
-  if (!acostarse || !dormi || !levante) return null;
-
-  var minA = toMinutos(acostarse);
-  var minD = toMinutos(dormi);
-  var minL = toMinutos(levante);
-
-  if (minD  < minA)  minD  += 1440;
-  if (minL <= minD)  minL  += 1440;
-
-  var enCama  = minL - minA;
-  var dormido = minL - minD;
-  if (enCama <= 0 || dormido <= 0) return null;
-
-  var eficiencia = Math.round((dormido / enCama) * 100);
-  var label = '↓ Baja';
-  var color = 'var(--red-soft)';
-  if (eficiencia >= 85)      { label = '✓ Buena';     color = 'var(--green-soft)'; }
-  else if (eficiencia >= 70) { label = '~ Mejorable'; color = 'var(--amber)'; }
-
-  var resultDiv = document.getElementById('eficienciaResult');
-  var valEl     = document.getElementById('eficienciaVal');
-  var labelEl   = document.getElementById('eficienciaLabel');
-  valEl.textContent   = eficiencia + '%';
-  valEl.style.color   = color;
-  labelEl.textContent = label;
-  labelEl.style.color = color;
-  resultDiv.classList.add('visible');
-  return eficiencia;
+  var a = document.getElementById('timeAcostarse').value;
+  var d = document.getElementById('timeDormi').value;
+  var l = document.getElementById('timeLevante').value;
+  if (!a||!d||!l) return null;
+  var mA=toMinutos(a), mD=toMinutos(d), mL=toMinutos(l);
+  if (mD<mA) mD+=1440; if (mL<=mD) mL+=1440;
+  var enCama=mL-mA, dormido=mL-mD;
+  if (enCama<=0||dormido<=0) return null;
+  var ef=Math.round((dormido/enCama)*100);
+  var label='↓ Baja', color='var(--red-soft)';
+  if (ef>=85){label='✓ Buena';color='var(--green-soft)';} else if(ef>=70){label='~ Mejorable';color='var(--amber)';}
+  document.getElementById('eficienciaVal').textContent=ef+'%';
+  document.getElementById('eficienciaVal').style.color=color;
+  document.getElementById('eficienciaLabel').textContent=label;
+  document.getElementById('eficienciaLabel').style.color=color;
+  document.getElementById('eficienciaResult').classList.add('visible');
+  return ef;
 }
 
 // ─── GUARDAR REGISTRO ───
 function guardarRegistro() {
-  var acostarse = document.getElementById('timeAcostarse').value || '23:30';
-  var dormi     = document.getElementById('timeDormi').value     || '00:45';
-  var levante   = document.getElementById('timeLevante').value   || '07:00';
-  var eficiencia = calcularEficiencia() || 0;
-
   var registro = {
-    fecha:        HOY_KEY,
-    acostarse:    acostarse,
-    dormi:        dormi,
-    levante:      levante,
-    calidad:      diaryStarValue,
-    eficiencia:   eficiencia,
+    fecha: HOY_KEY,
+    acostarse: document.getElementById('timeAcostarse').value||'23:30',
+    dormi:     document.getElementById('timeDormi').value||'00:45',
+    levante:   document.getElementById('timeLevante').value||'07:00',
+    calidad:   diaryStarValue,
+    eficiencia: calcularEficiencia()||0,
     bruxismo:     document.getElementById('tog-bruxismo').classList.contains('on'),
     pensamientos: document.getElementById('tog-pensamientos').classList.contains('on'),
     ansiedad:     document.getElementById('tog-ansiedad').classList.contains('on'),
@@ -749,99 +1145,76 @@ function guardarRegistro() {
     cafeina:      document.getElementById('tog-cafeina').classList.contains('on'),
     ejercicio:    document.getElementById('tog-ejercicio').classList.contains('on')
   };
-
-  var registros = [];
-  try { registros = JSON.parse(localStorage.getItem('db_registros') || '[]'); } catch(e) {}
-
-  var idx = -1;
-  for (var i = 0; i < registros.length; i++) {
-    if (registros[i].fecha === HOY_KEY) { idx = i; break; }
-  }
-  if (idx >= 0) registros[idx] = registro;
-  else registros.push(registro);
-  if (registros.length > 90) registros = registros.slice(-90);
-
-  localStorage.setItem('db_registros', JSON.stringify(registros));
-
-  var fb = document.getElementById('saveFeedback');
+  var registros=[];
+  try{registros=JSON.parse(localStorage.getItem('db_registros')||'[]');}catch(e){}
+  var idx=-1;
+  for(var i=0;i<registros.length;i++){if(registros[i].fecha===HOY_KEY){idx=i;break;}}
+  if(idx>=0) registros[idx]=registro; else registros.push(registro);
+  if(registros.length>90) registros=registros.slice(-90);
+  localStorage.setItem('db_registros',JSON.stringify(registros));
+  var fb=document.getElementById('saveFeedback');
   fb.classList.add('visible');
-  setTimeout(function() { fb.classList.remove('visible'); }, 3000);
-
+  setTimeout(function(){fb.classList.remove('visible');},3000);
   renderizarGrafico();
   actualizarEstadisticasHome();
 }
 
-// ─── CARGAR ÚLTIMO REGISTRO ───
 function cargarUltimoRegistro() {
-  var registros = [];
-  try { registros = JSON.parse(localStorage.getItem('db_registros') || '[]'); } catch(e) {}
-  var reg = null;
-  for (var i = 0; i < registros.length; i++) {
-    if (registros[i].fecha === HOY_KEY) { reg = registros[i]; break; }
-  }
-  if (!reg) return;
-  if (reg.acostarse) document.getElementById('timeAcostarse').value = reg.acostarse;
-  if (reg.dormi)     document.getElementById('timeDormi').value     = reg.dormi;
-  if (reg.levante)   document.getElementById('timeLevante').value   = reg.levante;
-  if (reg.eficiencia) calcularEficiencia();
-  setDiaryStar(reg.calidad || 3);
-  ['bruxismo','pensamientos','ansiedad','movil','cafeina','ejercicio'].forEach(function(k) {
-    var el = document.getElementById('tog-' + k);
-    if (el) el.classList.toggle('on', !!reg[k]);
+  var registros=[];
+  try{registros=JSON.parse(localStorage.getItem('db_registros')||'[]');}catch(e){}
+  var reg=null;
+  for(var i=0;i<registros.length;i++){if(registros[i].fecha===HOY_KEY){reg=registros[i];break;}}
+  if(!reg) return;
+  if(reg.acostarse) document.getElementById('timeAcostarse').value=reg.acostarse;
+  if(reg.dormi)     document.getElementById('timeDormi').value=reg.dormi;
+  if(reg.levante)   document.getElementById('timeLevante').value=reg.levante;
+  if(reg.eficiencia) calcularEficiencia();
+  setDiaryStar(reg.calidad||3);
+  ['bruxismo','pensamientos','ansiedad','movil','cafeina','ejercicio'].forEach(function(k){
+    var el=document.getElementById('tog-'+k);
+    if(el) el.classList.toggle('on',!!reg[k]);
   });
 }
 
-// ─── GRÁFICO SEMANAL ───
 function renderizarGrafico() {
-  var registros = [];
-  try { registros = JSON.parse(localStorage.getItem('db_registros') || '[]'); } catch(e) {}
-  var chart = document.getElementById('weekChart');
-  if (!chart) return;
-  chart.innerHTML = '';
-  for (var i = 6; i >= 0; i--) {
-    var d = new Date(HOY); d.setDate(HOY.getDate() - i);
-    var key = d.toISOString().split('T')[0];
-    var reg = null;
-    for (var j = 0; j < registros.length; j++) {
-      if (registros[j].fecha === key) { reg = registros[j]; break; }
-    }
-    var bar = document.createElement('div');
-    bar.className = 'chart-bar';
-    var ef = reg ? reg.eficiencia : 0;
-    bar.style.height = (ef > 0 ? Math.max(8, ef) : 8) + '%';
-    if (ef >= 85) bar.classList.add('good');
-    var tip = document.createElement('span');
-    tip.className = 'bar-tip';
-    tip.textContent = ef > 0 ? ef + '%' : '—';
-    bar.appendChild(tip);
-    chart.appendChild(bar);
+  var registros=[];
+  try{registros=JSON.parse(localStorage.getItem('db_registros')||'[]');}catch(e){}
+  var chart=document.getElementById('weekChart');
+  if(!chart) return;
+  chart.innerHTML='';
+  for(var i=6;i>=0;i--){
+    var d=new Date(HOY); d.setDate(HOY.getDate()-i);
+    var key=d.toISOString().split('T')[0];
+    var reg=null;
+    for(var j=0;j<registros.length;j++){if(registros[j].fecha===key){reg=registros[j];break;}}
+    var bar=document.createElement('div'); bar.className='chart-bar';
+    var ef=reg?reg.eficiencia:0;
+    bar.style.height=(ef>0?Math.max(8,ef):8)+'%';
+    if(ef>=85) bar.classList.add('good');
+    var tip=document.createElement('span'); tip.className='bar-tip'; tip.textContent=ef>0?ef+'%':'—';
+    bar.appendChild(tip); chart.appendChild(bar);
   }
 }
 
-// ─── ESTADÍSTICAS HOME ───
 function actualizarEstadisticasHome() {
-  var registros = [];
-  try { registros = JSON.parse(localStorage.getItem('db_registros') || '[]'); } catch(e) {}
-  var hace7 = new Date(HOY); hace7.setDate(HOY.getDate() - 6);
-  var recientes = registros.filter(function(r) { return new Date(r.fecha) >= hace7; });
-  var conEf = recientes.filter(function(r) { return r.eficiencia > 0; });
-  var media = conEf.length
-    ? Math.round(conEf.reduce(function(s, r) { return s + r.eficiencia; }, 0) / conEf.length)
-    : null;
-  document.getElementById('statEficiencia').textContent = media ? media + '%' : '—';
-  document.getElementById('statRegistros').textContent  = recientes.length;
-  var racha = 0;
-  for (var i = 0; i < 30; i++) {
-    var d = new Date(HOY); d.setDate(HOY.getDate() - i);
-    var key = d.toISOString().split('T')[0];
-    var found = false;
-    for (var j = 0; j < registros.length; j++) {
-      if (registros[j].fecha === key) { found = true; break; }
-    }
-    if (found) racha++;
-    else break;
+  var registros=[];
+  try{registros=JSON.parse(localStorage.getItem('db_registros')||'[]');}catch(e){}
+  var hace7=new Date(HOY); hace7.setDate(HOY.getDate()-6);
+  var recientes=registros.filter(function(r){return new Date(r.fecha)>=hace7;});
+  var conEf=recientes.filter(function(r){return r.eficiencia>0;});
+  var media=conEf.length?Math.round(conEf.reduce(function(s,r){return s+r.eficiencia;},0)/conEf.length):null;
+  document.getElementById('statEficiencia').textContent=media?media+'%':'—';
+  document.getElementById('statRegistros').textContent=recientes.length;
+  var racha=0;
+  for(var i=0;i<30;i++){
+    var d=new Date(HOY); d.setDate(HOY.getDate()-i);
+    var key=d.toISOString().split('T')[0];
+    var found=false;
+    for(var j=0;j<registros.length;j++){if(registros[j].fecha===key){found=true;break;}}
+    if(found) racha++; else break;
   }
-  document.getElementById('statRacha').textContent = racha;
+  document.getElementById('statRacha').textContent=racha;
+  actualizarProgresoHome();
 }
 
 // ─── TEMARIO ASISTENTE ───
@@ -850,106 +1223,82 @@ var TEMARIO = [
   {palabras:['despertarse madrugada','me despierto','despertares','3 de la mañana','despierto varias veces','insomnio mantenimiento'],pregunta:'¿Por qué me despierto de madrugada y no puedo volver a dormir?',respuesta:'Es el <strong>insomnio de mantenimiento</strong>, el más frecuente en adultos mayores de 40 años. El sueño se vuelve más ligero en la segunda mitad de la noche, momento en que el cortisol empieza a subir. <strong>El estrés, la ansiedad, el alcohol</strong> o el dolor crónico lo empeoran. La técnica de restricción del sueño de la TCC-I es la más eficaz para este patrón.',fuente:'Sociedad Española del Sueño (SES)'},
   {palabras:['bruxismo','rechinar dientes','aprieto dientes','mandíbula','dolor mandíbula','dientes por la noche'],pregunta:'¿Qué es el bruxismo y qué puedo hacer?',respuesta:'El bruxismo es el <strong>hábito inconsciente de apretar o rechinar los dientes durante el sueño</strong>. Afecta al 8% de la población. Los síntomas más frecuentes son dolor de cabeza al despertar, tensión en la mandíbula y desgaste dental. <strong>El estrés es el principal desencadenante</strong>. Técnicas de relajación antes de dormir ayudan: coloca la lengua entre los dientes suavemente. <em>Si persiste, consulta a tu dentista.</em>',fuente:'SES · Mayo Clinic'},
   {palabras:['cuántas horas dormir','horas de sueño','cuánto dormir','8 horas','horas necesarias'],pregunta:'¿Cuántas horas necesito dormir?',respuesta:'Los adultos necesitan entre <strong>7 y 9 horas</strong> según la AASM. Pero varía por persona. <strong>Lo que importa</strong> es cómo te sientes al despertar: si estás descansado y alerta, estás durmiendo lo suficiente. Menos de 6 horas de forma crónica tiene consecuencias documentadas para la salud.',fuente:'AASM · Sociedad Española del Sueño'},
-  {palabras:['ansiedad noche','ansiedad dormir','pensamientos noche','no para mi mente','rumiación','preocupaciones','estrés dormir'],pregunta:'¿Cómo calmo la ansiedad y los pensamientos antes de dormir?',respuesta:'Técnicas con evidencia: <strong>1) Parada de pensamiento</strong>: di "stop" y escribe la preocupación en papel. <strong>2) Respiración 4-7-8</strong>: inhala 4 seg, aguanta 7, exhala 8. <strong>3) Relajación muscular progresiva</strong>: tensa y suelta cada grupo muscular. <em>La TCC-I incluye un módulo completo de reestructuración cognitiva.</em>',fuente:'SES · Mayo Clinic'},
+  {palabras:['ansiedad noche','ansiedad dormir','pensamientos noche','no para mi mente','rumiación','preocupaciones','estrés dormir'],pregunta:'¿Cómo calmo la ansiedad y los pensamientos antes de dormir?',respuesta:'Técnicas con evidencia: <strong>1) Parada de pensamiento</strong>: di "stop" y escribe la preocupación en papel. <strong>2) Respiración 4-7-8</strong>: inhala 4 seg, aguanta 7, exhala 8. <strong>3) Relajación muscular progresiva</strong>: tensa y suelta cada grupo muscular. <strong>4) La técnica de la silla</strong>: reserva 15 min al día para preocuparte — y cierra el cuaderno. <em>La TCC-I incluye un módulo completo de reestructuración cognitiva.</em>',fuente:'SES · Mayo Clinic'},
   {palabras:['melatonina','tomar melatonina','melatonina funciona','pastillas sueño naturales'],pregunta:'¿Funciona la melatonina? ¿Debo tomarla?',respuesta:'La melatonina <strong>no es un somnífero</strong>, es una señal de ritmo circadiano. Es útil para el jet lag. <strong>No es eficaz como tratamiento del insomnio crónico</strong>. La dosis efectiva es baja (0,5-1 mg). <strong>La TCC-I tiene mucha más evidencia</strong> que la melatonina para el insomnio real.',fuente:'Sociedad Española del Sueño (SES)'},
   {palabras:['alcohol sueño','copa vino dormir','alcohol ayuda dormir','beber para dormir'],pregunta:'¿El alcohol ayuda a dormir?',respuesta:'Es uno de los mitos más extendidos. El alcohol <strong>facilita conciliar el sueño</strong> pero <strong>destruye la calidad del sueño</strong>: fragmenta las fases profundas (N3) y el REM, provoca más despertares, y reduce el efecto reparador. Te duermes antes pero amaneces más cansado.',fuente:'Sociedad Española de Neurología (SEN)'},
-  {palabras:['móvil antes dormir','pantalla noche','luz azul','teléfono cama','tablet dormir','pantallas'],pregunta:'¿Por qué el móvil perjudica el sueño?',respuesta:'La <strong>luz azul de las pantallas</strong> inhibe la producción de melatonina en la glándula pineal, retrasando la señal de sueño. Además, <strong>el contenido estimulante</strong> mantiene activo el sistema de alerta. Lo ideal es evitar pantallas <em>al menos 1 hora antes de dormir</em>.',fuente:'Brigham and Women\'s Hospital · SES'},
-  {palabras:['siesta','dormir siesta','siesta larga','siesta perjudica'],pregunta:'¿Las siestas son buenas o malas para el insomnio?',respuesta:'Depende. <strong>Una siesta corta de 10-20 minutos</strong> antes de las 15h no afecta el sueño nocturno. <strong>Siestas largas (+30 min) o tardías</strong> dificultan dormirse por la noche. Si tienes insomnio, <em>la TCC-I recomienda evitar las siestas</em> durante el programa.',fuente:'Sociedad Española del Sueño (SES)'},
+  {palabras:['móvil antes dormir','pantalla noche','luz azul','teléfono cama','tablet dormir','pantallas'],pregunta:'¿Por qué el móvil perjudica el sueño?',respuesta:'La <strong>luz azul de las pantallas</strong> inhibe la producción de melatonina en la glándula pineal, retrasando la señal de sueño. Además, <strong>el contenido estimulante</strong> mantiene activo el sistema de alerta. Lo ideal es evitar pantallas <em>al menos 60-90 minutos antes de dormir</em>.',fuente:'Brigham and Women\'s Hospital · SES'},
+  {palabras:['siesta','dormir siesta','siesta larga','siesta perjudica'],pregunta:'¿Las siestas son buenas o malas para el insomnio?',respuesta:'Depende. <strong>Una siesta corta de 10-20 minutos</strong> antes de las 15h no afecta el sueño nocturno. <strong>Siestas largas (+30 min) o tardías</strong> dificultan dormirse por la noche. Si tienes insomnio, <em>la TCC-I recomienda evitar las siestas</em> durante el programa (solo se permiten siestas de emergencia de 20 min antes de las 15h).',fuente:'Sociedad Española del Sueño (SES)'},
   {palabras:['cafeína','café sueño','cuándo tomar café','te sueño','bebidas energéticas'],pregunta:'¿Cuándo debo tomar el último café del día?',respuesta:'La cafeína tiene una <strong>vida media de 5-6 horas</strong>. <strong>La recomendación general</strong> es no tomar cafeína después de las 14h-15h. También contienen cafeína el té negro, el té verde, los refrescos de cola, el chocolate negro y las bebidas energéticas.',fuente:'AASM · Mayo Clinic'},
-  {palabras:['higiene sueño','hábitos dormir','rutina nocturna','qué hacer para dormir','consejos dormir'],pregunta:'¿Qué hábitos mejoran el sueño?',respuesta:'Los más respaldados: <strong>1) Horario fijo</strong> para acostarse y levantarse. <strong>2) Habitación fresca</strong> (18-20°C). <strong>3) Oscuridad total</strong>. <strong>4) Sin pantallas 1h antes</strong>. <strong>5) Evitar comidas copiosas</strong> 2-3h previas. <strong>6) Ejercicio regular</strong> (no justo antes de dormir). <strong>7) Ritual de relajación</strong>.',fuente:'Sociedad Española del Sueño (SES)'},
+  {palabras:['higiene sueño','hábitos dormir','rutina nocturna','qué hacer para dormir','consejos dormir'],pregunta:'¿Qué hábitos mejoran el sueño?',respuesta:'Los más respaldados: <strong>1) Horario fijo para levantarse</strong> (incluso en fin de semana). <strong>2) Habitación fresca</strong> (16-20°C). <strong>3) Oscuridad total</strong>. <strong>4) Sin pantallas 60-90 min antes</strong>. <strong>5) Evitar comidas copiosas</strong> 2-3h previas. <strong>6) Ejercicio regular</strong>. <strong>7) Ritual de desconexión</strong> consistente.',fuente:'Sociedad Española del Sueño (SES)'},
   {palabras:['recuperar sueño','dormir más finde','deuda sueño','recuperar horas'],pregunta:'¿Puedo recuperar el sueño perdido durmiendo más el fin de semana?',respuesta:'No de forma completa. La <strong>deuda de sueño no se devuelve</strong> como una deuda bancaria. Dormir más el fin de semana alivia la somnolencia pero <strong>no revierte los efectos cognitivos y metabólicos</strong>. Además, altera el ritmo circadiano creando un "jet lag social".',fuente:'SES · Harvard Medical School'},
-  {palabras:['temperatura dormir','frío calor dormir','grados habitación'],pregunta:'¿Cuál es la temperatura ideal para dormir?',respuesta:'Una habitación <strong>entre 16°C y 20°C</strong> facilita la bajada de temperatura corporal necesaria para el sueño. Demasiado calor interfiere con el sueño profundo. Una <strong>ducha templada 1-2 horas antes</strong> acelera ese proceso.',fuente:'National Sleep Foundation · SES'},
-  {palabras:['tcc-i','terapia sueño','tratamiento insomnio','terapia cognitiva','sin pastillas'],pregunta:'¿Qué es la TCC-I y por qué es el mejor tratamiento?',respuesta:'La <strong>Terapia Cognitivo-Conductual para el Insomnio (TCC-I)</strong> es el tratamiento de primera línea según la SES, antes que los fármacos. <strong>El 70-80% de pacientes mejoran en 6-8 semanas</strong>, con beneficios más duraderos que los somníferos. DuermeBien te guía por este programa de forma gratuita.',fuente:'SES · AASM'},
+  {palabras:['temperatura dormir','frío calor dormir','grados habitación'],pregunta:'¿Cuál es la temperatura ideal para dormir?',respuesta:'Una habitación <strong>entre 16°C y 20°C</strong> facilita la bajada de temperatura corporal necesaria para el sueño. Demasiado calor interfiere con el sueño profundo. Una <strong>ducha templada 1-2 horas antes</strong> acelera ese proceso de enfriamiento corporal.',fuente:'National Sleep Foundation · SES'},
+  {palabras:['tcc-i','terapia sueño','tratamiento insomnio','terapia cognitiva','sin pastillas','qué es tcc'],pregunta:'¿Qué es la TCC-I y por qué es el mejor tratamiento?',respuesta:'La <strong>Terapia Cognitivo-Conductual para el Insomnio (TCC-I)</strong> es el tratamiento de primera línea según la SES, antes que los fármacos. Incluye control de estímulos, restricción del sueño, reestructuración cognitiva y técnicas de relajación. <strong>El 70-80% de pacientes mejoran en 6-8 semanas</strong>, con beneficios más duraderos que los somníferos. DuermeBien te guía por este programa de forma gratuita.',fuente:'SES · AASM'},
   {palabras:['cuándo ir médico','cuándo consultar','médico insomnio','necesito médico','ver especialista'],pregunta:'¿Cuándo debo ir al médico por el insomnio?',respuesta:'Consulta si: <strong>llevas más de 3 meses</strong> con problemas de sueño, afecta gravemente tu vida, tienes <em>ronquidos fuertes o paradas respiratorias</em>, somnolencia extrema durante el día, o el insomnio va acompañado de síntomas de depresión o ansiedad intensa.',fuente:'Ministerio de Sanidad de España'},
-  {palabras:['eficiencia sueño','qué es eficiencia','calcular sueño','porcentaje sueño'],pregunta:'¿Qué es la eficiencia del sueño y cómo se calcula?',respuesta:'Eficiencia = (horas dormidas ÷ horas en cama) × 100. <strong>Por encima del 85% se considera buena eficiencia</strong>. Por ejemplo, 8 horas en cama pero 5,5h dormidas = 69%, baja. La TCC-I usa la restricción del sueño para mejorar este índice.',fuente:'Sociedad Española del Sueño (SES)'},
-  {palabras:['ronquido','apnea','apnea sueño','roncar','parar respirar'],pregunta:'¿Pueden los ronquidos o la apnea del sueño causar insomnio?',respuesta:'La <strong>apnea obstructiva del sueño</strong> provoca microdespertares frecuentes que fragmentan el sueño y generan somnolencia diurna extrema. <strong>Señales de alerta</strong>: ronquidos fuertes, pausas en la respiración, levantarte con dolor de cabeza. <em>Requiere diagnóstico médico.</em>',fuente:'Sociedad Española de Neurología (SEN)'},
-  {palabras:['ejercicio dormir','deporte sueño','cuándo hacer ejercicio','gimnasio noche'],pregunta:'¿El ejercicio mejora el sueño? ¿Cuándo hacerlo?',respuesta:'El ejercicio regular <strong>mejora la calidad y duración del sueño profundo</strong> y reduce la ansiedad. <strong>Evita el ejercicio intenso en las 2-3 horas previas a dormir</strong>. El ejercicio moderado por la tarde-noche (caminar, yoga) generalmente no perjudica.',fuente:'AASM · Mayo Clinic'},
+  {palabras:['eficiencia sueño','qué es eficiencia','calcular sueño','porcentaje sueño'],pregunta:'¿Qué es la eficiencia del sueño y cómo se calcula?',respuesta:'Eficiencia = (horas dormidas ÷ horas en cama) × 100. <strong>Por encima del 85% se considera buena eficiencia</strong>. Por ejemplo, 8 horas en cama pero 5,5h dormidas = 69%, baja. La TCC-I usa la restricción del sueño para mejorar este índice de forma sistemática.',fuente:'Sociedad Española del Sueño (SES)'},
+  {palabras:['ronquido','apnea','apnea sueño','roncar','parar respirar'],pregunta:'¿Pueden los ronquidos o la apnea del sueño causar insomnio?',respuesta:'La <strong>apnea obstructiva del sueño</strong> provoca microdespertares frecuentes que fragmentan el sueño y generan somnolencia diurna extrema. <strong>Señales de alerta</strong>: ronquidos fuertes, pausas en la respiración, levantarte con dolor de cabeza. <em>Requiere diagnóstico médico con polisomnografía.</em>',fuente:'Sociedad Española de Neurología (SEN)'},
+  {palabras:['ejercicio dormir','deporte sueño','cuándo hacer ejercicio','gimnasio noche'],pregunta:'¿El ejercicio mejora el sueño? ¿Cuándo hacerlo?',respuesta:'El ejercicio regular <strong>mejora la calidad y duración del sueño profundo</strong> y reduce la ansiedad. <strong>Evita el ejercicio muy intenso en la hora previa a dormir</strong>. El ejercicio moderado por la tarde-noche (caminar, yoga) generalmente no perjudica y para muchas personas lo mejora.',fuente:'AASM · Mayo Clinic'},
   {palabras:['alimentación sueño','qué comer dormir','cena insomnio','comida antes dormir'],pregunta:'¿Qué debo comer (o evitar) para dormir mejor?',respuesta:'<strong>Evitar</strong>: cenas copiosas en las 2-3h previas, alcohol y cafeína. <strong>Favorable</strong>: alimentos ricos en triptófano (pavo, plátano, lácteos, nueces). Una cena <em>ligera y equilibrada</em> es mejor que no cenar.',fuente:'Mayo Clinic · Ministerio de Sanidad'},
-  {palabras:['somníferos','pastillas dormir','medicación insomnio','benzodiacepinas','hipnóticos'],pregunta:'¿Son buenos los somníferos? ¿Puedo tomarlos?',respuesta:'Los somníferos son <strong>efectivos a corto plazo</strong> pero generan tolerancia, dependencia, y efecto rebote al dejarlos. <strong>Las guías clínicas recomiendan la TCC-I como primera opción</strong>. <em>Nunca tomes somníferos sin prescripción médica.</em>',fuente:'SES · Ministerio de Sanidad'}
+  {palabras:['somníferos','pastillas dormir','medicación insomnio','benzodiacepinas','hipnóticos'],pregunta:'¿Son buenos los somníferos? ¿Puedo tomarlos?',respuesta:'Los somníferos son <strong>efectivos a corto plazo</strong> pero generan tolerancia, dependencia, y efecto rebote al dejarlos. <strong>Las guías clínicas recomiendan la TCC-I como primera opción</strong>. <em>Nunca tomes somníferos sin prescripción médica.</em>',fuente:'SES · Ministerio de Sanidad'},
+  {palabras:['restricción sueño','restringir sueño','ventana sueño','tiempo cama'],pregunta:'¿Qué es la restricción del sueño y cómo funciona?',respuesta:'La restricción del sueño comprime el tiempo en cama al tiempo medio real dormido, <strong>aumentando la presión de sueño</strong> para que el sueño sea más profundo y continuo. Semanalmente se amplía la ventana si la eficiencia supera el 90%. Es la técnica TCC-I con mayor evidencia para mejorar la eficiencia del sueño rápidamente.',fuente:'Spielman et al. (1987) Sleep · SES · AASM'},
+  {palabras:['control estímulos','cama solo dormir','asociación cama','regla 20 minutos'],pregunta:'¿Qué es el control de estímulos?',respuesta:'El control de estímulos reconecta la cama con el sueño rompiendo la asociación cama-vigilia. Sus reglas: <strong>1) Usa la cama solo para dormir</strong> (no móvil, series, trabajo). <strong>2) Si no te duermes en ~20 min, levántate</strong> y vuelve cuando tengas sueño. <strong>3) Levántate siempre a la misma hora.</strong> Es una de las intervenciones más eficaces de la TCC-I.',fuente:'Bootzin (1972) · Morin et al. (2006) Sleep'},
+  {palabras:['fases sueño','ciclos sueño','rem','sueño profundo','n3'],pregunta:'¿Cuáles son las fases del sueño?',respuesta:'El sueño se divide en ciclos de ~90 min. Cada ciclo incluye: <strong>N1</strong> (adormecimiento), <strong>N2</strong> (sueño ligero, 50% del sueño total), <strong>N3</strong> (sueño profundo, restaurador físicamente) y <strong>REM</strong> (sueños, consolida la memoria). Los ciclos de la primera mitad de la noche tienen más N3; los de la segunda, más REM.',fuente:'AASM · Walker M. (2017) "Why We Sleep"'},
+  {palabras:['jet lag','viaje sueño','cambio horario','vuelo'],pregunta:'¿Cómo gestionar el jet lag y los cambios de horario?',respuesta:'Para el jet lag: <strong>adáptate al horario del destino desde el primer día</strong>, exponte a luz solar en el horario local (potente sincronizador circadiano), evita la siesta larga el primer día, y considera melatonina de baja dosis (0,5-1 mg) para acelerar el reajuste. El cuerpo tarda ~1 día por hora de diferencia en adaptarse.',fuente:'Reid & Zee (2009) · SES · Roenneberg et al. (2012)'}
 ];
 
 // ─── BÚSQUEDA ASISTENTE ───
 function buscarRespuesta() {
-  var query      = document.getElementById('asistenteInput').value.toLowerCase().trim();
+  var query = document.getElementById('asistenteInput').value.toLowerCase().trim();
   var resultado  = document.getElementById('resultadoCard');
   var noResult   = document.getElementById('noResultado');
   var categorias = document.getElementById('categoriasGrid');
-
   if (!query || query.length < 2) {
-    resultado.classList.remove('visible');
-    noResult.classList.remove('visible');
-    categorias.style.display = 'grid';
-    return;
+    resultado.classList.remove('visible'); noResult.classList.remove('visible'); categorias.style.display='grid'; return;
   }
-  categorias.style.display = 'none';
-
-  var mejorMatch = null;
-  var mejorPuntuacion = 0;
-
-  TEMARIO.forEach(function(item) {
-    var puntuacion = 0;
-    item.palabras.forEach(function(palabra) {
-      if (query.indexOf(palabra) >= 0 || palabra.indexOf(query) >= 0) puntuacion += palabra.length;
-      query.split(' ').forEach(function(qw) {
-        if (qw.length > 2 && palabra.indexOf(qw) >= 0) puntuacion += 1;
-      });
+  categorias.style.display='none';
+  var mejorMatch=null, mejorPuntuacion=0;
+  TEMARIO.forEach(function(item){
+    var p=0;
+    item.palabras.forEach(function(pal){
+      if(query.indexOf(pal)>=0||pal.indexOf(query)>=0) p+=pal.length;
+      query.split(' ').forEach(function(qw){ if(qw.length>2&&pal.indexOf(qw)>=0) p+=1; });
     });
-    if (puntuacion > mejorPuntuacion) { mejorPuntuacion = puntuacion; mejorMatch = item; }
+    if(p>mejorPuntuacion){mejorPuntuacion=p;mejorMatch=item;}
   });
-
-  if (mejorMatch && mejorPuntuacion > 1) {
-    document.getElementById('resultadoPregunta').textContent = mejorMatch.pregunta;
-    document.getElementById('resultadoRespuesta').innerHTML  = mejorMatch.respuesta;
-    document.getElementById('resultadoFuente').textContent   = '📚 ' + mejorMatch.fuente;
-    resultado.classList.add('visible');
-    noResult.classList.remove('visible');
+  if(mejorMatch&&mejorPuntuacion>1){
+    document.getElementById('resultadoPregunta').textContent=mejorMatch.pregunta;
+    document.getElementById('resultadoRespuesta').innerHTML=mejorMatch.respuesta;
+    document.getElementById('resultadoFuente').textContent='📚 '+mejorMatch.fuente;
+    resultado.classList.add('visible'); noResult.classList.remove('visible');
   } else {
-    resultado.classList.remove('visible');
-    noResult.classList.add('visible');
+    resultado.classList.remove('visible'); noResult.classList.add('visible');
   }
 }
-
 function buscarPorChip(texto) {
-  document.getElementById('asistenteInput').value = texto;
+  document.getElementById('asistenteInput').value=texto;
   buscarRespuesta();
-  setTimeout(function() {
-    var card = document.getElementById('resultadoCard');
-    if (card.classList.contains('visible')) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 150);
+  setTimeout(function(){
+    var card=document.getElementById('resultadoCard');
+    if(card.classList.contains('visible')) card.scrollIntoView({behavior:'smooth',block:'start'});
+  },150);
 }
 
 // ─── MODAL AVISO LEGAL ───
-function abrirAvisoLegal() {
-  document.getElementById('modalAvisoLegal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function cerrarAvisoLegal(e) {
-  if (!e || e.target === document.getElementById('modalAvisoLegal')) {
-    document.getElementById('modalAvisoLegal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-}
+function abrirAvisoLegal(){ document.getElementById('modalAvisoLegal').classList.add('open'); document.body.style.overflow='hidden'; }
+function cerrarAvisoLegal(e){ if(!e||e.target===document.getElementById('modalAvisoLegal')){ document.getElementById('modalAvisoLegal').classList.remove('open'); document.body.style.overflow=''; } }
 
-// ─── INIT: si ya pasó el onboarding, arrancar directo en home ───
+// ─── INIT ───
 if (localStorage.getItem('db_inicio')) {
   document.getElementById('screen-onboarding').classList.remove('active');
   document.getElementById('screen-home').classList.add('active');
   document.getElementById('bottomNav').classList.add('visible');
   actualizarEstadisticasHome();
   renderizarGrafico();
-  desbloquearSemanas();
+  renderizarPrograma();
 }
 
 // ─── PWA SERVICE WORKER ───
 if ('serviceWorker' in navigator) {
-  var swCode = [
-    "const CACHE = 'duermebien-v2';",
-    "self.addEventListener('install', e => { self.skipWaiting(); });",
-    "self.addEventListener('activate', e => { self.clients.claim(); });",
-    "self.addEventListener('fetch', e => { e.respondWith(fetch(e.request).catch(() => caches.match(e.request))); });"
-  ].join('\n');
-  var blob = new Blob([swCode], { type: 'application/javascript' });
-  navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(function() {});
+  navigator.serviceWorker.register('/sw.js').catch(function(){});
 }
 </script>
 </body>
