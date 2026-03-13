@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>DuermeBien — Duerme mejor, gratis</title>
-
-<!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0d0d14">
 <meta name="mobile-web-app-capable" content="yes">
@@ -13,1829 +11,555 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="DuermeBien">
 <link rel="apple-touch-icon" href="icon-192.png">
-
-<!-- SEO -->
 <meta name="description" content="El primer programa gratuito en español contra el insomnio. Basado en TCC-I. Sin anuncios. Para siempre.">
-
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
-/* ─── RESET & BASE ─── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --bg: #0d0d14;
-  --bg2: #12121c;
-  --bg3: #1a1a28;
-  --surface: #1e1e30;
-  --surface2: #252538;
-  --amber: #e8a058;
-  --amber-dim: rgba(232,160,88,0.15);
-  --cream: #f0e8d8;
-  --cream-dim: rgba(240,232,216,0.6);
-  --muted: rgba(240,232,216,0.35);
-  --border: rgba(240,232,216,0.08);
-  --border2: rgba(240,232,216,0.12);
-  --red-soft: #c46a4a;
-  --green-soft: #5a8a6a;
-  --radius: 18px;
-  --radius-sm: 12px;
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-top: env(safe-area-inset-top, 0px);
-}
-
-html {
-  height: 100%;
-  background: var(--bg);
-}
-
-body {
-  min-height: 100%;
-  min-height: 100dvh;
-  background: var(--bg);
-  color: var(--cream);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ─── APP SHELL ─── */
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
-  max-width: 480px;
-  margin: 0 auto;
-  position: relative;
-}
-
-/* ─── SCREENS ─── */
-.screen {
-  display: none;
-  flex-direction: column;
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-top: var(--safe-top);
-}
-.screen::-webkit-scrollbar { display: none; }
-.screen.active {
-  display: flex;
-  animation: fadeUp 0.25s ease forwards;
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ─── BOTTOM NAV ─── */
-.bottom-nav {
-  display: none;
-  background: var(--bg2);
-  border-top: 1px solid var(--border);
-  padding: 8px 0;
-  padding-bottom: calc(8px + var(--safe-bottom));
-  flex-shrink: 0;
-  position: sticky;
-  bottom: 0;
-  z-index: 50;
-}
-.bottom-nav.visible { display: flex; }
-
-.nav-item {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 3px;
-  cursor: pointer;
-  padding: 6px 4px;
-  border: none;
-  background: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.nav-icon { font-size: 22px; line-height: 1; }
-.nav-label { font-size: 10px; color: var(--muted); letter-spacing: 0.03em; }
-.nav-item.active .nav-label { color: var(--amber); }
-.nav-dot {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--amber);
-  opacity: 0;
-  transition: opacity 0.2s;
-  margin-top: -4px;
-}
-.nav-item.active .nav-dot { opacity: 1; }
-
-/* ─── ONBOARDING ─── */
-#screen-onboarding {
-  position: relative;
-  overflow: hidden;
-  min-height: 100dvh;
-}
-
-.onb-slides {
-  display: flex;
-  width: 300%;
-  min-height: 100dvh;
-  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
-}
-
-.onb-slide {
-  width: 33.333%;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 24px 28px calc(48px + var(--safe-bottom));
-  position: relative;
-  overflow: hidden;
-}
-
-.onb-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-.onb-slide-1 .onb-bg {
-  background:
-    radial-gradient(ellipse 80% 50% at 50% 15%, rgba(232,160,88,0.13) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(196,106,74,0.07) 0%, transparent 50%),
-    var(--bg);
-}
-.onb-slide-2 .onb-bg {
-  background:
-    radial-gradient(ellipse 70% 50% at 20% 20%, rgba(90,138,106,0.1) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 50% at 70% 70%, rgba(232,160,88,0.08) 0%, transparent 50%),
-    var(--bg);
-}
-.onb-slide-3 .onb-bg {
-  background:
-    radial-gradient(ellipse 90% 60% at 50% 25%, rgba(232,160,88,0.1) 0%, transparent 60%),
-    var(--bg);
-}
-
-.onb-stars {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-.star {
-  position: absolute;
-  width: 2px; height: 2px;
-  background: var(--cream);
-  border-radius: 50%;
-  animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
-}
-@keyframes twinkle {
-  0%,100% { opacity: 0.08; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.4); }
-}
-
-.onb-moon {
-  position: absolute;
-  top: 60px; right: 28px;
-  font-size: 72px;
-  opacity: 0.12;
-  animation: float 7s ease-in-out infinite;
-  z-index: 1;
-}
-@keyframes float {
-  0%,100% { transform: translateY(0) rotate(-5deg); }
-  50% { transform: translateY(-14px) rotate(5deg); }
-}
-
-.onb-content { position: relative; z-index: 2; }
-
-.onb-tag {
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--amber);
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.onb-tag::before {
-  content: '';
-  width: 22px; height: 1px;
-  background: var(--amber);
-  flex-shrink: 0;
-}
-
-.onb-title {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(32px, 8vw, 44px);
-  font-weight: 300;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--cream);
-  margin-bottom: 18px;
-}
-.onb-title em { font-style: italic; color: var(--amber); }
-
-.onb-text {
-  font-size: 15px;
-  line-height: 1.75;
-  color: var(--cream-dim);
-  margin-bottom: 36px;
-}
-
-.onb-dots {
-  display: flex;
-  gap: 7px;
-  margin-bottom: 20px;
-}
-.onb-dot {
-  width: 6px; height: 6px;
-  border-radius: 3px;
-  background: var(--border2);
-  transition: width 0.3s ease, background 0.3s ease;
-}
-.onb-dot.active { width: 22px; background: var(--amber); }
-
-/* ─── BUTTONS ─── */
-.btn-main {
-  width: 100%;
-  background: var(--amber);
-  color: #0d0d14;
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 17px 24px;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  letter-spacing: 0.02em;
-  -webkit-tap-highlight-color: transparent;
-  transition: opacity 0.15s ease;
-}
-.btn-main:active { opacity: 0.85; }
-
-.btn-ghost {
-  width: 100%;
-  background: transparent;
-  color: var(--muted);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  padding: 14px;
-  border: none;
-  cursor: pointer;
-  margin-top: 8px;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.back-btn {
-  background: none;
-  border: none;
-  color: var(--muted);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  cursor: pointer;
-  padding: 0 0 4px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  -webkit-tap-highlight-color: transparent;
-  margin-bottom: 16px;
-}
-
-/* ─── HOME ─── */
-.home-wrap { padding: 20px 20px 100px; }
-
-.home-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
-}
-.home-greeting {
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 4px;
-}
-.home-title {
-  font-family: 'Fraunces', serif;
-  font-size: 28px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-.home-title em { font-style: italic; color: var(--amber); }
-.home-avatar {
-  width: 46px; height: 46px;
-  border-radius: 50%;
-  background: var(--amber-dim);
-  border: 1.5px solid rgba(232,160,88,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-/* CRISIS BTN */
-.crisis-btn {
-  background: linear-gradient(135deg, #2a1a14, #1e1410);
-  border: 1px solid rgba(196,106,74,0.3);
-  border-radius: var(--radius);
-  padding: 18px 18px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  cursor: pointer;
-  margin-bottom: 16px;
-  -webkit-tap-highlight-color: transparent;
-  transition: border-color 0.2s;
-}
-.crisis-btn:active { border-color: var(--red-soft); }
-.crisis-icon {
-  width: 48px; height: 48px;
-  border-radius: 14px;
-  background: rgba(196,106,74,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  flex-shrink: 0;
-}
-.crisis-text h3 { font-size: 15px; font-weight: 500; margin-bottom: 3px; }
-.crisis-text p { font-size: 12px; color: var(--muted); line-height: 1.4; }
-.crisis-arrow { margin-left: auto; color: var(--red-soft); font-size: 20px; flex-shrink: 0; }
-
-/* SECTION LABEL */
-.section-label {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 18px 0 10px;
-}
-
-/* QUICK GRID */
-.quick-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 6px;
-}
-.quick-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 14px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s;
-}
-.quick-card:active { background: var(--surface2); }
-.quick-card-icon { font-size: 24px; margin-bottom: 10px; display: block; }
-.quick-card h3 { font-size: 13px; font-weight: 500; margin-bottom: 3px; line-height: 1.3; }
-.quick-card p { font-size: 11px; color: var(--muted); line-height: 1.4; }
-
-/* PROGRESS CARD */
-.progress-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin-top: 10px;
-}
-.progress-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-.progress-header h3 { font-size: 14px; font-weight: 500; }
-.progress-header span {
-  font-size: 11px;
-  color: var(--amber);
-  background: var(--amber-dim);
-  padding: 3px 10px;
-  border-radius: 100px;
-}
-.progress-bar-wrap {
-  background: var(--bg3);
-  border-radius: 100px;
-  height: 5px;
-  margin-bottom: 12px;
-  overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  width: 28%;
-  background: linear-gradient(to right, var(--amber), #e8c088);
-  border-radius: 100px;
-}
-.progress-days { display: flex; gap: 6px; }
-.progress-day {
-  flex: 1;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--bg3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  color: var(--muted);
-  font-weight: 500;
-}
-.progress-day.done { background: var(--amber-dim); color: var(--amber); }
-.progress-day.today { background: var(--amber); color: #0d0d14; font-weight: 500; }
-
-/* STATS ROW */
-.stats-row { display: flex; gap: 10px; margin-top: 10px; }
-.stat-mini {
-  flex: 1;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 14px 10px;
-  text-align: center;
-}
-.stat-mini-val {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--amber);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.stat-mini-label { font-size: 10px; color: var(--muted); line-height: 1.3; }
-
-/* ─── CRISIS SCREEN ─── */
-.crisis-wrap {
-  padding: 20px 20px calc(40px + var(--safe-bottom));
-  background: linear-gradient(180deg, #14100d 0%, var(--bg) 35%);
-}
-.crisis-header { text-align: center; margin-bottom: 24px; }
-.crisis-header h2 {
-  font-family: 'Fraunces', serif;
-  font-size: 26px;
-  font-weight: 300;
-  margin-bottom: 8px;
-}
-.crisis-header p { font-size: 13px; color: var(--muted); line-height: 1.5; }
-
-.breathing-exercise {
-  background: linear-gradient(135deg, #1a1410, #141018);
-  border: 1px solid rgba(232,160,88,0.2);
-  border-radius: var(--radius);
-  padding: 28px 20px;
-  text-align: center;
-  margin-bottom: 12px;
-}
-.breathing-circle {
-  width: 110px; height: 110px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(232,160,88,0.18), rgba(232,160,88,0.04));
-  border: 2px solid rgba(232,160,88,0.25);
-  margin: 0 auto 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34px;
-  animation: breathe 8s ease-in-out infinite;
-}
-@keyframes breathe {
-  0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232,160,88,0.1); }
-  40%,60% { transform: scale(1.22); box-shadow: 0 0 0 16px rgba(232,160,88,0.05); }
-  80% { transform: scale(0.94); }
-}
-.breathing-label {
-  font-family: 'Fraunces', serif;
-  font-size: 20px;
-  font-weight: 300;
-  color: var(--amber);
-  margin-bottom: 5px;
-}
-.breathing-sub { font-size: 12px; color: var(--muted); }
-
-.technique-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.technique-card:active { background: var(--surface2); }
-.technique-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-.technique-icon {
-  width: 42px; height: 42px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
-.technique-meta h3 { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
-.technique-meta span { font-size: 11px; color: var(--muted); }
-.technique-desc { font-size: 13px; color: var(--cream-dim); line-height: 1.6; }
-.technique-badge {
-  font-size: 10px;
-  padding: 3px 8px;
-  border-radius: 100px;
-  margin-left: auto;
-  flex-shrink: 0;
-  font-weight: 500;
-}
-.badge-fast { background: rgba(90,138,106,0.15); color: #7ab890; }
-.badge-mid  { background: rgba(232,160,88,0.15);  color: var(--amber); }
-.badge-deep { background: rgba(196,106,74,0.15);  color: #d4845a; }
-
-/* ─── DIARY ─── */
-.diary-wrap { padding: 20px 20px calc(100px + var(--safe-bottom)); }
-.diary-header { margin-bottom: 18px; }
-.diary-header h2 {
-  font-family: 'Fraunces', serif;
-  font-size: 26px;
-  font-weight: 400;
-  margin-bottom: 4px;
-}
-.diary-header p { font-size: 13px; color: var(--muted); }
-
-.diary-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin-bottom: 10px;
-}
-.diary-card h3 {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 14px;
-}
-.time-inputs { display: flex; gap: 8px; }
-.time-input-wrap {
-  flex: 1;
-  background: var(--bg3);
-  border-radius: var(--radius-sm);
-  padding: 12px 8px;
-  text-align: center;
-  cursor: pointer;
-}
-.time-input-wrap label {
-  font-size: 10px;
-  color: var(--muted);
-  display: block;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-}
-.time-val {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  font-weight: 400;
-  color: var(--amber);
-}
-/* input type=time con el mismo estilo */
-input.time-val {
-  background: transparent;
-  border: none;
-  outline: none;
-  width: 100%;
-  text-align: center;
-  cursor: pointer;
-  -webkit-appearance: none;
-  color-scheme: dark;
-}
-input.time-val::-webkit-calendar-picker-indicator {
-  display: none;
-}
-
-.quality-stars {
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-  padding: 6px 0;
-}
-.star-btn {
-  font-size: 30px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  opacity: 0.2;
-  transition: opacity 0.15s, transform 0.15s;
-  padding: 4px;
-  -webkit-tap-highlight-color: transparent;
-}
-.star-btn.active { opacity: 1; }
-.star-btn:active { transform: scale(1.2); }
-
-.toggle-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-.toggle-row:last-child { border-bottom: none; }
-.toggle-label { font-size: 14px; color: var(--cream-dim); display: flex; align-items: center; gap: 10px; }
-.toggle {
-  width: 46px; height: 26px;
-  background: var(--bg3);
-  border-radius: 13px;
-  position: relative;
-  cursor: pointer;
-  border: none;
-  flex-shrink: 0;
-  transition: background 0.2s;
-  -webkit-tap-highlight-color: transparent;
-}
-.toggle.on { background: var(--amber); }
-.toggle::after {
-  content: '';
-  position: absolute;
-  top: 4px; left: 4px;
-  width: 18px; height: 18px;
-  background: #fff;
-  border-radius: 50%;
-  transition: transform 0.2s;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-}
-.toggle.on::after { transform: translateX(20px); }
-
-.chart-wrap {
-  height: 72px;
-  display: flex;
-  align-items: flex-end;
-  gap: 5px;
-  padding: 16px 0 0;
-}
-.chart-bar {
-  flex: 1;
-  border-radius: 4px 4px 0 0;
-  background: var(--amber-dim);
-  position: relative;
-  min-height: 6px;
-}
-.chart-bar.good { background: rgba(90,138,106,0.25); }
-.bar-tip {
-  position: absolute;
-  top: -18px; left: 50%;
-  transform: translateX(-50%);
-  font-size: 9px;
-  color: var(--muted);
-  white-space: nowrap;
-}
-.chart-days { display: flex; gap: 5px; margin-top: 4px; }
-.chart-day-label {
-  flex: 1;
-  text-align: center;
-  font-size: 9px;
-  color: var(--muted);
-  text-transform: uppercase;
-}
-
-/* ─── PROGRAMA ─── */
-.program-wrap { padding: 20px 20px calc(100px + var(--safe-bottom)); }
-.program-header { margin-bottom: 18px; }
-.program-header h2 {
-  font-family: 'Fraunces', serif;
-  font-size: 26px;
-  font-weight: 400;
-  margin-bottom: 4px;
-}
-.program-header p { font-size: 13px; color: var(--muted); }
-
-.week-card {
-  border-radius: var(--radius);
-  margin-bottom: 8px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-.week-header {
-  padding: 14px 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  background: var(--surface);
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s;
-}
-.week-header:active { background: var(--surface2); }
-.week-num {
-  width: 34px; height: 34px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Fraunces', serif;
-  font-size: 16px;
-  font-weight: 600;
-  flex-shrink: 0;
-}
-.week-active .week-num { background: var(--amber); color: #0d0d14; }
-.week-done .week-num   { background: rgba(90,138,106,0.2); color: #7ab890; }
-.week-locked .week-num { background: var(--bg3); color: var(--muted); }
-.week-info { flex: 1; min-width: 0; }
-.week-info h3 { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
-.week-info p  { font-size: 12px; color: var(--muted); }
-.week-status  { font-size: 16px; flex-shrink: 0; }
-.week-content { background: var(--bg2); padding: 12px 16px; display: none; }
-.week-content.open { display: block; }
-.day-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.day-item:last-child { border-bottom: none; }
-.day-check {
-  width: 24px; height: 24px;
-  border-radius: 50%;
-  border: 1.5px solid var(--border2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 11px;
-  flex-shrink: 0;
-}
-.day-check.done  { background: rgba(90,138,106,0.2); border-color: #7ab890; color: #7ab890; }
-.day-check.today { border-color: var(--amber); }
-.day-text { flex: 1; min-width: 0; }
-.day-text h4 { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
-.day-text p  { font-size: 11px; color: var(--muted); }
-.day-mins {
-  font-size: 11px;
-  color: var(--muted);
-  background: var(--bg3);
-  padding: 3px 8px;
-  border-radius: 100px;
-  flex-shrink: 0;
-}
-
-/* ─── INFO ─── */
-.info-wrap { padding: 20px 20px calc(100px + var(--safe-bottom)); }
-.info-header { margin-bottom: 16px; }
-.info-header h2 {
-  font-family: 'Fraunces', serif;
-  font-size: 26px;
-  font-weight: 400;
-  margin-bottom: 4px;
-}
-.info-header p { font-size: 13px; color: var(--muted); }
-
-.search-bar {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius-sm);
-  padding: 13px 16px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 18px;
-  cursor: pointer;
-}
-.search-bar span { font-size: 14px; color: var(--muted); }
-
-.info-section { margin-bottom: 18px; }
-.info-section-title {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 10px;
-}
-.info-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 14px;
-  margin-bottom: 8px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s;
-}
-.info-item:active { background: var(--surface2); }
-.info-item-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 6px;
-  gap: 8px;
-}
-.info-item h3 { font-size: 14px; font-weight: 500; line-height: 1.3; }
-.info-item p  { font-size: 12px; color: var(--cream-dim); line-height: 1.65; }
-.info-source {
-  font-size: 10px;
-  color: var(--amber);
-  background: var(--amber-dim);
-  padding: 2px 8px;
-  border-radius: 100px;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.mito-card {
-  background: linear-gradient(135deg, #1a1814, #14121a);
-  border: 1px solid rgba(232,160,88,0.12);
-  border-radius: var(--radius-sm);
-  padding: 14px;
-  margin-bottom: 8px;
-}
-.mito-false {
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--red-soft);
-  margin-bottom: 6px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.mito-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; line-height: 1.3; }
-.mito-real  { font-size: 12px; color: var(--cream-dim); line-height: 1.65; }
-.mito-real strong { color: #7ab890; }
-
-/* ─── AVISO LEGAL ─── */
-.aviso-legal {
-  background: rgba(232,160,88,0.05);
-  border: 1px solid rgba(232,160,88,0.14);
-  border-radius: var(--radius-sm);
-  padding: 13px 14px;
-  margin-bottom: 14px;
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-.aviso-legal-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
-.aviso-legal p    { font-size: 11px; color: var(--muted); line-height: 1.65; }
-.aviso-legal strong { color: var(--cream-dim); }
-
-/* ─── ASISTENTE ─── */
-.asistente-wrap { padding: 20px 20px calc(100px + var(--safe-bottom)); }
-.asistente-header { margin-bottom: 16px; }
-.asistente-header h2 {
-  font-family: 'Fraunces', serif;
-  font-size: 26px;
-  font-weight: 400;
-  margin-bottom: 4px;
-}
-.asistente-header p { font-size: 13px; color: var(--muted); }
-
-.asistente-search {
-  background: var(--surface);
-  border: 1.5px solid var(--border2);
-  border-radius: var(--radius-sm);
-  padding: 0;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-.asistente-search:focus-within { border-color: var(--amber); }
-.asistente-search input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  padding: 14px 16px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 300;
-  color: var(--cream);
-  caret-color: var(--amber);
-}
-.asistente-search input::placeholder { color: var(--muted); }
-.asistente-search button {
-  background: var(--amber);
-  border: none;
-  padding: 14px 16px;
-  cursor: pointer;
-  font-size: 16px;
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
-}
-
-.chips-row {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  margin-bottom: 16px;
-  scrollbar-width: none;
-}
-.chips-row::-webkit-scrollbar { display: none; }
-.chip {
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: 100px;
-  padding: 7px 14px;
-  font-size: 12px;
-  color: var(--cream-dim);
-  white-space: nowrap;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
-  flex-shrink: 0;
-}
-.chip:active, .chip.selected {
-  background: var(--amber-dim);
-  border-color: rgba(232,160,88,0.4);
-  color: var(--amber);
-}
-
-.resultado-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin-bottom: 10px;
-  display: none;
-  animation: fadeUp 0.25s ease forwards;
-}
-.resultado-card.visible { display: block; }
-
-.resultado-pregunta {
-  font-size: 13px;
-  color: var(--amber);
-  font-weight: 500;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.resultado-pregunta::before {
-  content: '💬';
-  font-size: 14px;
-}
-.resultado-respuesta {
-  font-size: 14px;
-  color: var(--cream-dim);
-  line-height: 1.75;
-}
-.resultado-respuesta strong { color: var(--cream); font-weight: 500; }
-.resultado-respuesta em { color: var(--amber); font-style: normal; }
-.resultado-fuente {
-  margin-top: 10px;
-  font-size: 11px;
-  color: var(--amber);
-  background: var(--amber-dim);
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 3px 10px;
-  border-radius: 100px;
-}
-
-.no-resultado {
-  text-align: center;
-  padding: 32px 20px;
-  display: none;
-}
-.no-resultado.visible { display: block; }
-.no-resultado p { font-size: 14px; color: var(--muted); line-height: 1.7; }
-.no-resultado strong { color: var(--cream-dim); }
-
-.categorias-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-.categoria-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 14px 12px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s;
-}
-.categoria-card:active { background: var(--surface2); }
-.categoria-icon { font-size: 22px; margin-bottom: 8px; display: block; }
-.categoria-card h4 { font-size: 12px; font-weight: 500; color: var(--cream); margin-bottom: 2px; }
-.categoria-card p  { font-size: 10px; color: var(--muted); }
-
-/* ─── MODAL AVISO LEGAL ─── */
-.modal-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  z-index: 200;
-  align-items: flex-end;
-  justify-content: center;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-}
-.modal-overlay.open { display: flex; animation: fadeUp 0.25s ease forwards; }
-.modal-box {
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius) var(--radius) 0 0;
-  padding: 28px 24px calc(28px + var(--safe-bottom));
-  width: 100%;
-  max-width: 480px;
-  max-height: 85vh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-.modal-handle {
-  width: 36px; height: 4px;
-  background: var(--border2);
-  border-radius: 2px;
-  margin: 0 auto 20px;
-}
-.modal-title {
-  font-family: 'Fraunces', serif;
-  font-size: 22px;
-  font-weight: 400;
-  color: var(--cream);
-  margin-bottom: 20px;
-}
-.modal-section {
-  margin-bottom: 20px;
-}
-.modal-section h4 {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--amber);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 8px;
-}
-.modal-section p {
-  font-size: 13px;
-  color: var(--cream-dim);
-  line-height: 1.75;
-}
-.modal-section a { color: var(--amber); text-decoration: none; }
-.modal-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 16px 0;
-}
-.modal-close {
-  width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius-sm);
-  padding: 14px;
-  color: var(--cream-dim);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 15px;
-  cursor: pointer;
-  margin-top: 8px;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* ─── APP FOOTER ─── */
-.app-footer {
-  margin-top: 20px;
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  text-align: center;
-}
-.app-footer p { font-size: 11px; color: var(--muted); line-height: 1.8; }
-.app-footer a  { color: var(--amber); text-decoration: none; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d14;--bg2:#12121c;--bg3:#1a1a28;
+  --surface:#1e1e30;--surface2:#252538;
+  --amber:#e8a058;--amber-dim:rgba(232,160,88,0.15);
+  --cream:#f0e8d8;--cream-dim:rgba(240,232,216,0.6);
+  --muted:rgba(240,232,216,0.35);
+  --border:rgba(240,232,216,0.08);--border2:rgba(240,232,216,0.12);
+  --red-soft:#c46a4a;--green-soft:#5a8a6a;
+  --radius:18px;--radius-sm:12px;
+  --safe-bottom:env(safe-area-inset-bottom,0px);
+  --safe-top:env(safe-area-inset-top,0px);
+}
+html{height:100%;background:var(--bg)}
+body{min-height:100dvh;background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+#app{display:flex;flex-direction:column;min-height:100dvh;max-width:480px;margin:0 auto;position:relative}
+.screen{display:none;flex-direction:column;flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-top:var(--safe-top)}
+.screen::-webkit-scrollbar{display:none}
+.screen.active{display:flex;animation:fadeUp .25s ease forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.bottom-nav{display:none;background:var(--bg2);border-top:1px solid var(--border);padding:8px 0 calc(8px + var(--safe-bottom));flex-shrink:0;position:sticky;bottom:0;z-index:50}
+.bottom-nav.visible{display:flex}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px 4px;border:none;background:none;-webkit-tap-highlight-color:transparent}
+.nav-icon{font-size:22px;line-height:1}.nav-label{font-size:10px;color:var(--muted);letter-spacing:.03em}
+.nav-item.active .nav-label{color:var(--amber)}
+.nav-dot{width:4px;height:4px;border-radius:50%;background:var(--amber);opacity:0;transition:opacity .2s;margin-top:-4px}
+.nav-item.active .nav-dot{opacity:1}
+/* ONBOARDING */
+#screen-onboarding{position:relative;overflow:hidden;min-height:100dvh}
+.onb-slides{display:flex;width:300%;min-height:100dvh;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.onb-slide{width:33.333%;min-height:100dvh;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 28px calc(48px + var(--safe-bottom));position:relative;overflow:hidden}
+.onb-bg{position:absolute;inset:0;pointer-events:none;z-index:0}
+.onb-slide-1 .onb-bg{background:radial-gradient(ellipse 80% 50% at 50% 15%,rgba(232,160,88,.13) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(196,106,74,.07) 0%,transparent 50%),var(--bg)}
+.onb-slide-2 .onb-bg{background:radial-gradient(ellipse 70% 50% at 20% 20%,rgba(90,138,106,.1) 0%,transparent 60%),radial-gradient(ellipse 80% 50% at 70% 70%,rgba(232,160,88,.08) 0%,transparent 50%),var(--bg)}
+.onb-slide-3 .onb-bg{background:radial-gradient(ellipse 90% 60% at 50% 25%,rgba(232,160,88,.1) 0%,transparent 60%),var(--bg)}
+.onb-stars{position:absolute;inset:0;z-index:1;pointer-events:none}
+.star{position:absolute;width:2px;height:2px;background:var(--cream);border-radius:50%;animation:twinkle var(--d,3s) ease-in-out infinite var(--delay,0s)}
+@keyframes twinkle{0%,100%{opacity:.08;transform:scale(1)}50%{opacity:.7;transform:scale(1.4)}}
+.onb-content{position:relative;z-index:2}
+.onb-tag{display:inline-block;font-size:11px;font-weight:500;color:var(--amber);background:var(--amber-dim);padding:4px 12px;border-radius:100px;margin-bottom:16px;letter-spacing:.05em}
+.onb-title{font-family:'Fraunces',serif;font-size:clamp(28px,8vw,38px);font-weight:400;line-height:1.15;margin-bottom:14px;color:var(--cream)}
+.onb-title em{font-style:italic;color:var(--amber)}
+.onb-body{font-size:15px;color:var(--cream-dim);line-height:1.65;margin-bottom:32px}
+.onb-btn{display:block;width:100%;padding:16px;background:var(--amber);color:#0d0d14;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;border:none;border-radius:var(--radius);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:opacity .15s}
+.onb-btn:active{opacity:.85}
+.onb-skip{display:block;text-align:center;margin-top:12px;font-size:13px;color:var(--muted);background:none;border:none;cursor:pointer;padding:8px;-webkit-tap-highlight-color:transparent}
+.onb-dots{display:flex;gap:6px;justify-content:center;margin-bottom:20px}
+.onb-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);transition:background .3s,width .3s}
+.onb-dot.active{background:var(--amber);width:18px;border-radius:3px}
+/* SHARED */
+.back-btn{background:none;border:none;color:var(--amber);font-family:'DM Sans',sans-serif;font-size:15px;cursor:pointer;padding:0 0 10px;-webkit-tap-highlight-color:transparent;display:block}
+.aviso-legal{background:var(--amber-dim);border:1px solid rgba(232,160,88,.2);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
+.aviso-legal-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.aviso-legal p{font-size:12px;color:var(--cream-dim);line-height:1.6}
+.aviso-legal strong{color:var(--cream)}
+.btn-main{display:block;width:100%;padding:16px;background:var(--amber);color:#0d0d14;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;border:none;border-radius:var(--radius);cursor:pointer;-webkit-tap-highlight-color:transparent;transition:opacity .15s,transform .1s}
+.btn-main:active{opacity:.85;transform:scale(.99)}
+/* HOME */
+.home-wrap{padding:24px 20px calc(100px + var(--safe-bottom))}
+.home-header{margin-bottom:24px}
+.home-greeting{font-family:'Fraunces',serif;font-size:clamp(26px,7vw,32px);font-weight:400;line-height:1.2;margin-bottom:4px}
+.home-greeting em{font-style:italic;color:var(--amber)}
+.home-sub{font-size:13px;color:var(--muted)}
+.crisis-btn{background:linear-gradient(135deg,rgba(196,106,74,.18),rgba(196,106,74,.08));border:1px solid rgba(196,106,74,.3);border-radius:var(--radius);padding:20px;width:100%;text-align:left;cursor:pointer;margin-bottom:20px;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;gap:16px;transition:background .2s}
+.crisis-btn:active{background:rgba(196,106,74,.25)}
+.crisis-icon{font-size:32px;flex-shrink:0}
+.crisis-text h3{font-size:15px;font-weight:500;color:var(--cream);margin-bottom:3px}
+.crisis-text p{font-size:12px;color:var(--cream-dim)}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.quick-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 14px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s}
+.quick-card:active{background:var(--surface2)}
+.quick-card-icon{font-size:24px;margin-bottom:10px;display:block}
+.quick-card h3{font-size:13px;font-weight:500;margin-bottom:2px}
+.quick-card p{font-size:11px;color:var(--muted)}
+.section-title{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.progress-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:8px}
+.progress-bar-wrap{height:6px;background:var(--bg3);border-radius:3px;margin:10px 0 6px;overflow:hidden}
+.progress-bar-fill{height:100%;background:var(--amber);border-radius:3px;transition:width .8s ease}
+.progress-label{font-size:12px;color:var(--muted)}
+.progress-label strong{color:var(--cream)}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 10px;text-align:center}
+.stat-num{font-family:'Fraunces',serif;font-size:24px;font-weight:400;color:var(--amber)}
+.stat-label{font-size:10px;color:var(--muted);margin-top:3px}
+/* CRISIS */
+.crisis-wrap{padding:24px 20px calc(40px + var(--safe-bottom))}
+.crisis-header{margin-bottom:20px}
+.crisis-header h2{font-family:'Fraunces',serif;font-size:26px;font-weight:400;margin-bottom:4px}
+.crisis-header p{font-size:13px;color:var(--muted)}
+.breath-circle{width:clamp(160px,50vw,200px);height:clamp(160px,50vw,200px);border-radius:50%;border:2px solid rgba(232,160,88,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 24px;position:relative}
+.breath-circle::before{content:'';position:absolute;inset:8px;border-radius:50%;background:radial-gradient(circle,var(--amber-dim) 0%,transparent 70%);animation:breathPulse 19s ease-in-out infinite}
+@keyframes breathPulse{0%,100%{transform:scale(.6);opacity:.3}21%{transform:scale(1);opacity:1}53%{transform:scale(1);opacity:1}}
+.breath-label{font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:var(--amber);position:relative;z-index:1}
+.breath-counter{font-size:12px;color:var(--muted);position:relative;z-index:1;margin-top:4px}
+.technique-list{display:flex;flex-direction:column;gap:10px}
+.technique-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
+.technique-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.technique-icon{font-size:20px;flex-shrink:0}
+.technique-meta h3{font-size:14px;font-weight:500;margin-bottom:2px}
+.technique-meta span{font-size:11px;color:var(--muted)}
+.technique-desc{font-size:13px;color:var(--cream-dim);line-height:1.6}
+.technique-badge{font-size:10px;padding:3px 8px;border-radius:100px;margin-left:auto;flex-shrink:0;font-weight:500}
+.badge-fast{background:rgba(90,138,106,.15);color:#7ab890}
+.badge-mid{background:rgba(232,160,88,.15);color:var(--amber)}
+.badge-deep{background:rgba(196,106,74,.15);color:#d4845a}
+/* DIARY */
+.diary-wrap{padding:20px 20px calc(100px + var(--safe-bottom))}
+.diary-header{margin-bottom:18px}
+.diary-header h2{font-family:'Fraunces',serif;font-size:26px;font-weight:400;margin-bottom:4px}
+.diary-header p{font-size:13px;color:var(--muted)}
+.diary-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:10px}
+.diary-card h3{font-size:11px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px}
+.time-inputs{display:flex;gap:8px}
+.time-input-wrap{flex:1;background:var(--bg3);border-radius:var(--radius-sm);padding:12px 8px;text-align:center;cursor:pointer;transition:background .15s}
+.time-input-wrap:focus-within{background:var(--surface2);outline:1.5px solid var(--amber)}
+.time-input-wrap label{font-size:10px;color:var(--muted);display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em;cursor:pointer}
+input.time-val{font-family:'Fraunces',serif;font-size:22px;font-weight:400;color:var(--amber);background:transparent;border:none;outline:none;width:100%;text-align:center;cursor:pointer;-webkit-appearance:none;color-scheme:dark}
+input.time-val::-webkit-calendar-picker-indicator{display:none}
+.eficiencia-result{margin-top:14px;text-align:center;font-size:13px;color:var(--muted);display:none}
+.eficiencia-result.visible{display:block}
+.quality-stars{display:flex;gap:6px;justify-content:center;padding:6px 0}
+.star-btn{font-size:30px;background:none;border:none;cursor:pointer;opacity:.2;transition:opacity .15s,transform .15s;padding:4px;-webkit-tap-highlight-color:transparent}
+.star-btn.active{opacity:1}
+.star-btn:active{transform:scale(1.2)}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-label{font-size:14px;color:var(--cream-dim);display:flex;align-items:center;gap:10px}
+.toggle{width:46px;height:26px;background:var(--bg3);border-radius:13px;position:relative;cursor:pointer;border:none;flex-shrink:0;transition:background .2s;-webkit-tap-highlight-color:transparent}
+.toggle.on{background:var(--amber)}
+.toggle::after{content:'';position:absolute;top:4px;left:4px;width:18px;height:18px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)}
+.toggle.on::after{transform:translateX(20px)}
+.chart-wrap{height:72px;display:flex;align-items:flex-end;gap:5px;padding:16px 0 0}
+.chart-bar{flex:1;border-radius:4px 4px 0 0;background:var(--amber-dim);position:relative;min-height:6px;transition:height .5s ease}
+.chart-bar.good{background:rgba(90,138,106,.25)}
+.bar-tip{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--muted);white-space:nowrap}
+.chart-days{display:flex;gap:5px;margin-top:4px}
+.chart-day-label{flex:1;text-align:center;font-size:9px;color:var(--muted);text-transform:uppercase}
+.save-feedback{display:none;align-items:center;justify-content:center;gap:8px;padding:12px;background:rgba(90,138,106,.15);border:1px solid rgba(90,138,106,.3);border-radius:var(--radius-sm);margin-top:10px;font-size:14px;color:#7ab890}
+.save-feedback.visible{display:flex}
+/* PROGRAMA */
+.program-wrap{padding:20px 20px calc(100px + var(--safe-bottom))}
+.program-header{margin-bottom:18px}
+.program-header h2{font-family:'Fraunces',serif;font-size:26px;font-weight:400;margin-bottom:4px}
+.program-header p{font-size:13px;color:var(--muted)}
+.week-card{border-radius:var(--radius);margin-bottom:8px;overflow:hidden;border:1px solid var(--border)}
+.week-header{padding:14px 16px;display:flex;align-items:center;gap:12px;background:var(--surface);-webkit-tap-highlight-color:transparent;transition:background .2s;user-select:none}
+.week-header.clickable{cursor:pointer}
+.week-header.clickable:active{background:var(--surface2)}
+.week-num{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:16px;font-weight:600;flex-shrink:0}
+.week-active .week-num{background:var(--amber);color:#0d0d14}
+.week-done   .week-num{background:rgba(90,138,106,.2);color:#7ab890}
+.week-locked .week-num{background:var(--bg3);color:var(--muted)}
+.week-info{flex:1;min-width:0}
+.week-info h3{font-size:14px;font-weight:500;margin-bottom:2px}
+.week-info p{font-size:12px;color:var(--muted)}
+.week-status{font-size:16px;color:var(--muted);flex-shrink:0;transition:transform .25s}
+.week-content{display:none;background:var(--bg2)}
+.week-content.open{display:block}
+.day-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--border);-webkit-tap-highlight-color:transparent;transition:background .15s}
+.day-item:last-child{border-bottom:none}
+.day-check{width:26px;height:26px;border-radius:8px;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;transition:background .2s,border-color .2s}
+.day-check.done{background:rgba(90,138,106,.2);border-color:rgba(90,138,106,.4);color:#7ab890}
+.day-check.today{border-color:var(--amber);background:var(--amber-dim)}
+.day-text{flex:1;min-width:0}
+.day-text h4{font-size:13px;font-weight:500;margin-bottom:2px}
+.day-text p{font-size:11px;color:var(--muted)}
+.day-mins{font-size:11px;color:var(--muted);flex-shrink:0}
+/* INFO */
+.info-wrap{padding:20px 20px calc(100px + var(--safe-bottom))}
+.info-header{margin-bottom:16px}
+.info-header h2{font-family:'Fraunces',serif;font-size:26px;font-weight:400;margin-bottom:4px}
+.info-header p{font-size:13px;color:var(--muted)}
+.info-section{margin-bottom:20px}
+.info-section-title{font-size:12px;font-weight:500;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;padding-left:2px}
+.info-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:8px}
+.info-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.info-item-top h3{font-size:14px;font-weight:500}
+.info-source{font-size:10px;color:var(--amber);background:var(--amber-dim);padding:2px 8px;border-radius:100px;white-space:nowrap;flex-shrink:0}
+.info-item p{font-size:13px;color:var(--cream-dim);line-height:1.65}
+.mito-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:8px}
+.mito-false{font-size:10px;color:var(--red-soft);font-weight:500;margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em}
+.mito-title{font-size:13px;font-weight:500;margin-bottom:6px}
+.mito-real{font-size:12px;color:var(--cream-dim);line-height:1.6}
+/* ASISTENTE */
+.asistente-wrap{padding:20px 20px calc(100px + var(--safe-bottom))}
+.asistente-header{margin-bottom:16px}
+.asistente-header h2{font-family:'Fraunces',serif;font-size:26px;font-weight:400;margin-bottom:4px}
+.asistente-header p{font-size:13px;color:var(--muted)}
+.asistente-search{background:var(--surface);border:1.5px solid var(--border2);border-radius:var(--radius-sm);margin-bottom:16px;display:flex;align-items:center;overflow:hidden;transition:border-color .2s}
+.asistente-search:focus-within{border-color:var(--amber)}
+.asistente-search input{flex:1;background:transparent;border:none;outline:none;padding:14px 16px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:300;color:var(--cream);caret-color:var(--amber)}
+.asistente-search input::placeholder{color:var(--muted)}
+.asistente-search button{background:var(--amber);border:none;padding:14px 16px;cursor:pointer;font-size:16px;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.chips-row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none}
+.chips-row::-webkit-scrollbar{display:none}
+.chip{background:var(--surface);border:1px solid var(--border2);border-radius:100px;padding:7px 14px;font-size:12px;color:var(--cream-dim);white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s,border-color .2s,color .2s;flex-shrink:0}
+.chip:active,.chip.selected{background:var(--amber-dim);border-color:rgba(232,160,88,.4);color:var(--amber)}
+.resultado-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:10px;display:none;animation:fadeUp .25s ease forwards}
+.resultado-card.visible{display:block}
+.resultado-pregunta{font-size:13px;color:var(--amber);font-weight:500;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.resultado-pregunta::before{content:'💬';font-size:14px}
+.resultado-respuesta{font-size:14px;color:var(--cream-dim);line-height:1.75}
+.resultado-respuesta strong{color:var(--cream);font-weight:500}
+.resultado-respuesta em{color:var(--amber);font-style:normal}
+.resultado-fuente{margin-top:10px;font-size:11px;color:var(--amber);background:var(--amber-dim);display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px}
+.no-resultado{text-align:center;padding:32px 20px;display:none}
+.no-resultado.visible{display:block}
+.no-resultado p{font-size:14px;color:var(--muted);line-height:1.7}
+.no-resultado strong{color:var(--cream-dim)}
+.categorias-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+.categoria-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 12px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .2s}
+.categoria-card:active{background:var(--surface2)}
+.categoria-icon{font-size:22px;margin-bottom:8px;display:block}
+.categoria-card h4{font-size:12px;font-weight:500;color:var(--cream);margin-bottom:2px}
+.categoria-card p{font-size:10px;color:var(--muted)}
+/* FOOTER */
+.app-footer{text-align:center;padding:20px 0 10px;font-size:12px;color:var(--muted);line-height:1.8}
+.app-footer a{color:var(--amber);text-decoration:none}
+.aviso-legal-btn{background:none;border:none;color:var(--amber);font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;padding:4px 0;text-decoration:underline;-webkit-tap-highlight-color:transparent;display:block;margin:8px auto 0}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex;animation:fadeUp .25s ease forwards}
+.modal-box{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius) var(--radius) 0 0;padding:28px 24px calc(28px + var(--safe-bottom));width:100%;max-width:480px;max-height:85vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.modal-handle{width:36px;height:4px;background:var(--border2);border-radius:2px;margin:0 auto 20px}
+.modal-title{font-family:'Fraunces',serif;font-size:22px;font-weight:400;color:var(--cream);margin-bottom:20px}
+.modal-section{margin-bottom:20px}
+.modal-section h4{font-size:12px;font-weight:500;color:var(--amber);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.modal-section p{font-size:13px;color:var(--cream-dim);line-height:1.75}
+.modal-section a{color:var(--amber);text-decoration:none}
+.modal-divider{height:1px;background:var(--border);margin:16px 0}
+.modal-close{width:100%;background:var(--surface);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:14px;color:var(--cream-dim);font-family:'DM Sans',sans-serif;font-size:15px;cursor:pointer;margin-top:8px;-webkit-tap-highlight-color:transparent}
 </style>
 </head>
 <body>
-
 <div id="app">
 
-  <!-- ══════════════════════════════════════
-       ONBOARDING
-  ══════════════════════════════════════ -->
-  <div class="screen active" id="screen-onboarding">
-    <div class="onb-slides" id="onbSlides">
-
-      <!-- SLIDE 1 -->
-      <div class="onb-slide onb-slide-1">
-        <div class="onb-bg"></div>
-        <div class="onb-stars" id="starsEl"></div>
-        <div class="onb-moon">🌙</div>
-        <div class="onb-content">
-          <div class="onb-tag">El problema</div>
-          <h1 class="onb-title">Cada noche,<br>millones buscan<br><em>cómo dormir.</em></h1>
-          <p class="onb-text">Y lo único que encuentran son apps de pago en inglés, artículos dispersos, y pastillas. Tú mereces algo mejor.</p>
-          <div class="onb-dots">
-            <div class="onb-dot active"></div>
-            <div class="onb-dot"></div>
-            <div class="onb-dot"></div>
-          </div>
-          <button class="btn-main" onclick="nextSlide()">Siguiente →</button>
-          <button class="btn-ghost" onclick="skipOnboarding()">Saltar introducción</button>
-        </div>
+<!-- ONBOARDING -->
+<div class="screen active" id="screen-onboarding">
+  <div class="onb-slides" id="onbSlides">
+    <div class="onb-slide onb-slide-1">
+      <div class="onb-bg"></div>
+      <div class="onb-stars" id="starsEl"></div>
+      <div class="onb-content">
+        <div class="onb-dots"><div class="onb-dot active"></div><div class="onb-dot"></div><div class="onb-dot"></div></div>
+        <span class="onb-tag">35% de los españoles lo sufren</span>
+        <h1 class="onb-title">El insomnio tiene <em>solución</em> real</h1>
+        <p class="onb-body">La ciencia lleva décadas desarrollando un tratamiento eficaz. No son pastillas. No son sonidos de lluvia. Es un método que funciona de verdad.</p>
+        <button class="onb-btn" onclick="nextSlide()">Siguiente →</button>
+        <button class="onb-skip" onclick="skipOnboarding()">Saltar presentación</button>
       </div>
-
-      <!-- SLIDE 2 -->
-      <div class="onb-slide onb-slide-2">
-        <div class="onb-bg"></div>
-        <div class="onb-content">
-          <div class="onb-tag">La solución</div>
-          <h1 class="onb-title"><em>DuermeBien.</em><br>El programa<br>que sí funciona.</h1>
-          <p class="onb-text">Basado en la TCC-I, avalada por la Sociedad Española del Sueño como tratamiento de primera línea. El 80% de quienes la siguen duermen mejor en 6 semanas.</p>
-          <div class="onb-dots">
-            <div class="onb-dot"></div>
-            <div class="onb-dot active"></div>
-            <div class="onb-dot"></div>
-          </div>
-          <button class="btn-main" onclick="nextSlide()">Siguiente →</button>
-          <button class="btn-ghost" onclick="skipOnboarding()">Saltar</button>
-        </div>
-      </div>
-
-      <!-- SLIDE 3 -->
-      <div class="onb-slide onb-slide-3">
-        <div class="onb-bg"></div>
-        <div class="onb-content">
-          <div class="onb-tag">Quiénes somos</div>
-          <h1 class="onb-title">Gratis.<br>Sin anuncios.<br><em>Para siempre.</em></h1>
-          <p class="onb-text">DuermeBien es un proyecto de <strong style="color:var(--cream)">Ayudante Anónimo</strong>. Creamos herramientas gratuitas para quien más las necesita. Nada que pagar, nada que vender.</p>
-          <div class="onb-dots">
-            <div class="onb-dot"></div>
-            <div class="onb-dot"></div>
-            <div class="onb-dot active"></div>
-          </div>
-          <button class="btn-main" onclick="skipOnboarding()">Empezar mi programa 🌙</button>
-        </div>
-      </div>
-
     </div>
-  </div>
-
-  <!-- ══════════════════════════════════════
-       HOME
-  ══════════════════════════════════════ -->
-  <div class="screen" id="screen-home">
-    <div class="home-wrap">
-      <div class="home-header">
-        <div>
-          <div class="home-greeting">Buenas noches</div>
-          <div class="home-title">¿Cómo estás <em>hoy?</em></div>
-        </div>
-        <div class="home-avatar">🌙</div>
+    <div class="onb-slide onb-slide-2">
+      <div class="onb-bg"></div>
+      <div class="onb-content">
+        <div class="onb-dots"><div class="onb-dot"></div><div class="onb-dot active"></div><div class="onb-dot"></div></div>
+        <span class="onb-tag">Evidencia clínica</span>
+        <h1 class="onb-title">La <em>TCC-I</em> mejora el sueño en 6 semanas</h1>
+        <p class="onb-body">La Terapia Cognitivo-Conductual para el Insomnio tiene un 70-80% de éxito. Es el tratamiento de primera línea según la Sociedad Española del Sueño, antes que los somníferos.</p>
+        <button class="onb-btn" onclick="nextSlide()">Siguiente →</button>
+        <button class="onb-skip" onclick="skipOnboarding()">Saltar presentación</button>
       </div>
-
-      <div class="crisis-btn" onclick="goTo('crisis')">
-        <div class="crisis-icon">🆘</div>
-        <div class="crisis-text">
-          <h3>No puedo dormir ahora</h3>
-          <p>Técnicas inmediatas para esta noche</p>
-        </div>
-        <div class="crisis-arrow">›</div>
-      </div>
-
-      <div class="section-label">Acceso rápido</div>
-      <div class="quick-grid">
-        <div class="quick-card" onclick="goTo('diary')">
-          <span class="quick-card-icon">📓</span>
-          <h3>Diario de sueño</h3>
-          <p>Registra tu noche de hoy</p>
-        </div>
-        <div class="quick-card" onclick="goTo('program')">
-          <span class="quick-card-icon">📅</span>
-          <h3>Mi programa</h3>
-          <p>Semana 1 · Día 2</p>
-        </div>
-        <div class="quick-card" onclick="goTo('info')">
-          <span class="quick-card-icon">🧠</span>
-          <h3>Aprende</h3>
-          <p>Mitos, técnicas y guías</p>
-        </div>
-        <div class="quick-card" onclick="goTo('info')">
-          <span class="quick-card-icon">😬</span>
-          <h3>Bruxismo</h3>
-          <p>Síntomas y alivio</p>
-        </div>
-      </div>
-
-      <div class="section-label">Tu progreso esta semana</div>
-      <div class="progress-card">
-        <div class="progress-header">
-          <h3>Semana 1 de 6</h3>
-          <span>2 / 7 días</span>
-        </div>
-        <div class="progress-bar-wrap">
-          <div class="progress-bar-fill"></div>
-        </div>
-        <div class="progress-days">
-          <div class="progress-day done">L</div>
-          <div class="progress-day done">M</div>
-          <div class="progress-day today">X</div>
-          <div class="progress-day">J</div>
-          <div class="progress-day">V</div>
-          <div class="progress-day">S</div>
-          <div class="progress-day">D</div>
-        </div>
-      </div>
-
-      <div class="stats-row">
-        <div class="stat-mini">
-          <div class="stat-mini-val">6.2h</div>
-          <div class="stat-mini-label">Media de<br>sueño</div>
-        </div>
-        <div class="stat-mini">
-          <div class="stat-mini-val">68%</div>
-          <div class="stat-mini-label">Eficiencia<br>del sueño</div>
-        </div>
-        <div class="stat-mini">
-          <div class="stat-mini-val">3</div>
-          <div class="stat-mini-label">Despertares<br>por noche</div>
-        </div>
+    </div>
+    <div class="onb-slide onb-slide-3">
+      <div class="onb-bg"></div>
+      <div class="onb-content">
+        <div class="onb-dots"><div class="onb-dot"></div><div class="onb-dot"></div><div class="onb-dot active"></div></div>
+        <span class="onb-tag">Ayudante Anónimo</span>
+        <h1 class="onb-title">Gratis. <em>Para siempre.</em> Sin anuncios.</h1>
+        <p class="onb-body">DuermeBien es una herramienta educativa gratuita. Sin suscripciones, sin datos, sin trucos. Creada por Ayudante Anónimo para quien lo necesite.</p>
+        <button class="onb-btn" onclick="skipOnboarding()">Empezar →</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ══════════════════════════════════════
-       CRISIS
-  ══════════════════════════════════════ -->
-  <div class="screen" id="screen-crisis">
-    <div class="crisis-wrap">
-      <button class="back-btn" onclick="goBack()">‹ Volver</button>
-      <div class="crisis-header">
-        <h2>No puedo dormir</h2>
-        <p>Elige la técnica según el tiempo que tengas. Empieza por la primera.</p>
+<!-- HOME -->
+<div class="screen" id="screen-home">
+  <div class="home-wrap">
+    <div class="home-header">
+      <h2 class="home-greeting">Buenas noches, <em>¿cómo estás?</em></h2>
+      <p class="home-sub" id="homeDate">Cargando...</p>
+    </div>
+    <button class="crisis-btn" onclick="goTo('crisis')">
+      <span class="crisis-icon">🌙</span>
+      <div class="crisis-text"><h3>No puedo dormir ahora</h3><p>Técnicas de emergencia para esta noche</p></div>
+    </button>
+    <p class="section-title">Acceso rápido</p>
+    <div class="quick-grid">
+      <div class="quick-card" onclick="goTo('diary')"><span class="quick-card-icon">📓</span><h3>Diario</h3><p>Registra tu noche</p></div>
+      <div class="quick-card" onclick="goTo('program')"><span class="quick-card-icon">📅</span><h3>Programa</h3><p>TCC-I 6 semanas</p></div>
+      <div class="quick-card" onclick="goTo('asistente')"><span class="quick-card-icon">💬</span><h3>Asistente</h3><p>Resuelve tus dudas</p></div>
+      <div class="quick-card" onclick="goTo('info')"><span class="quick-card-icon">🧠</span><h3>Aprende</h3><p>Ciencia del sueño</p></div>
+    </div>
+    <p class="section-title">Tu progreso</p>
+    <div class="progress-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:14px;font-weight:500">Semana 1 — Psicoeducación</span>
+        <span style="font-size:12px;color:var(--amber)">3/7 días</span>
       </div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:43%"></div></div>
+      <p class="progress-label">Día actual: <strong>Día 3 — Tu diario de sueño</strong></p>
+    </div>
+    <p class="section-title" style="margin-top:16px">Esta semana</p>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num" id="statEficiencia">—</div><div class="stat-label">Eficiencia media</div></div>
+      <div class="stat-card"><div class="stat-num" id="statRegistros">0</div><div class="stat-label">Registros</div></div>
+      <div class="stat-card"><div class="stat-num" id="statRacha">0</div><div class="stat-label">Días racha</div></div>
+    </div>
+  </div>
+</div>
 
-      <div class="breathing-exercise">
-        <div class="breathing-circle">🫁</div>
-        <div class="breathing-label" id="breathLabel">Inhala...</div>
-        <div class="breathing-sub">Técnica 4-7-8 · Sigue el ritmo</div>
+<!-- CRISIS -->
+<div class="screen" id="screen-crisis">
+  <div class="crisis-wrap">
+    <button class="back-btn" onclick="goTo('home')">‹ Inicio</button>
+    <div class="crisis-header"><h2>No puedo dormir</h2><p>Técnicas ordenadas de más rápida a más profunda</p></div>
+    <div class="aviso-legal"><span class="aviso-legal-icon">ℹ️</span><p>Técnicas basadas en evidencia científica. <strong>No sustituyen atención médica.</strong></p></div>
+    <div style="margin-bottom:24px">
+      <div class="breath-circle">
+        <div class="breath-label" id="breathLabel">Inhala...</div>
+        <div class="breath-counter">4 · 7 · 8</div>
       </div>
-
+    </div>
+    <div class="technique-list">
       <div class="technique-card">
-        <div class="technique-top">
-          <div class="technique-icon" style="background:rgba(90,138,106,0.15)">🌬️</div>
-          <div class="technique-meta">
-            <h3>Respiración 4-7-8</h3>
-            <span>2 minutos · Muy rápida</span>
-          </div>
-          <span class="technique-badge badge-fast">Rápida</span>
-        </div>
-        <p class="technique-desc">Inhala 4 seg → Aguanta 7 seg → Exhala 8 seg. Activa el sistema parasimpático y reduce el ritmo cardíaco. <em style="color:var(--amber)">Fuente: SES</em></p>
+        <div class="technique-header"><span class="technique-icon">💨</span><div class="technique-meta"><h3>Respiración 4-7-8</h3><span>1-2 minutos · Activación parasimpática</span></div><span class="technique-badge badge-fast">Inmediato</span></div>
+        <p class="technique-desc">Inhala 4 segundos, aguanta 7, exhala lentamente 8. Repite 4 veces. Activa el nervio vago y reduce la frecuencia cardíaca. <strong>Fuente: Dr. Andrew Weil, Universidad de Arizona</strong></p>
       </div>
-
       <div class="technique-card">
-        <div class="technique-top">
-          <div class="technique-icon" style="background:rgba(232,160,88,0.15)">💪</div>
-          <div class="technique-meta">
-            <h3>Relajación muscular progresiva</h3>
-            <span>5-10 minutos · Eficaz</span>
-          </div>
-          <span class="technique-badge badge-mid">Media</span>
-        </div>
-        <p class="technique-desc">Tensa y suelta cada grupo muscular desde los pies hasta la cabeza. El 78% de usuarios reduce el tiempo en dormirse. <em style="color:var(--amber)">Fuente: Mayo Clinic</em></p>
+        <div class="technique-header"><span class="technique-icon">🛑</span><div class="technique-meta"><h3>Parada de pensamiento</h3><span>5 minutos · Control cognitivo</span></div><span class="technique-badge badge-mid">5 min</span></div>
+        <p class="technique-desc">Di "STOP" en voz baja al primer pensamiento intrusivo. Escríbelo en un papel y ciérralo: "Lo pienso mañana". Repite cada vez que vuelva. <strong>Fuente: TCC-I · SES</strong></p>
       </div>
-
       <div class="technique-card">
-        <div class="technique-top">
-          <div class="technique-icon" style="background:rgba(196,106,74,0.15)">🧠</div>
-          <div class="technique-meta">
-            <h3>Parada de pensamiento</h3>
-            <span>Para rumiación nocturna</span>
-          </div>
-          <span class="technique-badge badge-deep">Cognitiva</span>
-        </div>
-        <p class="technique-desc">Di "stop" mentalmente, escribe el pensamiento en papel, y aplaza preocuparte hasta mañana. Técnica TCC-I. <em style="color:var(--amber)">Fuente: SES</em></p>
+        <div class="technique-header"><span class="technique-icon">💪</span><div class="technique-meta"><h3>Relajación muscular progresiva</h3><span>10-15 minutos · Método Jacobson</span></div><span class="technique-badge badge-mid">10 min</span></div>
+        <p class="technique-desc">Tensa cada grupo muscular 5 segundos y suéltalo. Empieza por los pies, sube hasta la cara. Reduce el arousal fisiológico de forma demostrada. <strong>Fuente: Edmund Jacobson · Mayo Clinic</strong></p>
       </div>
-
       <div class="technique-card">
-        <div class="technique-top">
-          <div class="technique-icon" style="background:rgba(90,138,106,0.15)">🛏️</div>
-          <div class="technique-meta">
-            <h3>Regla de los 20 minutos</h3>
-            <span>Control de estímulos · TCC-I</span>
-          </div>
-          <span class="technique-badge badge-fast">Clave</span>
-        </div>
-        <p class="technique-desc">Si llevas más de 20 min despierto, levántate. Ve a otra habitación con luz tenue. Vuelve cuando notes somnolencia. Refuerza la asociación cama-sueño. <em style="color:var(--amber)">Fuente: SES</em></p>
-      </div>
-
-      <div class="aviso-legal">
-        <span class="aviso-legal-icon">ℹ️</span>
-        <p><strong>Aviso:</strong> Estas técnicas tienen base científica contrastada pero no sustituyen la atención médica. Si el insomnio es grave o persistente, consulta con tu médico.</p>
+        <div class="technique-header"><span class="technique-icon">🧠</span><div class="technique-meta"><h3>Intención paradójica</h3><span>Técnica cognitiva avanzada</span></div><span class="technique-badge badge-deep">Profunda</span></div>
+        <p class="technique-desc">Intenta activamente quedarte <em>despierto</em> con los ojos abiertos. Elimina la ansiedad anticipatoria porque quita la presión de dormirse. <strong>Fuente: TCC-I · AASM</strong></p>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- ══════════════════════════════════════
-       DIARIO
-  ══════════════════════════════════════ -->
-  <div class="screen" id="screen-diary">
-    <div class="diary-wrap">
-      <div class="diary-header">
-        <button class="back-btn" onclick="goBack()">‹ Volver</button>
-        <h2>Diario de sueño</h2>
-        <p id="diaryDate">Cargando fecha...</p>
-      </div>
+<!-- DIARIO -->
+<div class="screen" id="screen-diary">
+  <div class="diary-wrap">
+    <div class="diary-header"><h2>Diario de sueño</h2><p id="diaryDate">Cargando...</p></div>
 
-      <div class="diary-card">
-        <h3>Horarios</h3>
-        <div class="time-inputs">
-          <div class="time-input-wrap" onclick="this.querySelector('input').showPicker && this.querySelector('input').showPicker()">
-            <label for="timeAcostarse">Me acosté</label>
-            <input type="time" id="timeAcostarse" class="time-val" value="23:30" onchange="calcularEficiencia()">
-          </div>
-          <div class="time-input-wrap" onclick="this.querySelector('input').showPicker && this.querySelector('input').showPicker()">
-            <label for="timeDormi">Me dormí</label>
-            <input type="time" id="timeDormi" class="time-val" value="00:45" onchange="calcularEficiencia()">
-          </div>
-          <div class="time-input-wrap" onclick="this.querySelector('input').showPicker && this.querySelector('input').showPicker()">
-            <label for="timeLevante">Me levanté</label>
-            <input type="time" id="timeLevante" class="time-val" value="07:00" onchange="calcularEficiencia()">
-          </div>
+    <div class="diary-card">
+      <h3>Horarios de anoche</h3>
+      <div class="time-inputs">
+        <div class="time-input-wrap">
+          <label for="timeAcostarse">Me acosté</label>
+          <input type="time" id="timeAcostarse" class="time-val" value="23:30" onchange="calcularEficiencia()">
         </div>
-        <div id="eficienciaResult" style="margin-top:14px;text-align:center;font-size:13px;color:var(--muted);display:none;">
-          Eficiencia: <strong id="eficienciaVal" style="color:var(--amber);font-size:16px;"></strong>
-          <span id="eficienciaLabel" style="margin-left:6px;"></span>
+        <div class="time-input-wrap">
+          <label for="timeDormi">Me dormí</label>
+          <input type="time" id="timeDormi" class="time-val" value="00:45" onchange="calcularEficiencia()">
+        </div>
+        <div class="time-input-wrap">
+          <label for="timeLevante">Me levanté</label>
+          <input type="time" id="timeLevante" class="time-val" value="07:00" onchange="calcularEficiencia()">
         </div>
       </div>
-
-      <div class="diary-card">
-        <h3>Calidad de la noche</h3>
-        <div class="quality-stars">
-          <button class="star-btn active" onclick="setStar(1)">⭐</button>
-          <button class="star-btn active" onclick="setStar(2)">⭐</button>
-          <button class="star-btn active" onclick="setStar(3)">⭐</button>
-          <button class="star-btn" onclick="setStar(4)">⭐</button>
-          <button class="star-btn" onclick="setStar(5)">⭐</button>
-        </div>
-      </div>
-
-      <div class="diary-card">
-        <h3>¿Qué ocurrió esta noche?</h3>
-        <div class="toggle-row">
-          <span class="toggle-label">😬 Tensión mandibular / bruxismo</span>
-          <button class="toggle on" onclick="this.classList.toggle('on')"></button>
-        </div>
-        <div class="toggle-row">
-          <span class="toggle-label">🧠 Pensamientos que no paran</span>
-          <button class="toggle" onclick="this.classList.toggle('on')"></button>
-        </div>
-        <div class="toggle-row">
-          <span class="toggle-label">😰 Ansiedad o angustia</span>
-          <button class="toggle" onclick="this.classList.toggle('on')"></button>
-        </div>
-        <div class="toggle-row">
-          <span class="toggle-label">📱 Usé el móvil antes de dormir</span>
-          <button class="toggle on" onclick="this.classList.toggle('on')"></button>
-        </div>
-        <div class="toggle-row">
-          <span class="toggle-label">☕ Cafeína después de las 14h</span>
-          <button class="toggle" onclick="this.classList.toggle('on')"></button>
-        </div>
-        <div class="toggle-row">
-          <span class="toggle-label">🏃 Hice ejercicio hoy</span>
-          <button class="toggle on" onclick="this.classList.toggle('on')"></button>
-        </div>
-      </div>
-
-      <div class="diary-card">
-        <h3>Tu semana — eficiencia del sueño</h3>
-        <div class="chart-wrap">
-          <div class="chart-bar" style="height:45%"><span class="bar-tip">65%</span></div>
-          <div class="chart-bar good" style="height:75%"><span class="bar-tip">82%</span></div>
-          <div class="chart-bar" style="height:38%"><span class="bar-tip">58%</span></div>
-          <div class="chart-bar good" style="height:80%"><span class="bar-tip">85%</span></div>
-          <div class="chart-bar" style="height:52%"><span class="bar-tip">68%</span></div>
-          <div class="chart-bar" style="height:40%"><span class="bar-tip">60%</span></div>
-          <div class="chart-bar" style="height:55%"><span class="bar-tip">71%</span></div>
-        </div>
-        <div class="chart-days">
-          <span class="chart-day-label">L</span>
-          <span class="chart-day-label">M</span>
-          <span class="chart-day-label">X</span>
-          <span class="chart-day-label">J</span>
-          <span class="chart-day-label">V</span>
-          <span class="chart-day-label">S</span>
-          <span class="chart-day-label">D</span>
-        </div>
-      </div>
-
-      <button class="btn-main" style="margin-top:8px">Guardar registro ✓</button>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════
-       PROGRAMA
-  ══════════════════════════════════════ -->
-  <div class="screen" id="screen-program">
-    <div class="program-wrap">
-      <div class="program-header">
-        <button class="back-btn" onclick="goBack()">‹ Volver</button>
-        <h2>Programa TCC-I</h2>
-        <p>6 semanas · Basado en evidencia científica</p>
-      </div>
-
-      <div class="aviso-legal">
-        <span class="aviso-legal-icon">📚</span>
-        <p>Programa basado en la <strong>Terapia Cognitivo-Conductual para el Insomnio (TCC-I)</strong>, tratamiento de primera línea según la Sociedad Española del Sueño. Fuente: ses.org.es</p>
-      </div>
-
-      <div class="week-card week-active">
-        <div class="week-header" onclick="toggleWeek(this)">
-          <div class="week-num">1</div>
-          <div class="week-info">
-            <h3>Psicoeducación del sueño</h3>
-            <p>Entender cómo funciona tu sueño</p>
-          </div>
-          <span class="week-status">▾</span>
-        </div>
-        <div class="week-content open">
-          <div class="day-item"><div class="day-check done">✓</div><div class="day-text"><h4>Día 1 — ¿Cómo funciona el sueño?</h4><p>Ciclos, fases y ritmo circadiano</p></div><span class="day-mins">8 min</span></div>
-          <div class="day-item"><div class="day-check done">✓</div><div class="day-text"><h4>Día 2 — Tu tipo de insomnio</h4><p>Conciliación, mantenimiento o mixto</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check today"></div><div class="day-text"><h4>Día 3 — Tu diario de sueño</h4><p>Cómo medir tu eficiencia del sueño</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 4 — Higiene del sueño personalizada</h4><p>Qué cambia y qué no vale para ti</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 5 — El papel de la luz y el móvil</h4><p>Melatonina y luz azul: la ciencia real</p></div><span class="day-mins">8 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 6 — Alimentación y ejercicio</h4><p>Qué dice la evidencia</p></div><span class="day-mins">8 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 7 — Resumen y tu plan personal</h4><p>Tus primeras reglas del sueño</p></div><span class="day-mins">15 min</span></div>
-        </div>
-      </div>
-
-      <div class="week-card" id="week-card-2">
-        <div class="week-header" id="week-header-2">
-          <div class="week-num">2</div>
-          <div class="week-info"><h3>Control de estímulos</h3><p>Reconectar cama con sueño</p></div>
-          <span class="week-status" id="week-status-2">🔒</span>
-        </div>
-        <div class="week-content" id="week-content-2">
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 8 — La regla de los 20 minutos</h4><p>Qué hacer si no te duermes</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 9 — La cama solo para dormir</h4><p>Eliminar la asociación cama-vigilia</p></div><span class="day-mins">8 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 10 — Rutina de desconexión</h4><p>Diseña tu ritual de 30 minutos</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 11 — Horario fijo de levantarse</h4><p>La ancla del ritmo circadiano</p></div><span class="day-mins">8 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 12 — Gestionar los despertares</h4><p>Qué hacer a las 3 de la mañana</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 13 — Tu ambiente de sueño</h4><p>Temperatura, luz y ruido</p></div><span class="day-mins">8 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 14 — Revisión semana 2</h4><p>Midiendo tu progreso real</p></div><span class="day-mins">12 min</span></div>
-        </div>
-      </div>
-
-      <div class="week-card" id="week-card-3">
-        <div class="week-header" id="week-header-3">
-          <div class="week-num">3</div>
-          <div class="week-info"><h3>Restricción del sueño</h3><p>La técnica más potente de TCC-I</p></div>
-          <span class="week-status" id="week-status-3">🔒</span>
-        </div>
-        <div class="week-content" id="week-content-3">
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 15 — Qué es la restricción del sueño</h4><p>Por qué funciona y cómo hacerlo</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 16 — Calculando tu ventana de sueño</h4><p>Usando tu diario para definir el horario</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 17 — Primera semana de restricción</h4><p>Qué esperar y cómo aguantar</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 18 — Ajustar la ventana</h4><p>Cuando ampliar o reducir el tiempo</p></div><span class="day-mins">8 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 19 — Somnolencia diurna</h4><p>Cómo manejarla sin arruinar el proceso</p></div><span class="day-mins">8 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 20 — La presión de sueño</h4><p>Entender la adenosina y el sueño profundo</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 21 — Revisión semana 3</h4><p>¿Está mejorando tu eficiencia?</p></div><span class="day-mins">15 min</span></div>
-        </div>
-      </div>
-
-      <div class="week-card" id="week-card-4">
-        <div class="week-header" id="week-header-4">
-          <div class="week-num">4</div>
-          <div class="week-info"><h3>Reestructuración cognitiva</h3><p>Cambiar pensamientos sobre el sueño</p></div>
-          <span class="week-status" id="week-status-4">🔒</span>
-        </div>
-        <div class="week-content" id="week-content-4">
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 22 — Pensamientos que roban el sueño</h4><p>Identificar la rumiación nocturna</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 23 — Creencias erróneas sobre el sueño</h4><p>Los mitos que empeoran el insomnio</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 24 — La técnica de la silla</h4><p>Aparcar las preocupaciones antes de dormir</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 25 — Reencuadrar el insomnio</h4><p>Cambiar la relación con el no dormir</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 26 — Mindfulness para el sueño</h4><p>Estar presente sin luchar contra el insomnio</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 27 — Reducir la ansiedad anticipatoria</h4><p>El círculo vicioso del miedo a no dormir</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 28 — Revisión semana 4</h4><p>Tu mente y el sueño: nueva relación</p></div><span class="day-mins">15 min</span></div>
-        </div>
-      </div>
-
-      <div class="week-card" id="week-card-5">
-        <div class="week-header" id="week-header-5">
-          <div class="week-num">5</div>
-          <div class="week-info"><h3>Relajación y mindfulness</h3><p>Técnicas basadas en evidencia</p></div>
-          <span class="week-status" id="week-status-5">🔒</span>
-        </div>
-        <div class="week-content" id="week-content-5">
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 29 — Relajación muscular progresiva</h4><p>El método Jacobson explicado paso a paso</p></div><span class="day-mins">15 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 30 — Respiración diafragmática</h4><p>Activar el nervio vago para calmar el sistema</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 31 — Imágenes mentales guiadas</h4><p>Crear un lugar seguro mental para dormir</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 32 — Body scan nocturno</h4><p>Escaneo corporal para soltar la tensión</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 33 — Tu ritual de 20 minutos</h4><p>Combinar técnicas para tu rutina personal</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 34 — Gestión del estrés diurno</h4><p>Lo que ocurre de día afecta la noche</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 35 — Revisión semana 5</h4><p>Qué técnicas te funcionan mejor</p></div><span class="day-mins">12 min</span></div>
-        </div>
-      </div>
-
-      <div class="week-card" id="week-card-6">
-        <div class="week-header" id="week-header-6">
-          <div class="week-num">6</div>
-          <div class="week-info"><h3>Prevención de recaídas</h3><p>Tu plan para el futuro</p></div>
-          <span class="week-status" id="week-status-6">🔒</span>
-        </div>
-        <div class="week-content" id="week-content-6">
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 36 — Señales de alerta temprana</h4><p>Reconocer el insomnio antes de que vuelva</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 37 — Plan de acción ante recaídas</h4><p>Qué hacer si las noches malas vuelven</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 38 — Mantenimiento a largo plazo</h4><p>Hábitos para conservar lo ganado</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 39 — El sueño en momentos difíciles</h4><p>Estrés, viajes, cambios de rutina</p></div><span class="day-mins">10 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 40 — Tu perfil de sueño definitivo</h4><p>Lo que sabes ahora que no sabías antes</p></div><span class="day-mins">12 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 41 — Cuándo volver al programa</h4><p>El programa como recurso permanente</p></div><span class="day-mins">8 min</span></div>
-          <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 42 — Cierre del programa</h4><p>Celebra lo que has conseguido</p></div><span class="day-mins">15 min</span></div>
-        </div>
+      <div class="eficiencia-result" id="eficienciaResult">
+        Eficiencia: <strong id="eficienciaVal" style="font-size:16px"></strong>
+        <span id="eficienciaLabel" style="margin-left:6px"></span>
       </div>
     </div>
-  </div>
 
-  <!-- ══════════════════════════════════════
-       INFO / APRENDE
-  ══════════════════════════════════════ -->
-  <div class="screen" id="screen-info">
-    <div class="info-wrap">
-      <div class="info-header">
-        <button class="back-btn" onclick="goBack()">‹ Volver</button>
-        <h2>Aprende</h2>
-        <p>Información verificada de fuentes oficiales</p>
-      </div>
-
-      <div class="search-bar">
-        <span>🔍</span>
-        <span>Busca tu duda aquí...</span>
-      </div>
-
-      <div class="aviso-legal">
-        <span class="aviso-legal-icon">ℹ️</span>
-        <p>Todo el contenido proviene de fuentes científicas oficiales. <strong>No sustituye la atención médica.</strong> Si tienes dudas, consulta con tu médico.</p>
-      </div>
-
-      <div class="info-section">
-        <div class="info-section-title">😬 Bruxismo nocturno</div>
-        <div class="info-item">
-          <div class="info-item-top">
-            <h3>¿Qué es el bruxismo?</h3>
-            <span class="info-source">SES</span>
-          </div>
-          <p>El bruxismo es el hábito inconsciente de apretar o rechinar los dientes durante el sueño. Afecta al 8% de la población y en muchos casos pasa desapercibido hasta que lo detecta un dentista.</p>
-        </div>
-        <div class="info-item">
-          <div class="info-item-top">
-            <h3>Síntomas más frecuentes</h3>
-            <span class="info-source">SES</span>
-          </div>
-          <p>Dolor de cabeza al despertar, tensión en la mandíbula, desgaste dental, sensibilidad aumentada, y dolor en el cuello o hombros. Si reconoces varios, consulta a tu dentista.</p>
-        </div>
-        <div class="info-item">
-          <div class="info-item-top">
-            <h3>Técnicas de relajación mandibular</h3>
-            <span class="info-source">Mayo Clinic</span>
-          </div>
-          <p>Antes de dormir: coloca la lengua entre los dientes suavemente para relajar la mandíbula. Aplica calor suave en la zona. El estrés es el principal desencadenante — reducirlo ayuda directamente.</p>
-        </div>
-      </div>
-
-      <div class="info-section">
-        <div class="info-section-title">🏷️ Mitos del sueño</div>
-        <div class="mito-card">
-          <div class="mito-false">✕ Mito</div>
-          <div class="mito-title">"Hay que dormir 8 horas sí o sí"</div>
-          <div class="mito-real">La ciencia dice: <strong>entre 7 y 9 horas es el rango normal</strong> para adultos, pero varía por persona. Lo que importa es la calidad. Fuente: AASM</div>
-        </div>
-        <div class="mito-card">
-          <div class="mito-false">✕ Mito</div>
-          <div class="mito-title">"Puedo recuperar el sueño durmiendo el finde"</div>
-          <div class="mito-real">La ciencia dice: <strong>el sueño no se recupera</strong> de forma real. La deuda acumulada afecta cognitivamente aunque duermas más el fin de semana. Fuente: SES</div>
-        </div>
-        <div class="mito-card">
-          <div class="mito-false">✕ Mito</div>
-          <div class="mito-title">"Una copa de vino ayuda a dormir"</div>
-          <div class="mito-real">La ciencia dice: el alcohol facilita conciliar el sueño pero <strong>fragmenta las fases profundas</strong>, reduciendo la calidad total. Fuente: SEN</div>
-        </div>
-      </div>
-
-      <div class="info-section">
-        <div class="info-section-title">🏥 ¿Cuándo ir al médico?</div>
-        <div class="info-item">
-          <div class="info-item-top">
-            <h3>Señales de alerta</h3>
-            <span class="info-source">Ministerio de Sanidad</span>
-          </div>
-          <p>Consulta a tu médico si: llevas más de 3 meses con problemas de sueño, afecta gravemente tu vida diaria, tienes ronquidos fuertes o paradas respiratorias, o experimentas somnolencia extrema durante el día.</p>
-        </div>
-      </div>
-
-      <div class="app-footer">
-        <p>DuermeBien es un proyecto de <strong style="color:var(--amber)">Ayudante Anónimo</strong><br>
-        Herramienta educativa gratuita · Sin anuncios · Sin datos<br>
-        <a href="/cdn-cgi/l/email-protection#2c4d5559484d425849024d424342454143024d5c5c5f6c4b414d4540024f4341"><span class="__cf_email__" data-cfemail="fd9c8488999c938998d39c939293949092d39c8d8d8ebd9a909c9491d39e9290">[email&#160;protected]</span></a></p>
-        <button onclick="abrirAvisoLegal()" style="background:none;border:none;color:var(--amber);font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer;margin-top:10px;padding:4px 0;text-decoration:underline;-webkit-tap-highlight-color:transparent;">
-          📋 Aviso Legal · LSSI
-        </button>
+    <div class="diary-card">
+      <h3>Calidad de la noche</h3>
+      <div class="quality-stars" id="diaryStars">
+        <button class="star-btn active" onclick="setDiaryStar(1)">⭐</button>
+        <button class="star-btn active" onclick="setDiaryStar(2)">⭐</button>
+        <button class="star-btn active" onclick="setDiaryStar(3)">⭐</button>
+        <button class="star-btn"        onclick="setDiaryStar(4)">⭐</button>
+        <button class="star-btn"        onclick="setDiaryStar(5)">⭐</button>
       </div>
     </div>
+
+    <div class="diary-card">
+      <h3>¿Qué ocurrió esta noche?</h3>
+      <div class="toggle-row"><span class="toggle-label">😬 Tensión mandibular / bruxismo</span><button class="toggle" id="tog-bruxismo"      onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><span class="toggle-label">🧠 Pensamientos que no paran</span>    <button class="toggle" id="tog-pensamientos" onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><span class="toggle-label">😰 Ansiedad o angustia</span>           <button class="toggle" id="tog-ansiedad"     onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><span class="toggle-label">📱 Usé el móvil antes de dormir</span>  <button class="toggle" id="tog-movil"        onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><span class="toggle-label">☕ Cafeína después de las 14h</span>    <button class="toggle" id="tog-cafeina"      onclick="this.classList.toggle('on')"></button></div>
+      <div class="toggle-row"><span class="toggle-label">🏃 Hice ejercicio hoy</span>             <button class="toggle" id="tog-ejercicio"   onclick="this.classList.toggle('on')"></button></div>
+    </div>
+
+    <div class="diary-card">
+      <h3>Tu semana — eficiencia del sueño</h3>
+      <div class="chart-wrap" id="weekChart"></div>
+      <div class="chart-days">
+        <span class="chart-day-label">L</span><span class="chart-day-label">M</span>
+        <span class="chart-day-label">X</span><span class="chart-day-label">J</span>
+        <span class="chart-day-label">V</span><span class="chart-day-label">S</span>
+        <span class="chart-day-label">D</span>
+      </div>
+    </div>
+
+    <button class="btn-main" onclick="guardarRegistro()">Guardar registro ✓</button>
+    <div class="save-feedback" id="saveFeedback">✓ Registro guardado correctamente</div>
   </div>
+</div>
 
-  <!-- ══════════════════════════════════════
-       ASISTENTE SIN IA
-  ══════════════════════════════════════ -->
-  <div class="screen" id="screen-asistente">
-    <div class="asistente-wrap">
-      <div class="asistente-header">
-        <button class="back-btn" onclick="goBack()">‹ Volver</button>
-        <h2>Asistente</h2>
-        <p>Respuestas verificadas · Sin inteligencia artificial</p>
+<!-- PROGRAMA -->
+<div class="screen" id="screen-program">
+  <div class="program-wrap">
+    <div class="program-header"><h2>Programa TCC-I</h2><p>6 semanas · Basado en evidencia científica</p></div>
+    <div class="aviso-legal"><span class="aviso-legal-icon">📚</span><p>Basado en la <strong>TCC-I</strong>, tratamiento de primera línea según la Sociedad Española del Sueño. Fuente: ses.org.es</p></div>
+
+    <div class="week-card week-active" id="week-card-1">
+      <div class="week-header clickable" id="week-header-1" onclick="toggleWeek(1)">
+        <div class="week-num">1</div>
+        <div class="week-info"><h3>Psicoeducación del sueño</h3><p>Entender cómo funciona tu sueño</p></div>
+        <span class="week-status" id="week-status-1">▾</span>
       </div>
-
-      <div class="aviso-legal">
-        <span class="aviso-legal-icon">ℹ️</span>
-        <p>Las respuestas provienen de un temario elaborado con fuentes científicas oficiales (SES, SEN, Mayo Clinic, Ministerio de Sanidad). <strong>No sustituyen la atención médica.</strong></p>
+      <div class="week-content open" id="week-content-1">
+        <div class="day-item"><div class="day-check done">✓</div><div class="day-text"><h4>Día 1 — ¿Cómo funciona el sueño?</h4><p>Ciclos, fases y ritmo circadiano</p></div><span class="day-mins">8 min</span></div>
+        <div class="day-item"><div class="day-check done">✓</div><div class="day-text"><h4>Día 2 — Tu tipo de insomnio</h4><p>Conciliación, mantenimiento o mixto</p></div><span class="day-mins">10 min</span></div>
+        <div class="day-item"><div class="day-check today"></div><div class="day-text"><h4>Día 3 — Tu diario de sueño</h4><p>Cómo medir tu eficiencia del sueño</p></div><span class="day-mins">12 min</span></div>
+        <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 4 — Higiene del sueño personalizada</h4><p>Qué cambia y qué no vale para ti</p></div><span class="day-mins">10 min</span></div>
+        <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 5 — El papel de la luz y el móvil</h4><p>Melatonina y luz azul: la ciencia real</p></div><span class="day-mins">8 min</span></div>
+        <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 6 — Alimentación y ejercicio</h4><p>Qué dice la evidencia</p></div><span class="day-mins">8 min</span></div>
+        <div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 7 — Resumen y tu plan personal</h4><p>Tus primeras reglas del sueño</p></div><span class="day-mins">15 min</span></div>
       </div>
+    </div>
 
-      <!-- BUSCADOR -->
-      <div class="asistente-search">
-        <input type="text" id="asistenteInput" placeholder="Escribe tu duda..." autocomplete="off" oninput="buscarRespuesta()" />
-        <button onclick="buscarRespuesta()">🔍</button>
-      </div>
+    <div class="week-card week-locked" id="week-card-2"><div class="week-header" id="week-header-2"><div class="week-num">2</div><div class="week-info"><h3>Control de estímulos</h3><p data-original="Reconectar cama con sueño">Reconectar cama con sueño</p></div><span class="week-status" id="week-status-2">🔒</span></div><div class="week-content" id="week-content-2"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 8 — La regla de los 20 minutos</h4><p>Qué hacer si no te duermes</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 9 — La cama solo para dormir</h4><p>Eliminar la asociación cama-vigilia</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 10 — Rutina de desconexión</h4><p>Diseña tu ritual de 30 minutos</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 11 — Horario fijo de levantarse</h4><p>La ancla del ritmo circadiano</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 12 — Gestionar los despertares</h4><p>Qué hacer a las 3 de la mañana</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 13 — Tu ambiente de sueño</h4><p>Temperatura, luz y ruido</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 14 — Revisión semana 2</h4><p>Midiendo tu progreso real</p></div><span class="day-mins">12 min</span></div></div></div>
 
-      <!-- TEMAS RÁPIDOS -->
-      <div class="chips-row" id="chipsRow">
-        <div class="chip" onclick="buscarPorChip('no puedo dormir')">No puedo dormir</div>
-        <div class="chip" onclick="buscarPorChip('bruxismo')">Bruxismo</div>
-        <div class="chip" onclick="buscarPorChip('cuántas horas dormir')">¿Cuántas horas?</div>
-        <div class="chip" onclick="buscarPorChip('ansiedad noche')">Ansiedad nocturna</div>
-        <div class="chip" onclick="buscarPorChip('melatonina')">Melatonina</div>
-        <div class="chip" onclick="buscarPorChip('alcohol sueño')">Alcohol y sueño</div>
-        <div class="chip" onclick="buscarPorChip('móvil antes dormir')">Móvil antes de dormir</div>
-        <div class="chip" onclick="buscarPorChip('despertarse madrugada')">Despertar de madrugada</div>
-        <div class="chip" onclick="buscarPorChip('siesta')">Siestas</div>
-        <div class="chip" onclick="buscarPorChip('cafeína')">Cafeína</div>
-      </div>
+    <div class="week-card week-locked" id="week-card-3"><div class="week-header" id="week-header-3"><div class="week-num">3</div><div class="week-info"><h3>Restricción del sueño</h3><p data-original="La técnica más potente de TCC-I">La técnica más potente de TCC-I</p></div><span class="week-status" id="week-status-3">🔒</span></div><div class="week-content" id="week-content-3"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 15 — Qué es la restricción del sueño</h4><p>Por qué funciona y cómo hacerlo</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 16 — Calculando tu ventana de sueño</h4><p>Usando tu diario para definir el horario</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 17 — Primera semana de restricción</h4><p>Qué esperar y cómo aguantar</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 18 — Ajustar la ventana</h4><p>Cuándo ampliar o reducir el tiempo</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 19 — Somnolencia diurna</h4><p>Cómo manejarla sin arruinar el proceso</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 20 — La presión de sueño</h4><p>Entender la adenosina y el sueño profundo</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 21 — Revisión semana 3</h4><p>¿Está mejorando tu eficiencia?</p></div><span class="day-mins">15 min</span></div></div></div>
 
-      <!-- RESULTADO -->
-      <div id="resultadoCard" class="resultado-card">
-        <div class="resultado-pregunta" id="resultadoPregunta"></div>
-        <div class="resultado-respuesta" id="resultadoRespuesta"></div>
-        <div class="resultado-fuente" id="resultadoFuente">📚 Fuente</div>
-      </div>
+    <div class="week-card week-locked" id="week-card-4"><div class="week-header" id="week-header-4"><div class="week-num">4</div><div class="week-info"><h3>Reestructuración cognitiva</h3><p data-original="Cambiar pensamientos sobre el sueño">Cambiar pensamientos sobre el sueño</p></div><span class="week-status" id="week-status-4">🔒</span></div><div class="week-content" id="week-content-4"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 22 — Pensamientos que roban el sueño</h4><p>Identificar la rumiación nocturna</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 23 — Creencias erróneas sobre el sueño</h4><p>Los mitos que empeoran el insomnio</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 24 — La técnica de la silla</h4><p>Aparcar las preocupaciones antes de dormir</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 25 — Reencuadrar el insomnio</h4><p>Cambiar la relación con el no dormir</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 26 — Mindfulness para el sueño</h4><p>Estar presente sin luchar contra el insomnio</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 27 — Reducir la ansiedad anticipatoria</h4><p>El círculo vicioso del miedo a no dormir</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 28 — Revisión semana 4</h4><p>Tu mente y el sueño: nueva relación</p></div><span class="day-mins">15 min</span></div></div></div>
 
-      <div id="noResultado" class="no-resultado">
-        <p>No he encontrado una respuesta exacta para eso.<br><strong>Prueba con otras palabras</strong> o consulta las categorías de abajo.</p>
-      </div>
+    <div class="week-card week-locked" id="week-card-5"><div class="week-header" id="week-header-5"><div class="week-num">5</div><div class="week-info"><h3>Relajación y mindfulness</h3><p data-original="Técnicas basadas en evidencia">Técnicas basadas en evidencia</p></div><span class="week-status" id="week-status-5">🔒</span></div><div class="week-content" id="week-content-5"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 29 — Relajación muscular progresiva</h4><p>El método Jacobson paso a paso</p></div><span class="day-mins">15 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 30 — Respiración diafragmática</h4><p>Activar el nervio vago para calmar el sistema</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 31 — Imágenes mentales guiadas</h4><p>Crear un lugar seguro mental para dormir</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 32 — Body scan nocturno</h4><p>Escaneo corporal para soltar la tensión</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 33 — Tu ritual de 20 minutos</h4><p>Combinar técnicas para tu rutina personal</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 34 — Gestión del estrés diurno</h4><p>Lo que ocurre de día afecta la noche</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 35 — Revisión semana 5</h4><p>Qué técnicas te funcionan mejor</p></div><span class="day-mins">12 min</span></div></div></div>
 
-      <!-- CATEGORÍAS CUANDO NO HAY BÚSQUEDA -->
-      <div id="categoriasGrid" class="categorias-grid">
-        <div class="categoria-card" onclick="buscarPorChip('no puedo dormir')">
-          <span class="categoria-icon">😴</span>
-          <h4>Conciliar el sueño</h4>
-          <p>No me duermo, tarde en dormirme</p>
-        </div>
-        <div class="categoria-card" onclick="buscarPorChip('despertarse madrugada')">
-          <span class="categoria-icon">🌙</span>
-          <h4>Despertares nocturnos</h4>
-          <p>Me despierto varias veces</p>
-        </div>
-        <div class="categoria-card" onclick="buscarPorChip('ansiedad noche')">
-          <span class="categoria-icon">😰</span>
-          <h4>Ansiedad y estrés</h4>
-          <p>Pensamientos que no paran</p>
-        </div>
-        <div class="categoria-card" onclick="buscarPorChip('bruxismo')">
-          <span class="categoria-icon">😬</span>
-          <h4>Bruxismo</h4>
-          <p>Rechinar dientes, mandíbula</p>
-        </div>
-        <div class="categoria-card" onclick="buscarPorChip('higiene del sueño')">
-          <span class="categoria-icon">🛏️</span>
-          <h4>Higiene del sueño</h4>
-          <p>Hábitos y rutinas correctas</p>
-        </div>
-        <div class="categoria-card" onclick="buscarPorChip('cuándo ir médico')">
-          <span class="categoria-icon">🏥</span>
-          <h4>¿Cuándo ir al médico?</h4>
-          <p>Señales de alerta</p>
-        </div>
-      </div>
+    <div class="week-card week-locked" id="week-card-6"><div class="week-header" id="week-header-6"><div class="week-num">6</div><div class="week-info"><h3>Prevención de recaídas</h3><p data-original="Tu plan para el futuro">Tu plan para el futuro</p></div><span class="week-status" id="week-status-6">🔒</span></div><div class="week-content" id="week-content-6"><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 36 — Señales de alerta temprana</h4><p>Reconocer el insomnio antes de que vuelva</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 37 — Plan de acción ante recaídas</h4><p>Qué hacer si las noches malas vuelven</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 38 — Mantenimiento a largo plazo</h4><p>Hábitos para conservar lo ganado</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 39 — El sueño en momentos difíciles</h4><p>Estrés, viajes, cambios de rutina</p></div><span class="day-mins">10 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 40 — Tu perfil de sueño definitivo</h4><p>Lo que sabes ahora que no sabías antes</p></div><span class="day-mins">12 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 41 — Cuándo volver al programa</h4><p>El programa como recurso permanente</p></div><span class="day-mins">8 min</span></div><div class="day-item"><div class="day-check"></div><div class="day-text"><h4>Día 42 — Cierre del programa</h4><p>Celebra lo que has conseguido</p></div><span class="day-mins">15 min</span></div></div></div>
+  </div>
+</div>
 
+<!-- INFO / APRENDE -->
+<div class="screen" id="screen-info">
+  <div class="info-wrap">
+    <div class="info-header"><h2>Aprende</h2><p>Información verificada de fuentes oficiales</p></div>
+    <div class="aviso-legal"><span class="aviso-legal-icon">ℹ️</span><p>Todo el contenido proviene de fuentes científicas oficiales. <strong>No sustituye la atención médica.</strong></p></div>
+    <div class="info-section">
+      <div class="info-section-title">😬 Bruxismo nocturno</div>
+      <div class="info-item"><div class="info-item-top"><h3>¿Qué es el bruxismo?</h3><span class="info-source">SES</span></div><p>El bruxismo es el hábito inconsciente de apretar o rechinar los dientes durante el sueño. Afecta al 8% de la población. El estrés es el principal desencadenante.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Síntomas frecuentes</h3><span class="info-source">SES · Mayo Clinic</span></div><p>Dolor de cabeza al despertar, tensión en la mandíbula, desgaste del esmalte dental, sensibilidad dental aumentada.</p></div>
+      <div class="info-item"><div class="info-item-top"><h3>Qué puedo hacer</h3><span class="info-source">Mayo Clinic</span></div><p>Coloca la lengua entre los dientes para relajar la mandíbula al dormir. Aplica calor en la zona. Si persiste, consulta a tu dentista: puede indicar una férula de descarga.</p></div>
+    </div>
+    <div class="info-section">
+      <div class="info-section-title">💡 Mitos sobre el sueño</div>
+      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Hay que dormir 8 horas sí o sí"</div><div class="mito-real">La ciencia dice: <strong>entre 7 y 9 horas es el rango normal</strong> para adultos, pero varía por persona. Fuente: AASM</div></div>
+      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Puedo recuperar el sueño durmiendo el finde"</div><div class="mito-real">La ciencia dice: <strong>el sueño no se recupera</strong> de forma real. La deuda acumulada afecta cognitivamente. Fuente: SES</div></div>
+      <div class="mito-card"><div class="mito-false">✕ Mito</div><div class="mito-title">"Una copa de vino ayuda a dormir"</div><div class="mito-real">El alcohol facilita conciliar el sueño pero <strong>fragmenta las fases profundas</strong>, reduciendo la calidad total. Fuente: SEN</div></div>
+    </div>
+    <div class="info-section">
+      <div class="info-section-title">🏥 ¿Cuándo ir al médico?</div>
+      <div class="info-item"><div class="info-item-top"><h3>Señales de alerta</h3><span class="info-source">Ministerio de Sanidad</span></div><p>Consulta a tu médico si: llevas más de 3 meses con problemas de sueño, afecta tu vida diaria, tienes ronquidos fuertes o paradas respiratorias, o experimentas somnolencia extrema durante el día.</p></div>
+    </div>
+    <div class="app-footer">
+      <p>DuermeBien · <strong style="color:var(--amber)">Ayudante Anónimo</strong><br>
+      Herramienta educativa · Sin anuncios · Sin datos<br>
+      <a href="mailto:ayudante.anonimo.apps@gmail.com">ayudante.anonimo.apps@gmail.com</a></p>
+      <button class="aviso-legal-btn" onclick="abrirAvisoLegal()">📋 Aviso Legal · LSSI</button>
     </div>
   </div>
+</div>
 
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav" id="bottomNav">
-    <button class="nav-item active" onclick="goTo('home')" id="nav-home">
-      <span class="nav-icon">🏠</span>
-      <span class="nav-label">Inicio</span>
-      <div class="nav-dot"></div>
-    </button>
-    <button class="nav-item" onclick="goTo('diary')" id="nav-diary">
-      <span class="nav-icon">📓</span>
-      <span class="nav-label">Diario</span>
-      <div class="nav-dot"></div>
-    </button>
-    <button class="nav-item" onclick="goTo('program')" id="nav-program">
-      <span class="nav-icon">📅</span>
-      <span class="nav-label">Programa</span>
-      <div class="nav-dot"></div>
-    </button>
-    <button class="nav-item" onclick="goTo('asistente')" id="nav-asistente">
-      <span class="nav-icon">💬</span>
-      <span class="nav-label">Asistente</span>
-      <div class="nav-dot"></div>
-    </button>
-    <button class="nav-item" onclick="goTo('info')" id="nav-info">
-      <span class="nav-icon">🧠</span>
-      <span class="nav-label">Aprende</span>
-      <div class="nav-dot"></div>
-    </button>
-  </nav>
-
-  <!-- ══════════════════════════════════════
-       MODAL AVISO LEGAL
-  ══════════════════════════════════════ -->
-  <div class="modal-overlay" id="modalAvisoLegal" onclick="cerrarAvisoLegal(event)">
-    <div class="modal-box">
-      <div class="modal-handle"></div>
-      <div class="modal-title">Aviso Legal</div>
-
-      <div class="modal-section">
-        <h4>Responsable del servicio</h4>
-        <p>
-          <strong style="color:var(--cream)">Ayudante Anónimo</strong><br>
-          Persona física · España<br>
-          Contacto: <a href="/cdn-cgi/l/email-protection#7011090514111e04155e111e1f1e191d1f5e1100000330171d11191c5e131f1d"><span class="__cf_email__" data-cfemail="ea8b939f8e8b849e8fc48b848584838785c48b9a9a99aa8d878b8386c4898587">[email&#160;protected]</span></a><br>
-          Publicado bajo el alias Ayudante Anónimo (X: @AyudanteAnonim0)
-        </p>
-      </div>
-
-      <div class="modal-divider"></div>
-
-      <div class="modal-section">
-        <h4>Naturaleza del servicio · LSSI</h4>
-        <p>
-          DuermeBien es una <strong style="color:var(--cream)">herramienta de apoyo educativo gratuita</strong>, sin ánimo de lucro, desarrollada para facilitar el acceso a información verificada sobre el sueño. No es un servicio de carácter comercial. Cumple con la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE).
-        </p>
-      </div>
-
-      <div class="modal-divider"></div>
-
-      <div class="modal-section">
-        <h4>Limitación de responsabilidad sanitaria</h4>
-        <p>
-          El contenido de DuermeBien tiene carácter <strong style="color:var(--cream)">exclusivamente educativo e informativo</strong>, basado en fuentes científicas oficiales (SES, SEN, AASM, Mayo Clinic, Ministerio de Sanidad de España). <strong style="color:var(--cream)">No constituye diagnóstico médico, prescripción ni tratamiento</strong>, y no sustituye en ningún caso la atención de un profesional sanitario. Esta aplicación <strong style="color:var(--cream)">no es un producto sanitario ni un dispositivo médico</strong> en el sentido del Reglamento UE 2017/745. Ante cualquier problema de salud, consulta con tu médico.
-        </p>
-      </div>
-
-      <div class="modal-divider"></div>
-
-      <div class="modal-section">
-        <h4>Privacidad y datos personales · RGPD</h4>
-        <p>
-          DuermeBien <strong style="color:var(--cream)">no recopila, almacena ni transmite ningún dato personal</strong>. No utiliza cookies. No requiere registro. Todos los datos introducidos (diario de sueño, preferencias) se guardan exclusivamente en el dispositivo del usuario (localStorage) y nunca salen de él. Las estadísticas de uso son anónimas y se procesan a través de Vercel Analytics, conforme a su política de privacidad compatible con el RGPD.
-        </p>
-      </div>
-
-      <div class="modal-divider"></div>
-
-      <div class="modal-section">
-        <h4>Audiencia · Menores de edad</h4>
-        <p>
-          Esta aplicación está <strong style="color:var(--cream)">dirigida a personas mayores de 14 años</strong>. No se dirige específicamente a menores de edad. Si eres menor de 14 años, consulta con un adulto de confianza antes de usarla.
-        </p>
-      </div>
-
-      <div class="modal-divider"></div>
-
-      <div class="modal-section">
-        <h4>Propiedad intelectual</h4>
-        <p>
-          El código, diseño y contenidos originales de DuermeBien son propiedad de Ayudante Anónimo. El contenido científico está basado en fuentes de dominio público o de libre divulgación, citadas explícitamente. Queda prohibida su reproducción comercial sin autorización.
-        </p>
-      </div>
-
-      <button class="modal-close" onclick="cerrarAvisoLegal()">Cerrar</button>
+<!-- ASISTENTE -->
+<div class="screen" id="screen-asistente">
+  <div class="asistente-wrap">
+    <div class="asistente-header"><h2>Asistente</h2><p>Respuestas verificadas · Sin inteligencia artificial</p></div>
+    <div class="aviso-legal"><span class="aviso-legal-icon">ℹ️</span><p>Respuestas basadas en fuentes científicas oficiales. <strong>No sustituyen la atención médica.</strong></p></div>
+    <div class="asistente-search">
+      <input type="text" id="asistenteInput" placeholder="Escribe tu duda..." autocomplete="off" oninput="buscarRespuesta()">
+      <button onclick="buscarRespuesta()">🔍</button>
+    </div>
+    <div class="chips-row">
+      <div class="chip" onclick="buscarPorChip('no puedo dormir')">No puedo dormir</div>
+      <div class="chip" onclick="buscarPorChip('bruxismo')">Bruxismo</div>
+      <div class="chip" onclick="buscarPorChip('cuántas horas dormir')">¿Cuántas horas?</div>
+      <div class="chip" onclick="buscarPorChip('ansiedad noche')">Ansiedad nocturna</div>
+      <div class="chip" onclick="buscarPorChip('melatonina')">Melatonina</div>
+      <div class="chip" onclick="buscarPorChip('alcohol sueño')">Alcohol y sueño</div>
+      <div class="chip" onclick="buscarPorChip('móvil antes dormir')">Móvil antes dormir</div>
+      <div class="chip" onclick="buscarPorChip('despertarse madrugada')">Despertar madrugada</div>
+      <div class="chip" onclick="buscarPorChip('siesta')">Siestas</div>
+      <div class="chip" onclick="buscarPorChip('cafeína')">Cafeína</div>
+    </div>
+    <div id="resultadoCard" class="resultado-card">
+      <div class="resultado-pregunta" id="resultadoPregunta"></div>
+      <div class="resultado-respuesta" id="resultadoRespuesta"></div>
+      <div class="resultado-fuente" id="resultadoFuente">📚 Fuente</div>
+    </div>
+    <div id="noResultado" class="no-resultado"><p>No he encontrado una respuesta exacta.<br><strong>Prueba con otras palabras</strong> o explora las categorías.</p></div>
+    <div id="categoriasGrid" class="categorias-grid">
+      <div class="categoria-card" onclick="buscarPorChip('no puedo dormir')"><span class="categoria-icon">😴</span><h4>Conciliar el sueño</h4><p>No me duermo</p></div>
+      <div class="categoria-card" onclick="buscarPorChip('despertarse madrugada')"><span class="categoria-icon">🌙</span><h4>Despertares nocturnos</h4><p>Me despierto varias veces</p></div>
+      <div class="categoria-card" onclick="buscarPorChip('ansiedad noche')"><span class="categoria-icon">😰</span><h4>Ansiedad y estrés</h4><p>Pensamientos que no paran</p></div>
+      <div class="categoria-card" onclick="buscarPorChip('bruxismo')"><span class="categoria-icon">😬</span><h4>Bruxismo</h4><p>Rechinar dientes</p></div>
+      <div class="categoria-card" onclick="buscarPorChip('higiene sueño')"><span class="categoria-icon">🛏️</span><h4>Higiene del sueño</h4><p>Hábitos correctos</p></div>
+      <div class="categoria-card" onclick="buscarPorChip('cuándo ir médico')"><span class="categoria-icon">🏥</span><h4>¿Cuándo al médico?</h4><p>Señales de alerta</p></div>
     </div>
   </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="bottomNav">
+  <button class="nav-item active" onclick="goTo('home')"      id="nav-home">     <span class="nav-icon">🏠</span><span class="nav-label">Inicio</span>   <div class="nav-dot"></div></button>
+  <button class="nav-item"        onclick="goTo('diary')"     id="nav-diary">    <span class="nav-icon">📓</span><span class="nav-label">Diario</span>   <div class="nav-dot"></div></button>
+  <button class="nav-item"        onclick="goTo('program')"   id="nav-program">  <span class="nav-icon">📅</span><span class="nav-label">Programa</span> <div class="nav-dot"></div></button>
+  <button class="nav-item"        onclick="goTo('asistente')" id="nav-asistente"><span class="nav-icon">💬</span><span class="nav-label">Asistente</span><div class="nav-dot"></div></button>
+  <button class="nav-item"        onclick="goTo('info')"      id="nav-info">     <span class="nav-icon">🧠</span><span class="nav-label">Aprende</span>  <div class="nav-dot"></div></button>
+</nav>
+
+<!-- MODAL AVISO LEGAL -->
+<div class="modal-overlay" id="modalAvisoLegal" onclick="cerrarAvisoLegal(event)">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Aviso Legal</div>
+    <div class="modal-section"><h4>Responsable del servicio</h4><p><strong style="color:var(--cream)">Ayudante Anónimo</strong> · Persona física · España<br>Contacto: <a href="mailto:ayudante.anonimo.apps@gmail.com">ayudante.anonimo.apps@gmail.com</a> · X: @AyudanteAnonim0</p></div>
+    <div class="modal-divider"></div>
+    <div class="modal-section"><h4>Naturaleza del servicio · LSSI</h4><p>DuermeBien es una <strong style="color:var(--cream)">herramienta de apoyo educativo gratuita</strong>, sin ánimo de lucro. Cumple con la Ley 34/2002 de Servicios de la Sociedad de la Información (LSSI-CE).</p></div>
+    <div class="modal-divider"></div>
+    <div class="modal-section"><h4>Limitación de responsabilidad sanitaria</h4><p>Contenido de carácter <strong style="color:var(--cream)">exclusivamente educativo</strong>. <strong style="color:var(--cream)">No constituye diagnóstico ni tratamiento médico</strong>. <strong style="color:var(--cream)">No es un dispositivo médico</strong> según el Reglamento UE 2017/745.</p></div>
+    <div class="modal-divider"></div>
+    <div class="modal-section"><h4>Privacidad · RGPD</h4><p>DuermeBien <strong style="color:var(--cream)">no recopila ni transmite datos personales</strong>. Sin cookies. Los datos del diario se guardan solo en tu dispositivo (localStorage) y nunca salen de él.</p></div>
+    <div class="modal-divider"></div>
+    <div class="modal-section"><h4>Audiencia</h4><p>Dirigida a <strong style="color:var(--cream)">mayores de 14 años</strong>.</p></div>
+    <button class="modal-close" onclick="cerrarAvisoLegal()">Cerrar</button>
+  </div>
+</div>
 
 </div><!-- #app -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ─── ESTRELLAS ───
+<script>
+// ═══════════════════════════════════════════════════════
+//  DUERMEBIEN — JS AUDITADO v3
+// ═══════════════════════════════════════════════════════
+
+// ─── ESTRELLAS ONBOARDING ───
 const starsEl = document.getElementById('starsEl');
 for (let i = 0; i < 50; i++) {
   const s = document.createElement('div');
@@ -1844,11 +568,16 @@ for (let i = 0; i < 50; i++) {
   starsEl.appendChild(s);
 }
 
-// ─── FECHA DIARIO ───
-const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-const hoy = new Date();
-document.getElementById('diaryDate').textContent = `${dias[hoy.getDay()]}, ${hoy.getDate()} de ${meses[hoy.getMonth()]}`;
+// ─── FECHAS ───
+const DIAS  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const HOY   = new Date();
+const HOY_KEY = HOY.toISOString().split('T')[0];
+
+document.getElementById('diaryDate').textContent =
+  DIAS[HOY.getDay()] + ', ' + HOY.getDate() + ' de ' + MESES[HOY.getMonth()];
+document.getElementById('homeDate').textContent =
+  HOY.getDate() + ' de ' + MESES[HOY.getMonth()];
 
 // ─── ONBOARDING ───
 let currentSlide = 0;
@@ -1856,358 +585,338 @@ let currentSlide = 0;
 function nextSlide() {
   if (currentSlide < 2) {
     currentSlide++;
-    document.getElementById('onbSlides').style.transform = `translateX(-${currentSlide * 33.333}%)`;
+    document.getElementById('onbSlides').style.transform =
+      'translateX(-' + (currentSlide * 33.333) + '%)';
   }
 }
 
 function skipOnboarding() {
+  if (!localStorage.getItem('db_inicio')) {
+    localStorage.setItem('db_inicio', Date.now());
+  }
   document.getElementById('screen-onboarding').classList.remove('active');
   document.getElementById('screen-home').classList.add('active');
   document.getElementById('bottomNav').classList.add('visible');
+  actualizarEstadisticasHome();
+  renderizarGrafico();
+  desbloquearSemanas();
 }
 
 // ─── NAVEGACIÓN ───
-let currentScreen = 'home';
+let currentScreen  = 'home';
 let previousScreen = 'home';
 
 function goTo(name) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active'); });
   previousScreen = currentScreen;
-  currentScreen = name;
+  currentScreen  = name;
 
-  const target = document.getElementById('screen-' + name);
+  var target = document.getElementById('screen-' + name);
   if (target) { target.classList.add('active'); target.scrollTop = 0; }
 
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const navBtn = document.getElementById('nav-' + name);
+  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+  var navBtn = document.getElementById('nav-' + name);
   if (navBtn) navBtn.classList.add('active');
 
-  // Ocultar nav en crisis
-  const nav = document.getElementById('bottomNav');
-  nav.classList.toggle('visible', name !== 'crisis');
+  document.getElementById('bottomNav').classList.toggle('visible', name !== 'crisis');
+
+  if (name === 'diary') { renderizarGrafico(); cargarUltimoRegistro(); }
+  if (name === 'home')  { actualizarEstadisticasHome(); }
 }
 
-function goBack() {
-  goTo(previousScreen || 'home');
-}
-
-// ─── SEMANAS ───
-function toggleWeek(header) {
-  const content = header.nextElementSibling;
-  const status = header.querySelector('.week-status');
-  const isOpen = content.classList.contains('open');
+// ─── SEMANAS PROGRAMA ───
+function toggleWeek(num) {
+  var content = document.getElementById('week-content-' + num);
+  var status  = document.getElementById('week-status-'  + num);
+  if (!content) return;
+  var isOpen = content.classList.contains('open');
   content.classList.toggle('open', !isOpen);
   status.textContent = isOpen ? '›' : '▾';
 }
 
+function desbloquearSemanas() {
+  var inicio = parseInt(localStorage.getItem('db_inicio') || Date.now());
+  var diasTranscurridos = Math.floor((Date.now() - inicio) / 86400000);
+
+  for (var semana = 2; semana <= 6; semana++) {
+    var diasNecesarios = (semana - 1) * 7;
+    var card   = document.getElementById('week-card-'   + semana);
+    var header = document.getElementById('week-header-' + semana);
+    var status = document.getElementById('week-status-' + semana);
+    if (!card) continue;
+
+    if (diasTranscurridos >= diasNecesarios) {
+      card.classList.remove('week-locked');
+      card.classList.add('week-active');
+      header.classList.add('clickable');
+      status.textContent = '›';
+      // closure para capturar semana correctamente
+      (function(s) {
+        header.onclick = function() { toggleWeek(s); };
+      })(semana);
+    } else {
+      var faltan = diasNecesarios - diasTranscurridos;
+      (function(c, f) {
+        header.onclick = function() {
+          var pEl = c.querySelector('.week-info p');
+          var original = pEl.getAttribute('data-original');
+          pEl.textContent = 'Se desbloquea en ' + f + ' día' + (f > 1 ? 's' : '');
+          setTimeout(function() { pEl.textContent = original; }, 2500);
+        };
+      })(card, faltan);
+    }
+  }
+}
+
 // ─── RESPIRACIÓN ───
-const breathSeq = [
-  ...Array(4).fill('Inhala...'),
-  ...Array(7).fill('Aguanta...'),
-  ...Array(8).fill('Exhala...')
-];
-let breathIdx = 0;
-setInterval(() => {
-  const el = document.getElementById('breathLabel');
+var breathSeq = [];
+for (var i = 0; i < 4; i++)  breathSeq.push('Inhala...');
+for (var i = 0; i < 7; i++)  breathSeq.push('Aguanta...');
+for (var i = 0; i < 8; i++)  breathSeq.push('Exhala...');
+var breathIdx = 0;
+setInterval(function() {
+  var el = document.getElementById('breathLabel');
   if (el) el.textContent = breathSeq[breathIdx % breathSeq.length];
   breathIdx++;
 }, 1000);
 
-// ─── ESTRELLAS CALIDAD ───
-function setStar(n) {
-  document.querySelectorAll('.star-btn').forEach((btn, i) => {
-    btn.classList.toggle('active', i < n);
-  });
+// ─── ESTRELLAS DIARIO (solo #diaryStars) ───
+var diaryStarValue = 3;
+function setDiaryStar(n) {
+  diaryStarValue = n;
+  var stars = document.querySelectorAll('#diaryStars .star-btn');
+  stars.forEach(function(btn, i) { btn.classList.toggle('active', i < n); });
 }
 
-// ─── DESBLOQUEO SEMANAS POR DÍAS ───
-// Guardamos la fecha de inicio en localStorage
-// Semana 1: siempre desbloqueada
-// Semana N: se desbloquea a los (N-1)*7 días del inicio
-function iniciarPrograma() {
-  if (!localStorage.getItem('db_inicio')) {
-    localStorage.setItem('db_inicio', Date.now());
-  }
+// ─── EFICIENCIA ───
+function toMinutos(t) {
+  var parts = t.split(':');
+  return parseInt(parts[0]) * 60 + parseInt(parts[1]);
 }
-iniciarPrograma();
 
-function desbloquearSemanas() {
-  const inicio = parseInt(localStorage.getItem('db_inicio') || Date.now());
-  const diasTranscurridos = Math.floor((Date.now() - inicio) / (1000 * 60 * 60 * 24));
-
-  for (let semana = 2; semana <= 6; semana++) {
-    const diasNecesarios = (semana - 1) * 7;
-    const card    = document.getElementById('week-card-' + semana);
-    const header  = document.getElementById('week-header-' + semana);
-    const status  = document.getElementById('week-status-' + semana);
-    const content = document.getElementById('week-content-' + semana);
-
-    if (!card) continue;
-
-    if (diasTranscurridos >= diasNecesarios) {
-      // DESBLOQUEADA
-      card.classList.add('week-active');
-      card.classList.remove('week-locked');
-      status.textContent = '›';
-      header.onclick = function() { toggleWeek(this); };
-    } else {
-      // BLOQUEADA — mostrar cuántos días faltan
-      card.classList.add('week-locked');
-      card.classList.remove('week-active');
-      const diasFaltan = diasNecesarios - diasTranscurridos;
-      status.textContent = '🔒';
-      header.onclick = function() {
-        // pequeño mensaje
-        const p = card.querySelector('.week-info p');
-        p.textContent = `Se desbloquea en ${diasFaltan} día${diasFaltan > 1 ? 's' : ''}`;
-        setTimeout(() => {
-          p.textContent = card.dataset.subtitle;
-        }, 2500);
-      };
-      // Guardar subtítulo original
-      if (!card.dataset.subtitle) {
-        card.dataset.subtitle = card.querySelector('.week-info p').textContent;
-      }
-    }
-  }
-}
-desbloquearSemanas();
-
-// ─── CÁLCULO EFICIENCIA DEL SUEÑO ───
 function calcularEficiencia() {
-  const acostarse = document.getElementById('timeAcostarse').value;
-  const dormi     = document.getElementById('timeDormi').value;
-  const levante   = document.getElementById('timeLevante').value;
+  var acostarse = document.getElementById('timeAcostarse').value;
+  var dormi     = document.getElementById('timeDormi').value;
+  var levante   = document.getElementById('timeLevante').value;
+  if (!acostarse || !dormi || !levante) return null;
 
-  if (!acostarse || !dormi || !levante) return;
+  var minA = toMinutos(acostarse);
+  var minD = toMinutos(dormi);
+  var minL = toMinutos(levante);
 
-  function toMinutos(t) {
-    const [h, m] = t.split(':').map(Number);
-    return h * 60 + m;
-  }
+  if (minD  < minA)  minD  += 1440;
+  if (minL <= minD)  minL  += 1440;
 
-  let minAcostarse = toMinutos(acostarse);
-  let minDormi     = toMinutos(dormi);
-  let minLevante   = toMinutos(levante);
+  var enCama  = minL - minA;
+  var dormido = minL - minD;
+  if (enCama <= 0 || dormido <= 0) return null;
 
-  // Ajustar cruce de medianoche
-  if (minDormi < minAcostarse) minDormi += 1440;   // se durmió al día siguiente
-  if (minLevante <= minDormi)  minLevante += 1440;  // se levantó al día siguiente
+  var eficiencia = Math.round((dormido / enCama) * 100);
+  var label = '↓ Baja';
+  var color = 'var(--red-soft)';
+  if (eficiencia >= 85)      { label = '✓ Buena';     color = 'var(--green-soft)'; }
+  else if (eficiencia >= 70) { label = '~ Mejorable'; color = 'var(--amber)'; }
 
-  const tiempoEnCama  = minLevante - minAcostarse;
-  const tiempoDormido = minLevante - minDormi;
-
-  if (tiempoEnCama <= 0 || tiempoDormido <= 0) return;
-
-  const eficiencia = Math.round((tiempoDormido / tiempoEnCama) * 100);
-
-  let label = '';
-  let color = 'var(--amber)';
-  if (eficiencia >= 85) {
-    label = '✓ Buena';
-    color = 'var(--green-soft)';
-  } else if (eficiencia >= 70) {
-    label = '~ Mejorable';
-    color = 'var(--amber)';
-  } else {
-    label = '↓ Baja';
-    color = 'var(--red-soft)';
-  }
-
-  const resultDiv = document.getElementById('eficienciaResult');
-  const valEl     = document.getElementById('eficienciaVal');
-  const labelEl   = document.getElementById('eficienciaLabel');
-
+  var resultDiv = document.getElementById('eficienciaResult');
+  var valEl     = document.getElementById('eficienciaVal');
+  var labelEl   = document.getElementById('eficienciaLabel');
   valEl.textContent   = eficiencia + '%';
   valEl.style.color   = color;
   labelEl.textContent = label;
   labelEl.style.color = color;
-  resultDiv.style.display = 'block';
+  resultDiv.classList.add('visible');
+  return eficiencia;
 }
 
-// ─── TEMARIO COMPLETO DEL ASISTENTE ───
-const TEMARIO = [
-  {
-    palabras: ['no puedo dormir','no me duermo','tardo en dormirme','conciliar','no consigo dormir','insomnio inicio'],
-    pregunta: '¿Por qué no puedo dormirme aunque esté cansado?',
-    respuesta: 'El insomnio de conciliación ocurre cuando el sistema de alerta del cerebro está sobreactivado. <strong>Las causas más frecuentes</strong> son el estrés acumulado, el uso de pantallas antes de dormir (luz azul que inhibe la melatonina), horarios irregulares, y la ansiedad anticipatoria — el miedo a no dormir que paradójicamente impide dormirse. <em>La TCC-I aborda específicamente este patrón</em> mediante control de estímulos y reestructuración cognitiva.',
-    fuente: 'Sociedad Española del Sueño (SES)'
-  },
-  {
-    palabras: ['despertarse madrugada','me despierto','despertares','3 de la mañana','despierto varias veces','insomnio mantenimiento'],
-    pregunta: '¿Por qué me despierto de madrugada y no puedo volver a dormir?',
-    respuesta: 'Es el <strong>insomnio de mantenimiento</strong>, el más frecuente en adultos mayores de 40 años. El sueño se vuelve más ligero en la segunda mitad de la noche (fases 3-4 AM), momento en que el cortisol empieza a subir. <strong>El estrés, la ansiedad, el alcohol</strong> o el dolor crónico lo empeoran. La técnica de restricción del sueño de la TCC-I es la más eficaz para este patrón.',
-    fuente: 'Sociedad Española del Sueño (SES)'
-  },
-  {
-    palabras: ['bruxismo','rechinar dientes','aprieto dientes','mandíbula','dolor mandíbula','dientes por la noche'],
-    pregunta: '¿Qué es el bruxismo y qué puedo hacer?',
-    respuesta: 'El bruxismo es el <strong>hábito inconsciente de apretar o rechinar los dientes durante el sueño</strong>. Afecta al 8% de la población. Los síntomas más frecuentes son dolor de cabeza al despertar, tensión en la mandíbula y desgaste dental. <strong>El estrés es el principal desencadenante</strong>. Técnicas de relajación antes de dormir ayudan: coloca la lengua entre los dientes suavemente para relajar la mandíbula, aplica calor en la zona. <em>Si persiste, consulta a tu dentista</em> — puede indicar una férula de descarga.',
-    fuente: 'Sociedad Española del Sueño (SES) · Mayo Clinic'
-  },
-  {
-    palabras: ['cuántas horas dormir','horas de sueño','cuánto dormir','8 horas','horas necesarias'],
-    pregunta: '¿Cuántas horas necesito dormir?',
-    respuesta: 'Los adultos necesitan entre <strong>7 y 9 horas</strong>, según la Academia Americana de Medicina del Sueño. Pero varía por persona: hay "dormidores cortos" que se recuperan con 6 horas y otros que necesitan 9. <strong>Lo que importa no es el número exacto</strong> sino cómo te sientes al despertar: si estás descansado, alerta y de buen humor, estás durmiendo lo suficiente. Menos de 6 horas de forma crónica sí tiene consecuencias documentadas para la salud.',
-    fuente: 'AASM · Sociedad Española del Sueño'
-  },
-  {
-    palabras: ['ansiedad noche','ansiedad dormir','pensamientos noche','no para mi mente','rumiación','preocupaciones','estrés dormir'],
-    pregunta: '¿Cómo calmo la ansiedad y los pensamientos antes de dormir?',
-    respuesta: 'La rumiación nocturna es uno de los factores más comunes de insomnio. Técnicas con evidencia: <strong>1) Técnica de parada de pensamiento</strong>: di "stop" mentalmente y escribe la preocupación en un papel para "aparcarla" hasta mañana. <strong>2) Respiración 4-7-8</strong>: inhala 4 seg, aguanta 7, exhala 8 — activa el sistema nervioso parasimpático en minutos. <strong>3) Relajación muscular progresiva</strong>: tensa y suelta cada grupo muscular de pies a cabeza. <em>La TCC-I incluye un módulo completo de reestructuración cognitiva para este patrón.</em>',
-    fuente: 'SES · Mayo Clinic'
-  },
-  {
-    palabras: ['melatonina','tomar melatonina','melatonina funciona','pastillas sueño naturales'],
-    pregunta: '¿Funciona la melatonina? ¿Debo tomarla?',
-    respuesta: 'La melatonina <strong>no es un somnífero</strong>, es una señal de ritmo circadiano. Es útil para el <em>jet lag</em> y para ajustar el horario de sueño (por ejemplo, si te cuesta dormirte muy tarde). <strong>No es eficaz como tratamiento del insomnio crónico</strong>. La dosis efectiva es baja (0,5-1 mg), tomada 1-2 horas antes de dormir. Dosis altas no son más eficaces. <strong>La TCC-I tiene mucha más evidencia</strong> que la melatonina para el insomnio real.',
-    fuente: 'Sociedad Española del Sueño (SES)'
-  },
-  {
-    palabras: ['alcohol sueño','copa vino dormir','alcohol ayuda dormir','beber para dormir'],
-    pregunta: '¿El alcohol ayuda a dormir?',
-    respuesta: 'Es uno de los mitos más extendidos. El alcohol <strong>facilita conciliar el sueño</strong> porque es sedante, pero <strong>destruye la calidad del sueño</strong>: fragmenta las fases profundas (N3) y el sueño REM, provoca más despertares en la segunda mitad de la noche, y reduce el efecto reparador. El resultado: te duermes antes pero amaneces más cansado. Con uso regular además genera tolerancia, necesitando más cantidad para el mismo efecto.',
-    fuente: 'Sociedad Española de Neurología (SEN)'
-  },
-  {
-    palabras: ['móvil antes dormir','pantalla noche','luz azul','teléfono cama','tablet dormir','pantallas'],
-    pregunta: '¿Por qué el móvil perjudica el sueño?',
-    respuesta: 'La <strong>luz azul de las pantallas</strong> (longitud de onda 450-490 nm) inhibe la producción de melatonina en la glándula pineal, retrasando la señal de sueño del cerebro. Pero hay un segundo problema igual de importante: <strong>el contenido estimulante</strong> (redes sociales, noticias, vídeos) mantiene activo el sistema de alerta. Lo ideal es evitar pantallas <em>al menos 1 hora antes de dormir</em>. Si no es posible, el modo noche reduce (no elimina) el impacto.',
-    fuente: 'Brigham and Women\'s Hospital · SES'
-  },
-  {
-    palabras: ['siesta','dormir siesta','siesta larga','siesta perjudica'],
-    pregunta: '¿Las siestas son buenas o malas para el insomnio?',
-    respuesta: 'Depende. <strong>Una siesta corta de 10-20 minutos</strong> antes de las 15h no afecta el sueño nocturno y mejora el rendimiento. <strong>Siestas largas (+30 min) o tardías</strong> reducen la presión de sueño acumulada durante el día (adenosina) y dificultan dormirse por la noche. Si tienes insomnio, <em>la TCC-I recomienda evitar las siestas</em> durante el programa de restricción del sueño para consolidar el sueño nocturno.',
-    fuente: 'Sociedad Española del Sueño (SES)'
-  },
-  {
-    palabras: ['cafeína','café sueño','cuándo tomar café','te sueño','bebidas energéticas'],
-    pregunta: '¿Cuándo debo tomar el último café del día?',
-    respuesta: 'La cafeína tiene una <strong>vida media de 5-6 horas</strong>, lo que significa que la mitad de la cafeína de un café de las 4 PM sigue en tu sangre a las 10 PM. En personas sensibles puede durar hasta 8-10 horas. <strong>La recomendación general</strong> es no tomar cafeína después de las 14h-15h. Recuerda que también contienen cafeína el té negro, el té verde, los refrescos de cola, el chocolate negro y las bebidas energéticas.',
-    fuente: 'AASM · Mayo Clinic'
-  },
-  {
-    palabras: ['higiene sueño','hábitos dormir','rutina nocturna','qué hacer para dormir','consejos dormir'],
-    pregunta: '¿Qué hábitos mejoran el sueño?',
-    respuesta: 'Los más respaldados por la evidencia: <strong>1) Horario fijo</strong> para acostarse y levantarse, incluso los fines de semana — es lo más importante. <strong>2) Habitación fresca</strong> (18-20°C es la temperatura óptima). <strong>3) Oscuridad total</strong>. <strong>4) Sin pantallas 1h antes</strong>. <strong>5) Evitar comidas copiosas</strong> en las 2-3 horas previas. <strong>6) Ejercicio regular</strong> (pero no justo antes de dormir). <strong>7) Ritual de relajación</strong>: leer, ducha templada, respiración.',
-    fuente: 'Sociedad Española del Sueño (SES)'
-  },
-  {
-    palabras: ['recuperar sueño','dormir más finde','deuda sueño','recuperar horas'],
-    pregunta: '¿Puedo recuperar el sueño perdido durmiendo más el fin de semana?',
-    respuesta: 'No, no de forma completa. La <strong>deuda de sueño no se "devuelve"</strong> como una deuda bancaria. Dormir más el fin de semana puede aliviar parte de la somnolencia, pero <strong>no revierte los efectos cognitivos y metabólicos</strong> acumulados durante la semana. Además, alterar el horario los fines de semana crea un "jet lag social" que dificulta el sueño el domingo por la noche y el lunes por la mañana.',
-    fuente: 'Sociedad Española del Sueño (SES) · Harvard Medical School'
-  },
-  {
-    palabras: ['temperatura dormir','frío calor dormir','cuánto grados habitación'],
-    pregunta: '¿Cuál es la temperatura ideal para dormir?',
-    respuesta: 'La temperatura del cuerpo baja naturalmente al inicio del sueño. Una habitación <strong>entre 16°C y 20°C</strong> facilita ese descenso y mejora la calidad del sueño. Demasiado calor interfiere especialmente con el sueño profundo. Un truco útil: una <strong>ducha o baño templado 1-2 horas antes</strong> de dormir dilata los vasos sanguíneos periféricos y acelera la bajada de temperatura corporal, facilitando la conciliación.',
-    fuente: 'National Sleep Foundation · SES'
-  },
-  {
-    palabras: ['tcc-i','terapia sueño','tratamiento insomnio','terapia cognitiva','sin pastillas'],
-    pregunta: '¿Qué es la TCC-I y por qué es el mejor tratamiento?',
-    respuesta: 'La <strong>Terapia Cognitivo-Conductual para el Insomnio (TCC-I)</strong> es el tratamiento de primera línea recomendado por la Sociedad Española del Sueño, antes que los fármacos. Combina: <em>psicoeducación del sueño, control de estímulos, restricción del sueño, reestructuración cognitiva y técnicas de relajación</em>. En estudios clínicos, <strong>el 70-80% de pacientes mejoran significativamente</strong> en 6-8 semanas, con beneficios más duraderos que los somníferos. DuermeBien te guía por este programa de forma gratuita.',
-    fuente: 'Sociedad Española del Sueño (SES) · AASM'
-  },
-  {
-    palabras: ['cuándo ir médico','cuándo consultar','médico insomnio','necesito médico','ver especialista'],
-    pregunta: '¿Cuándo debo ir al médico por el insomnio?',
-    respuesta: 'Consulta a tu médico de cabecera si: <strong>llevas más de 3 meses</strong> con problemas de sueño, el insomnio afecta gravemente tu trabajo o vida diaria, tienes <em>ronquidos fuertes o paradas respiratorias</em> (puede ser apnea del sueño), experimentas somnolencia extrema durante el día sin motivo claro, o el insomnio va acompañado de síntomas de depresión o ansiedad intensa. El médico puede derivarte a una Unidad del Sueño especializada.',
-    fuente: 'Ministerio de Sanidad de España'
-  },
-  {
-    palabras: ['eficiencia sueño','qué es eficiencia','calcular sueño','porcentaje sueño'],
-    pregunta: '¿Qué es la eficiencia del sueño y cómo se calcula?',
-    respuesta: 'La eficiencia del sueño es el <strong>porcentaje de tiempo en cama que realmente duermes</strong>. Se calcula así: (horas dormidas ÷ horas en cama) × 100. <strong>Por encima del 85% se considera buena eficiencia</strong>. Por ejemplo, si estás 8 horas en cama pero solo duermes 5.5h, tu eficiencia es del 69% — baja. La TCC-I usa la restricción del sueño para mejorar este índice consolidando el sueño.',
-    fuente: 'Sociedad Española del Sueño (SES)'
-  },
-  {
-    palabras: ['ronquido','apnea','apnea sueño','roncar','parar respirar'],
-    pregunta: '¿Pueden los ronquidos o la apnea del sueño causar insomnio?',
-    respuesta: 'Sí. La <strong>apnea obstructiva del sueño</strong> provoca microdespertares frecuentes (el cerebro activa el sistema de alerta al detectar la parada respiratoria) que fragmentan el sueño y generan somnolencia diurna extrema. <strong>Señales de alerta</strong>: ronquidos fuertes, pausas en la respiración observadas por tu pareja, levantarte con dolor de cabeza, y somnolencia intensa de día a pesar de dormir muchas horas. <em>Esta condición requiere diagnóstico médico</em> — no la aborda la TCC-I.',
-    fuente: 'Sociedad Española de Neurología (SEN)'
-  },
-  {
-    palabras: ['ejercicio dormir','deporte sueño','cuándo hacer ejercicio','gimnasio noche'],
-    pregunta: '¿El ejercicio mejora el sueño? ¿Cuándo hacerlo?',
-    respuesta: 'El ejercicio regular es uno de los mejores aliados del sueño. <strong>Mejora la calidad y la duración del sueño profundo</strong> y reduce la ansiedad. Sin embargo, el ejercicio intenso activa el sistema simpático y eleva la temperatura corporal. <strong>Evita el ejercicio intenso en las 2-3 horas previas a dormir</strong> si eres sensible. El ejercicio moderado por la tarde-noche (caminar, yoga) generalmente no perjudica y puede ayudar.',
-    fuente: 'AASM · Mayo Clinic'
-  },
-  {
-    palabras: ['alimentación sueño','qué comer dormir','cena insomnio','comida antes dormir'],
-    pregunta: '¿Qué debo comer (o evitar) para dormir mejor?',
-    respuesta: '<strong>Evitar</strong>: cenas copiosas en las 2-3h previas, picante, alimentos muy grasos, alcohol y cafeína. <strong>Favorable</strong>: alimentos ricos en triptófano (pavo, plátano, lácteos, nueces) que el cuerpo usa para producir melatonina y serotonina. Los hidratos de carbono de absorción lenta (avena, arroz integral) favorecen la entrada del triptófano al cerebro. Una cena <em>ligera y equilibrada</em> es mejor que no cenar.',
-    fuente: 'Mayo Clinic · Ministerio de Sanidad'
-  },
-  {
-    palabras: ['somníferos','pastillas dormir','medicación insomnio','benzodiacepinas','hipnóticos'],
-    pregunta: '¿Son buenos los somníferos? ¿Puedo tomarlos?',
-    respuesta: 'Los somníferos (benzodiacepinas, hipnóticos Z) son <strong>efectivos a corto plazo</strong> pero tienen limitaciones importantes: generan tolerancia (cada vez necesitas más), dependencia, y el insomnio vuelve con más fuerza al dejarlos (efecto rebote). <strong>Las guías clínicas recomiendan la TCC-I como primera opción</strong>, reservando los fármacos para casos puntuales o como apoyo inicial. <em>Nunca tomes somníferos sin prescripción médica.</em>',
-    fuente: 'Sociedad Española del Sueño (SES) · Ministerio de Sanidad'
+// ─── GUARDAR REGISTRO ───
+function guardarRegistro() {
+  var acostarse = document.getElementById('timeAcostarse').value || '23:30';
+  var dormi     = document.getElementById('timeDormi').value     || '00:45';
+  var levante   = document.getElementById('timeLevante').value   || '07:00';
+  var eficiencia = calcularEficiencia() || 0;
+
+  var registro = {
+    fecha:        HOY_KEY,
+    acostarse:    acostarse,
+    dormi:        dormi,
+    levante:      levante,
+    calidad:      diaryStarValue,
+    eficiencia:   eficiencia,
+    bruxismo:     document.getElementById('tog-bruxismo').classList.contains('on'),
+    pensamientos: document.getElementById('tog-pensamientos').classList.contains('on'),
+    ansiedad:     document.getElementById('tog-ansiedad').classList.contains('on'),
+    movil:        document.getElementById('tog-movil').classList.contains('on'),
+    cafeina:      document.getElementById('tog-cafeina').classList.contains('on'),
+    ejercicio:    document.getElementById('tog-ejercicio').classList.contains('on')
+  };
+
+  var registros = [];
+  try { registros = JSON.parse(localStorage.getItem('db_registros') || '[]'); } catch(e) {}
+
+  var idx = -1;
+  for (var i = 0; i < registros.length; i++) {
+    if (registros[i].fecha === HOY_KEY) { idx = i; break; }
   }
+  if (idx >= 0) registros[idx] = registro;
+  else registros.push(registro);
+  if (registros.length > 90) registros = registros.slice(-90);
+
+  localStorage.setItem('db_registros', JSON.stringify(registros));
+
+  var fb = document.getElementById('saveFeedback');
+  fb.classList.add('visible');
+  setTimeout(function() { fb.classList.remove('visible'); }, 3000);
+
+  renderizarGrafico();
+  actualizarEstadisticasHome();
+}
+
+// ─── CARGAR ÚLTIMO REGISTRO ───
+function cargarUltimoRegistro() {
+  var registros = [];
+  try { registros = JSON.parse(localStorage.getItem('db_registros') || '[]'); } catch(e) {}
+  var reg = null;
+  for (var i = 0; i < registros.length; i++) {
+    if (registros[i].fecha === HOY_KEY) { reg = registros[i]; break; }
+  }
+  if (!reg) return;
+  if (reg.acostarse) document.getElementById('timeAcostarse').value = reg.acostarse;
+  if (reg.dormi)     document.getElementById('timeDormi').value     = reg.dormi;
+  if (reg.levante)   document.getElementById('timeLevante').value   = reg.levante;
+  if (reg.eficiencia) calcularEficiencia();
+  setDiaryStar(reg.calidad || 3);
+  ['bruxismo','pensamientos','ansiedad','movil','cafeina','ejercicio'].forEach(function(k) {
+    var el = document.getElementById('tog-' + k);
+    if (el) el.classList.toggle('on', !!reg[k]);
+  });
+}
+
+// ─── GRÁFICO SEMANAL ───
+function renderizarGrafico() {
+  var registros = [];
+  try { registros = JSON.parse(localStorage.getItem('db_registros') || '[]'); } catch(e) {}
+  var chart = document.getElementById('weekChart');
+  if (!chart) return;
+  chart.innerHTML = '';
+  for (var i = 6; i >= 0; i--) {
+    var d = new Date(HOY); d.setDate(HOY.getDate() - i);
+    var key = d.toISOString().split('T')[0];
+    var reg = null;
+    for (var j = 0; j < registros.length; j++) {
+      if (registros[j].fecha === key) { reg = registros[j]; break; }
+    }
+    var bar = document.createElement('div');
+    bar.className = 'chart-bar';
+    var ef = reg ? reg.eficiencia : 0;
+    bar.style.height = (ef > 0 ? Math.max(8, ef) : 8) + '%';
+    if (ef >= 85) bar.classList.add('good');
+    var tip = document.createElement('span');
+    tip.className = 'bar-tip';
+    tip.textContent = ef > 0 ? ef + '%' : '—';
+    bar.appendChild(tip);
+    chart.appendChild(bar);
+  }
+}
+
+// ─── ESTADÍSTICAS HOME ───
+function actualizarEstadisticasHome() {
+  var registros = [];
+  try { registros = JSON.parse(localStorage.getItem('db_registros') || '[]'); } catch(e) {}
+  var hace7 = new Date(HOY); hace7.setDate(HOY.getDate() - 6);
+  var recientes = registros.filter(function(r) { return new Date(r.fecha) >= hace7; });
+  var conEf = recientes.filter(function(r) { return r.eficiencia > 0; });
+  var media = conEf.length
+    ? Math.round(conEf.reduce(function(s, r) { return s + r.eficiencia; }, 0) / conEf.length)
+    : null;
+  document.getElementById('statEficiencia').textContent = media ? media + '%' : '—';
+  document.getElementById('statRegistros').textContent  = recientes.length;
+  var racha = 0;
+  for (var i = 0; i < 30; i++) {
+    var d = new Date(HOY); d.setDate(HOY.getDate() - i);
+    var key = d.toISOString().split('T')[0];
+    var found = false;
+    for (var j = 0; j < registros.length; j++) {
+      if (registros[j].fecha === key) { found = true; break; }
+    }
+    if (found) racha++;
+    else break;
+  }
+  document.getElementById('statRacha').textContent = racha;
+}
+
+// ─── TEMARIO ASISTENTE ───
+var TEMARIO = [
+  {palabras:['no puedo dormir','no me duermo','tardo en dormirme','conciliar','no consigo dormir','insomnio inicio'],pregunta:'¿Por qué no puedo dormirme aunque esté cansado?',respuesta:'El insomnio de conciliación ocurre cuando el sistema de alerta del cerebro está sobreactivado. <strong>Las causas más frecuentes</strong> son el estrés acumulado, el uso de pantallas antes de dormir (luz azul que inhibe la melatonina), horarios irregulares, y la ansiedad anticipatoria — el miedo a no dormir que paradójicamente impide dormirse. <em>La TCC-I aborda específicamente este patrón</em> mediante control de estímulos y reestructuración cognitiva.',fuente:'Sociedad Española del Sueño (SES)'},
+  {palabras:['despertarse madrugada','me despierto','despertares','3 de la mañana','despierto varias veces','insomnio mantenimiento'],pregunta:'¿Por qué me despierto de madrugada y no puedo volver a dormir?',respuesta:'Es el <strong>insomnio de mantenimiento</strong>, el más frecuente en adultos mayores de 40 años. El sueño se vuelve más ligero en la segunda mitad de la noche, momento en que el cortisol empieza a subir. <strong>El estrés, la ansiedad, el alcohol</strong> o el dolor crónico lo empeoran. La técnica de restricción del sueño de la TCC-I es la más eficaz para este patrón.',fuente:'Sociedad Española del Sueño (SES)'},
+  {palabras:['bruxismo','rechinar dientes','aprieto dientes','mandíbula','dolor mandíbula','dientes por la noche'],pregunta:'¿Qué es el bruxismo y qué puedo hacer?',respuesta:'El bruxismo es el <strong>hábito inconsciente de apretar o rechinar los dientes durante el sueño</strong>. Afecta al 8% de la población. Los síntomas más frecuentes son dolor de cabeza al despertar, tensión en la mandíbula y desgaste dental. <strong>El estrés es el principal desencadenante</strong>. Técnicas de relajación antes de dormir ayudan: coloca la lengua entre los dientes suavemente. <em>Si persiste, consulta a tu dentista.</em>',fuente:'SES · Mayo Clinic'},
+  {palabras:['cuántas horas dormir','horas de sueño','cuánto dormir','8 horas','horas necesarias'],pregunta:'¿Cuántas horas necesito dormir?',respuesta:'Los adultos necesitan entre <strong>7 y 9 horas</strong> según la AASM. Pero varía por persona. <strong>Lo que importa</strong> es cómo te sientes al despertar: si estás descansado y alerta, estás durmiendo lo suficiente. Menos de 6 horas de forma crónica tiene consecuencias documentadas para la salud.',fuente:'AASM · Sociedad Española del Sueño'},
+  {palabras:['ansiedad noche','ansiedad dormir','pensamientos noche','no para mi mente','rumiación','preocupaciones','estrés dormir'],pregunta:'¿Cómo calmo la ansiedad y los pensamientos antes de dormir?',respuesta:'Técnicas con evidencia: <strong>1) Parada de pensamiento</strong>: di "stop" y escribe la preocupación en papel. <strong>2) Respiración 4-7-8</strong>: inhala 4 seg, aguanta 7, exhala 8. <strong>3) Relajación muscular progresiva</strong>: tensa y suelta cada grupo muscular. <em>La TCC-I incluye un módulo completo de reestructuración cognitiva.</em>',fuente:'SES · Mayo Clinic'},
+  {palabras:['melatonina','tomar melatonina','melatonina funciona','pastillas sueño naturales'],pregunta:'¿Funciona la melatonina? ¿Debo tomarla?',respuesta:'La melatonina <strong>no es un somnífero</strong>, es una señal de ritmo circadiano. Es útil para el jet lag. <strong>No es eficaz como tratamiento del insomnio crónico</strong>. La dosis efectiva es baja (0,5-1 mg). <strong>La TCC-I tiene mucha más evidencia</strong> que la melatonina para el insomnio real.',fuente:'Sociedad Española del Sueño (SES)'},
+  {palabras:['alcohol sueño','copa vino dormir','alcohol ayuda dormir','beber para dormir'],pregunta:'¿El alcohol ayuda a dormir?',respuesta:'Es uno de los mitos más extendidos. El alcohol <strong>facilita conciliar el sueño</strong> pero <strong>destruye la calidad del sueño</strong>: fragmenta las fases profundas (N3) y el REM, provoca más despertares, y reduce el efecto reparador. Te duermes antes pero amaneces más cansado.',fuente:'Sociedad Española de Neurología (SEN)'},
+  {palabras:['móvil antes dormir','pantalla noche','luz azul','teléfono cama','tablet dormir','pantallas'],pregunta:'¿Por qué el móvil perjudica el sueño?',respuesta:'La <strong>luz azul de las pantallas</strong> inhibe la producción de melatonina en la glándula pineal, retrasando la señal de sueño. Además, <strong>el contenido estimulante</strong> mantiene activo el sistema de alerta. Lo ideal es evitar pantallas <em>al menos 1 hora antes de dormir</em>.',fuente:'Brigham and Women\'s Hospital · SES'},
+  {palabras:['siesta','dormir siesta','siesta larga','siesta perjudica'],pregunta:'¿Las siestas son buenas o malas para el insomnio?',respuesta:'Depende. <strong>Una siesta corta de 10-20 minutos</strong> antes de las 15h no afecta el sueño nocturno. <strong>Siestas largas (+30 min) o tardías</strong> dificultan dormirse por la noche. Si tienes insomnio, <em>la TCC-I recomienda evitar las siestas</em> durante el programa.',fuente:'Sociedad Española del Sueño (SES)'},
+  {palabras:['cafeína','café sueño','cuándo tomar café','te sueño','bebidas energéticas'],pregunta:'¿Cuándo debo tomar el último café del día?',respuesta:'La cafeína tiene una <strong>vida media de 5-6 horas</strong>. <strong>La recomendación general</strong> es no tomar cafeína después de las 14h-15h. También contienen cafeína el té negro, el té verde, los refrescos de cola, el chocolate negro y las bebidas energéticas.',fuente:'AASM · Mayo Clinic'},
+  {palabras:['higiene sueño','hábitos dormir','rutina nocturna','qué hacer para dormir','consejos dormir'],pregunta:'¿Qué hábitos mejoran el sueño?',respuesta:'Los más respaldados: <strong>1) Horario fijo</strong> para acostarse y levantarse. <strong>2) Habitación fresca</strong> (18-20°C). <strong>3) Oscuridad total</strong>. <strong>4) Sin pantallas 1h antes</strong>. <strong>5) Evitar comidas copiosas</strong> 2-3h previas. <strong>6) Ejercicio regular</strong> (no justo antes de dormir). <strong>7) Ritual de relajación</strong>.',fuente:'Sociedad Española del Sueño (SES)'},
+  {palabras:['recuperar sueño','dormir más finde','deuda sueño','recuperar horas'],pregunta:'¿Puedo recuperar el sueño perdido durmiendo más el fin de semana?',respuesta:'No de forma completa. La <strong>deuda de sueño no se devuelve</strong> como una deuda bancaria. Dormir más el fin de semana alivia la somnolencia pero <strong>no revierte los efectos cognitivos y metabólicos</strong>. Además, altera el ritmo circadiano creando un "jet lag social".',fuente:'SES · Harvard Medical School'},
+  {palabras:['temperatura dormir','frío calor dormir','grados habitación'],pregunta:'¿Cuál es la temperatura ideal para dormir?',respuesta:'Una habitación <strong>entre 16°C y 20°C</strong> facilita la bajada de temperatura corporal necesaria para el sueño. Demasiado calor interfiere con el sueño profundo. Una <strong>ducha templada 1-2 horas antes</strong> acelera ese proceso.',fuente:'National Sleep Foundation · SES'},
+  {palabras:['tcc-i','terapia sueño','tratamiento insomnio','terapia cognitiva','sin pastillas'],pregunta:'¿Qué es la TCC-I y por qué es el mejor tratamiento?',respuesta:'La <strong>Terapia Cognitivo-Conductual para el Insomnio (TCC-I)</strong> es el tratamiento de primera línea según la SES, antes que los fármacos. <strong>El 70-80% de pacientes mejoran en 6-8 semanas</strong>, con beneficios más duraderos que los somníferos. DuermeBien te guía por este programa de forma gratuita.',fuente:'SES · AASM'},
+  {palabras:['cuándo ir médico','cuándo consultar','médico insomnio','necesito médico','ver especialista'],pregunta:'¿Cuándo debo ir al médico por el insomnio?',respuesta:'Consulta si: <strong>llevas más de 3 meses</strong> con problemas de sueño, afecta gravemente tu vida, tienes <em>ronquidos fuertes o paradas respiratorias</em>, somnolencia extrema durante el día, o el insomnio va acompañado de síntomas de depresión o ansiedad intensa.',fuente:'Ministerio de Sanidad de España'},
+  {palabras:['eficiencia sueño','qué es eficiencia','calcular sueño','porcentaje sueño'],pregunta:'¿Qué es la eficiencia del sueño y cómo se calcula?',respuesta:'Eficiencia = (horas dormidas ÷ horas en cama) × 100. <strong>Por encima del 85% se considera buena eficiencia</strong>. Por ejemplo, 8 horas en cama pero 5,5h dormidas = 69%, baja. La TCC-I usa la restricción del sueño para mejorar este índice.',fuente:'Sociedad Española del Sueño (SES)'},
+  {palabras:['ronquido','apnea','apnea sueño','roncar','parar respirar'],pregunta:'¿Pueden los ronquidos o la apnea del sueño causar insomnio?',respuesta:'La <strong>apnea obstructiva del sueño</strong> provoca microdespertares frecuentes que fragmentan el sueño y generan somnolencia diurna extrema. <strong>Señales de alerta</strong>: ronquidos fuertes, pausas en la respiración, levantarte con dolor de cabeza. <em>Requiere diagnóstico médico.</em>',fuente:'Sociedad Española de Neurología (SEN)'},
+  {palabras:['ejercicio dormir','deporte sueño','cuándo hacer ejercicio','gimnasio noche'],pregunta:'¿El ejercicio mejora el sueño? ¿Cuándo hacerlo?',respuesta:'El ejercicio regular <strong>mejora la calidad y duración del sueño profundo</strong> y reduce la ansiedad. <strong>Evita el ejercicio intenso en las 2-3 horas previas a dormir</strong>. El ejercicio moderado por la tarde-noche (caminar, yoga) generalmente no perjudica.',fuente:'AASM · Mayo Clinic'},
+  {palabras:['alimentación sueño','qué comer dormir','cena insomnio','comida antes dormir'],pregunta:'¿Qué debo comer (o evitar) para dormir mejor?',respuesta:'<strong>Evitar</strong>: cenas copiosas en las 2-3h previas, alcohol y cafeína. <strong>Favorable</strong>: alimentos ricos en triptófano (pavo, plátano, lácteos, nueces). Una cena <em>ligera y equilibrada</em> es mejor que no cenar.',fuente:'Mayo Clinic · Ministerio de Sanidad'},
+  {palabras:['somníferos','pastillas dormir','medicación insomnio','benzodiacepinas','hipnóticos'],pregunta:'¿Son buenos los somníferos? ¿Puedo tomarlos?',respuesta:'Los somníferos son <strong>efectivos a corto plazo</strong> pero generan tolerancia, dependencia, y efecto rebote al dejarlos. <strong>Las guías clínicas recomiendan la TCC-I como primera opción</strong>. <em>Nunca tomes somníferos sin prescripción médica.</em>',fuente:'SES · Ministerio de Sanidad'}
 ];
 
-// ─── LÓGICA DE BÚSQUEDA ───
+// ─── BÚSQUEDA ASISTENTE ───
 function buscarRespuesta() {
-  const query = document.getElementById('asistenteInput').value.toLowerCase().trim();
-  const resultado = document.getElementById('resultadoCard');
-  const noResultado = document.getElementById('noResultado');
-  const categorias = document.getElementById('categoriasGrid');
+  var query      = document.getElementById('asistenteInput').value.toLowerCase().trim();
+  var resultado  = document.getElementById('resultadoCard');
+  var noResult   = document.getElementById('noResultado');
+  var categorias = document.getElementById('categoriasGrid');
 
   if (!query || query.length < 2) {
     resultado.classList.remove('visible');
-    noResultado.classList.remove('visible');
+    noResult.classList.remove('visible');
     categorias.style.display = 'grid';
     return;
   }
-
   categorias.style.display = 'none';
 
-  // Buscar coincidencia por palabras clave
-  let mejorMatch = null;
-  let mejorPuntuacion = 0;
+  var mejorMatch = null;
+  var mejorPuntuacion = 0;
 
-  TEMARIO.forEach(item => {
-    let puntuacion = 0;
-    item.palabras.forEach(palabra => {
-      if (query.includes(palabra) || palabra.includes(query)) {
-        puntuacion += palabra.length; // más largo = más específico
-      }
-      // Coincidencia parcial por palabras individuales
-      const queryWords = query.split(' ');
-      queryWords.forEach(qw => {
-        if (qw.length > 2 && palabra.includes(qw)) puntuacion += 1;
+  TEMARIO.forEach(function(item) {
+    var puntuacion = 0;
+    item.palabras.forEach(function(palabra) {
+      if (query.indexOf(palabra) >= 0 || palabra.indexOf(query) >= 0) puntuacion += palabra.length;
+      query.split(' ').forEach(function(qw) {
+        if (qw.length > 2 && palabra.indexOf(qw) >= 0) puntuacion += 1;
       });
     });
-    if (puntuacion > mejorPuntuacion) {
-      mejorPuntuacion = puntuacion;
-      mejorMatch = item;
-    }
+    if (puntuacion > mejorPuntuacion) { mejorPuntuacion = puntuacion; mejorMatch = item; }
   });
 
   if (mejorMatch && mejorPuntuacion > 1) {
     document.getElementById('resultadoPregunta').textContent = mejorMatch.pregunta;
-    document.getElementById('resultadoRespuesta').innerHTML = mejorMatch.respuesta;
-    document.getElementById('resultadoFuente').textContent = '📚 ' + mejorMatch.fuente;
+    document.getElementById('resultadoRespuesta').innerHTML  = mejorMatch.respuesta;
+    document.getElementById('resultadoFuente').textContent   = '📚 ' + mejorMatch.fuente;
     resultado.classList.add('visible');
-    noResultado.classList.remove('visible');
+    noResult.classList.remove('visible');
   } else {
     resultado.classList.remove('visible');
-    noResultado.classList.add('visible');
+    noResult.classList.add('visible');
   }
 }
 
 function buscarPorChip(texto) {
   document.getElementById('asistenteInput').value = texto;
   buscarRespuesta();
-  // Scroll al resultado
-  setTimeout(() => {
-    document.getElementById('resultadoCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 100);
+  setTimeout(function() {
+    var card = document.getElementById('resultadoCard');
+    if (card.classList.contains('visible')) card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 150);
 }
-
 
 // ─── MODAL AVISO LEGAL ───
 function abrirAvisoLegal() {
@@ -2221,23 +930,26 @@ function cerrarAvisoLegal(e) {
   }
 }
 
-// ─── PWA SERVICE WORKER (inline blob) ───
+// ─── INIT: si ya pasó el onboarding, arrancar directo en home ───
+if (localStorage.getItem('db_inicio')) {
+  document.getElementById('screen-onboarding').classList.remove('active');
+  document.getElementById('screen-home').classList.add('active');
+  document.getElementById('bottomNav').classList.add('visible');
+  actualizarEstadisticasHome();
+  renderizarGrafico();
+  desbloquearSemanas();
+}
+
+// ─── PWA SERVICE WORKER ───
 if ('serviceWorker' in navigator) {
-  const swCode = `
-    const CACHE = 'duermebien-v1';
-    self.addEventListener('install', e => {
-      self.skipWaiting();
-    });
-    self.addEventListener('activate', e => {
-      self.clients.claim();
-    });
-    self.addEventListener('fetch', e => {
-      e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
-    });
-  `;
-  const blob = new Blob([swCode], { type: 'application/javascript' });
-  const url = URL.createObjectURL(blob);
-  navigator.serviceWorker.register(url).catch(() => {});
+  var swCode = [
+    "const CACHE = 'duermebien-v2';",
+    "self.addEventListener('install', e => { self.skipWaiting(); });",
+    "self.addEventListener('activate', e => { self.clients.claim(); });",
+    "self.addEventListener('fetch', e => { e.respondWith(fetch(e.request).catch(() => caches.match(e.request))); });"
+  ].join('\n');
+  var blob = new Blob([swCode], { type: 'application/javascript' });
+  navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(function() {});
 }
 </script>
 </body>
